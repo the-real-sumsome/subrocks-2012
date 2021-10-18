@@ -186,7 +186,10 @@
 								</div>
 								<div id="watch-more-from-user" class="collapsed">
 									<div id="watch-channel-discoverbox" class="yt-rounded">
-										<span id="watch-channel-loading">Loading...</span>
+										<p class="yt-spinner">
+											<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="yt-spinner-img" alt="">
+											Loading...
+										</p>
 									</div>
 								</div>
 							</div>
