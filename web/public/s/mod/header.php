@@ -28,9 +28,9 @@
 		<?php echo $__user_h->fetch_unread_pms($_SESSION['siteusername']); ?> 
 		</a>
 		<?php } else { ?>
-		<button id="sb-button-notify" style="border: none; background: none;" onclick=";window.location.href=this.getAttribute('href');return false;" class="sb-notif-off yt-uix-button yt-uix-button-default yt-uix-button-size-default" type="button" role="button" href="inbox">    <span class="yt-uix-button-content" style="display: block;">
-		<img src="/yt/imgbin/notification_icon.png" style="width: 22px;position: relative;left: -8px;" class="yt-uix-button-icon"></span>
-		</button>
+		<a style="border-radius:2px;font-weight:bold;border:1px solid #D5D5D5;position:relative;top:1px;color: #939393;text-decoration: none;background-color: #DADADA;padding: 7px;padding-left: 10px;margin-right: 12px;display: inline;" href="/inbox/">
+		<?php echo $__user_h->fetch_unread_pms($_SESSION['siteusername']); ?> 
+		</a>
 		<?php } ?>
 		<img onclick="yt.www.masthead.toggleExpandedMasthead();;return false;" alt="Thumbnail" src="/dynamic/pfp/<?php echo $__user_h->fetch_pfp($_SESSION['siteusername']); ?>" style="width:31px;height:31px;vertical-align:middle;border-radius:2px;">
 		<span id="yt-masthead-dropdown" onclick="yt.www.masthead.toggleExpandedMasthead();" class=""></span>
