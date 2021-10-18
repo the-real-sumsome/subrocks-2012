@@ -828,7 +828,10 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 												<?php } ?>
 											</ul>
 											<ul id="watch-more-related" class="video-list hid">
-												<li id="watch-more-related-loading">Loading more suggestions...</li>
+											<p class="yt-spinner">
+											<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="yt-spinner-img" alt="">
+											Loading...
+											</p>
 											</ul>
 										</div>
 										<div class="watch-sidebar-foot">
