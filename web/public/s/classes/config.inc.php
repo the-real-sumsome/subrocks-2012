@@ -41,9 +41,7 @@
     }
     catch(PDOException $e)
     {
-        $__server->db_properties->db_connected = false;
-        die($e);
-        // wtf is the point of this? cant you just vomit out the error? why?????????????
+        die("An error occured connecting to the database: ".$e->getMessage());
     }
 
     session_start();
