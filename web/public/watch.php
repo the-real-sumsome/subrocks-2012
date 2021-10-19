@@ -240,7 +240,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 											<button onclick=";return false;" title="Show video statistics" type="button" id="watch-insight-button" class="yt-uix-tooltip yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" data-button-action="yt.www.watch.actions.stats" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-insight" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Show video statistics"><span class="yt-valign-trick"></span></span></button>
 										</div>
 										<span id="watch-like-unlike" class="yt-uix-button-group " data-button-toggle-group="optional">
-											<button onclick=";window.location.href=this.getAttribute('href');return false;"
+											<button onclick=";like_video();return false;"
 											title="I like this" 
 											type="button" 
 											class="start <?php if($_video['liked']) { echo "liked "; } ?>yt-uix-tooltip-reverse  yt-uix-button yt-uix-button-default yt-uix-tooltip" 
@@ -252,7 +252,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 											</button>
 											
 											<button 
-											onclick=";window.location.href=this.getAttribute('href');return false;"
+											onclick=";like_video();return false;"
 											title="I dislike this" 
 											type="button" 
 											style="margin-left: -2px;"
@@ -693,7 +693,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 																<span class="comments-threshold-count"></span> seconds remaining before you can post
 															</p>
 															<p class="comments-post-buttons">
-																<span class="comments-post-video-response-link"><a href="/video_response_upload?v=<?php echo $_GET['v']; ?>">Create a video response</a>&nbsp;or&nbsp;</span><button type="submit" class="comments-post yt-uix-button yt-uix-button-default" role="button"><span class="yt-uix-button-content">Post </span></button>    
+																<span class="comments-post-video-response-link"></span><button type="submit" class="comments-post yt-uix-button yt-uix-button-default" role="button"><span class="yt-uix-button-content">Post </span></button>    
 															</p>
 														</form>
 													</div>
@@ -753,7 +753,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 																<div class="comment-actions">
 																	<span class="yt-uix-button-group"><button type="button" class="start comment-action-vote-up comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Up" data-action="vote-up" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-up" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Up"><span class="yt-valign-trick"></span></span></button><button type="button" class="end comment-action-vote-down comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Down" data-action="vote-down" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-down" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Down"><span class="yt-valign-trick"></span></span></button></span>
 																	<span class="yt-uix-button-group">
-																		<button type="button" class="start comment-action yt-uix-button yt-uix-button-default" onclick=";return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply </span></button>
+																		<!--<button type="button" class="start comment-action yt-uix-button yt-uix-button-default" onclick=";return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply </span></button>-->
 																		<button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
 																			<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
 																			<div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
@@ -820,7 +820,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 														$video['title'] = htmlspecialchars($video['title']);
 														$video['description'] = $__video_h->shorten_description($video['description'], 50);
 												?>
-												<li class="video-list-item"><a href="/watch?v=<?php echo $video['rid']; ?>" class="related-video yt-uix-contextlink  yt-uix-sessionlink" data-sessionlink="ved=CAIQzRooAA%3D%3D&amp;<?php echo htmlspecialchars($_video['author']); ?>&amp;feature=relmfu"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="<?php echo $video['title']; ?>" data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
+												<li class="video-list-item"><a href="/watch?v=<?php echo $video['rid']; ?>" class="related-video yt-uix-contextlink  yt-uix-sessionlink" data-sessionlink="ved=CAIQzRooAA%3D%3D&amp;<?php echo htmlspecialchars($_video['author']); ?>&amp;feature=relmfu"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="<?php echo $video['title']; ?>" onerror="this.onerror=null;this.src='/dynamic/thumbs/default.jpg';" data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
 													<button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="gyAaIKF6tSQ" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
 													</span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
 													</span><span dir="ltr" class="title" title="<?php echo $video['title']; ?>"><?php echo $video['title']; ?></span><span class="stat attribution">by <span class="yt-user-name " dir="ltr"><?php echo htmlspecialchars($video['author']); ?></span></span><span class="stat view-count"><?php echo $video['views']; ?> views</span></a>
@@ -1321,6 +1321,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 		</script>
 		<script>
 			var subscribed = <?php echo($_video['subscribed'] ? 'true' : 'false') ?>;
+			var liked = <?php echo($_video['liked'] ? 'true' : 'false') ?>;
 			var loggedIn = <?php echo(isset($_SESSION['siteusername']) ? 'true' : 'false') ?>;
 			var alerts = 0;
  
@@ -1356,6 +1357,42 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 				} else {
 					alerts++;
 					addAlert("editsuccess_" + alerts, "You need to log in to add subscriptions!");
+					showAlert("#editsuccess_" + alerts);
+				}
+			}
+
+			function like_video() {
+				if(loggedIn == true) { 
+					if(liked == false) { 
+						$.ajax({
+							url: "/get/like_video?v=<?php echo htmlspecialchars($_video['rid']); ?>",
+							type: 'GET',
+							success: function(res) {
+								alerts++;
+								$("#watch-like").addClass("liked");
+								$("#watch-unlike").removeClass("unliked");
+								showAlert("#editsuccess_" + alerts);
+								console.log("DEBUG: " + res);
+								liked = true;
+							}
+						});
+					} else {
+						$.ajax({
+							url: "/get/dislike_video?v=<?php echo htmlspecialchars($_video['rid']); ?>",
+							type: 'GET',
+							success: function(res) {
+								alerts++;
+								$("#watch-unlike").addClass("unliked");
+								$("#watch-like").removeClass("liked");
+								showAlert("#editsuccess_" + alerts);
+								console.log("DEBUG: " + res);
+								liked = false;
+							}
+						});
+					}
+				} else {
+					alerts++;
+					addAlert("editsuccess_" + alerts, "You need to log in to like/dislike videos!");
 					showAlert("#editsuccess_" + alerts);
 				}
 			}

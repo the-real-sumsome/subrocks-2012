@@ -1,0 +1,1 @@
+<?php header("Location: /?error=This page does not exist."); ?>
