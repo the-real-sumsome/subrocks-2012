@@ -42,7 +42,7 @@
 				<div id="content">
                     <h3>Template</h3>
                     <hr>
-                    I just shat my pants<br><br>
+                    rrrrrrrrrrrrr<br><br>
                 </div>
             </div>  
 			<div id="footer-container"><?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/footer.php"); ?></div>
