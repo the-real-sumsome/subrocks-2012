@@ -304,7 +304,7 @@
 
                                 <?php 
                                     if($stmt6->rowCount() == 0) { echo "
-                                        <br>Welcome to your favorite vidoes page.<br>
+                                        <br>Welcome to your favorite videos page.<br>
 										You can add videos that you like and the video will be added here!
                                     "; 
                                 } ?>
