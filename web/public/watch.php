@@ -307,7 +307,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 
 													<?php if($_SESSION['siteusername'] != $_video['author']) { ?>
 														<?php if($_video['friended'] == false) { ?>
-															<a href="/get/favorite?v=<?php echo $_video['rid']; ?>">Send a friend request</a>
+															<a href="/friends">Send a friend request</a>
 														<?php } else { ?>
 															Your friend request is pending.
 														<?php } ?>

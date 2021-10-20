@@ -103,7 +103,13 @@
             }
         }
     }
-	?>
+?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - " . htmlspecialchars($_user['username']);
+	$__server->page_embeds->page_description = htmlspecialchars($_user['bio']);
+	$__server->page_embeds->page_image = "/dynamic/pfp/" . htmlspecialchars($_user['pfp']);
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>
 <!DOCTYPE html>
 <html dir="ltr" xmlns:og="http://opengraphprotocol.org/schema/" lang="en">
 	<!-- machid: sNW5tN3Z2SWdXaDRqNGxuNEF5MFBxM1BxWXd0VGo0Rkg3UXNTTTNCUGRDWjR0WGpHR3R1YzFR -->

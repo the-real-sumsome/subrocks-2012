@@ -102,7 +102,13 @@
             }
         }
     }
-	?>
+?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - " . htmlspecialchars($_playlist['title']);
+	$__server->page_embeds->page_description = htmlspecialchars($_playlist['description']);
+	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>	
 <!DOCTYPE html>
 <html dir="ltr" xmlns:og="http://opengraphprotocol.org/schema/" lang="en">
 	<!-- machid: sNW5tN3Z2SWdXaDRqNGxuNEF5MFBxM1BxWXd0VGo0Rkg3UXNTTTNCUGRDWjR0WGpHR3R1YzFR -->
