@@ -313,7 +313,7 @@
                                 if ($c == $_user['country'])
                                 {
                                 ?>
-                                <option value="<?php echo $_user['country']; ?>" select="selected"><?php echo $c; ?></option>
+                                <option value="<?php echo $_user['country']; ?>" selected="selected"><?php echo $c; ?></option>
                                 <?php
                                 }
                                 else
