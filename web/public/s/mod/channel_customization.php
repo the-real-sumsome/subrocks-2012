@@ -828,8 +828,12 @@
 <script type="text/javascript">
 <?php 
 // script for the drop down value(its messy ik)
-// https://stackoverflow.com/questions/3030604/php-pre-select-drop-down-option
+// https://stackoverflow.com/q  uestions/3030604/php-pre-select-drop-down-option
 ?>
+/*
 var dropDownList = document.getElementById('countryselect');
-dropDownList.options[value="<?php echo $_user['country']; ?>"].select = "selected";
+dropDownList.options[value="<?php //echo $_user['country']; ?>"].select = "selected";
+*/
+var c = document.querySelector('[value=<?php echo $_user['country'];?>]');
+c.createAttribute("selected");
 </script>
