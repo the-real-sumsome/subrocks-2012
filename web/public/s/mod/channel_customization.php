@@ -169,6 +169,14 @@
         margin-left: -5px;
     }
 </style>
+<script type="text/javascript">
+<?php 
+// script for the drop down value(its messy ik)
+// https://stackoverflow.com/questions/3030604/php-pre-select-drop-down-option
+?>
+var dropDownList = document.getElementById('countryselect');
+dropDownList.options["<?php echo $_user['country']; ?>"].selected = true;
+</script>
 <div class="channel-customization-bg">
     <br>
     <div class="channel-custom-top">
@@ -295,7 +303,7 @@
 
 
                         <b>Country</b><br>
-                        <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
+                        <div class="customization-module" id="countryselect" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
                             <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"  id="country" name="country" value="<?php echo $_user['country']?>">
                             <option value="Afganistan">Afghanistan</option>
                             <option value="Albania">Albania</option>
