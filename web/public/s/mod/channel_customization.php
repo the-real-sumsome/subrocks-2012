@@ -305,9 +305,11 @@
 
                             $countryLength = sizeof($countries);
                             $i = 0;
+                            $f = 0;
                             for($i = 0;i <= $countryLength; $i++)
                             {
-                                $c = $countries[$i];
+                                $f++;
+                                $c = $countries[$f];
                                 if ($c == $_user['country'])
                                 {
                                 ?>
