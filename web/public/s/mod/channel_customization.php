@@ -169,14 +169,7 @@
         margin-left: -5px;
     }
 </style>
-<script type="text/javascript">
-<?php 
-// script for the drop down value(its messy ik)
-// https://stackoverflow.com/questions/3030604/php-pre-select-drop-down-option
-?>
-var dropDownList = document.getElementById('countryselect');
-dropDownList.options["<?php echo $_user['country']; ?>"].selected = true;
-</script>
+
 <div class="channel-customization-bg">
     <br>
     <div class="channel-custom-top">
@@ -832,3 +825,11 @@ dropDownList.options["<?php echo $_user['country']; ?>"].selected = true;
 </script>
 <script src="/s/js/channelEdit.js"></script>
 <script src="/s/js/alert.js"></script>
+<script type="text/javascript">
+<?php 
+// script for the drop down value(its messy ik)
+// https://stackoverflow.com/questions/3030604/php-pre-select-drop-down-option
+?>
+var dropDownList = document.getElementById('countryselect');
+dropDownList.options[value="<?php echo $_user['country']; ?>"].select = "selected";
+</script>
