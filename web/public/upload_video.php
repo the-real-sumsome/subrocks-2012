@@ -203,6 +203,7 @@
                                         },
                                         // when the form succeeds. resp is a string of what the server sent back 
                                         success: (resp) => {
+											console.log(resp);
                                             window.location = "/uploaded_video?v=" + resp;
                                         }
                                     });

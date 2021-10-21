@@ -7,12 +7,23 @@
 <?php $__user_h = new user_helper($__db); ?>
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
+<?php if(!$__video_h->video_exists($_GET['v'])) { header("Location: /?error=This video doesn't exist!"); } ?>
 <?php
-	$__server->page_embeds->page_title = "SubRocks - Replace me";
+    $_video = $__video_h->fetch_video_rid($_GET['v']);
+    $_video['video_responses'] = $__video_h->get_video_responses($_video['rid']);
+	$_video['age'] = $__time_h->time_elapsed_string($_video['publish']);		
+	$_video['duration'] = $__time_h->timestamp($_video['duration']);
+	$_video['views'] = $__video_h->fetch_video_views($_video['rid']);
+	$_video['author'] = htmlspecialchars($_video['author']);		
+	$_video['title'] = htmlspecialchars($_video['title']);
+	$_video['description'] = $__video_h->shorten_description($_video['description'], 50);
+
+	$__server->page_embeds->page_title = "SubRocks - All Comments";
 	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
 	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
 	$__server->page_embeds->page_url = "https://subrock.rocks/";
 ?>
+<?php $_video['comments'] = $__video_h->get_comments_from_video($_video['rid']); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -40,9 +51,154 @@
 			<div id="content-container">
 				<!-- begin content -->
 				<div id="content">
-                    <h3>Template</h3>
+                    <span style="float: right;margin-top: 5px;">
+                        <img style="width: 50px;height:50px;" src="/dynamic/pfp/<?php echo $__user_h->fetch_pfp($_video['author']); ?>">
+                        <span style="display: inline-block; vertical-align:top;width: 100px;font-size: 11px;">
+                            <b><a href="/user/<?php echo htmlspecialchars($_video['author']); ?>"><?php echo htmlspecialchars($_video['author']); ?></a></b><br>
+                            <?php echo $__user_h->fetch_subs_count($_video['author']); ?> subscribers<br>
+                            <?php echo $__user_h->fetch_user_videos($_video['author']); ?> videos published<br>
+                        </span>
+                    </span>
+                    <ul style="width: 60%;display: inline-block;">
+                        <li class="video-list-item "><a href="/watch?v=<?php echo $_video['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="<?php echo $_video['title']; ?>" data-thumb="/dynamic/thumbs/<?php echo $_video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $_video['duration']; ?></span>
+                            <button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="yuTBQ86r8o0" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
+                            </span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
+                            </span><span dir="ltr" class="title" title="<?php echo $_video['title']; ?>"><?php echo $_video['title']; ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $_video['author']; ?></span></span><span class="stat view-count">  <span class="viewcount"><?php echo $_video['views']; ?> views</span>
+                            </span></a>
+                        </li>
+                    </ul>
                     <hr>
-                    rrrrrrrrrrrrr<br><br>
+                    <div class="comments-section " onmouseover="if (yt.www &amp;&amp; yt.www.watch &amp;&amp; yt.www.watch.livecomments) yt.www.watch.livecomments.handleCommentMouseEvent(this, event);" onmouseout="if (yt.www &amp;&amp; yt.www.watch &amp;&amp; yt.www.watch.livecomments) yt.www.watch.livecomments.handleCommentMouseEvent(this, event);">
+                        <div id="comments-header-container">
+                            <div id="comments-header">
+                                <a class="comments-section-see-all" href="/all_comments?v=<?php echo htmlspecialchars($_video['rid']); ?>">
+                                see all
+                                </a>
+                                <h4>
+                                    All Comments
+                                    <span class="comments-section-stat">(<?php echo $_video['comments']; ?>)</span>
+                                </h4>
+                            </div>
+                        </div>
+                        <?php if(!isset($_SESSION['siteusername'])) { ?>
+                            <div class="comments-post-container clearfix">
+                                <div class="comments-post-alert">
+                                    <a href="/sign_in">Sign In</a> or <a href="/sign_up">Sign Up</a><span class="comments-post-form-rollover-text"> now to post a comment!</span>
+                                </div>
+                            </div>
+                        <?php } else if($_video['commenting'] == "d") { ?>
+                            <div class="comments-post-container clearfix">
+                                <div class="comments-post-alert">
+                                    This video has comemnting disabled!
+                                </div>
+                            </div>
+                        <?php } else if($__user_h->if_blocked($_video['author'], $_SESSION['siteusername'])) { ?>
+                            <div class="comments-post-container clearfix">
+                                <div class="comments-post-alert">
+                                    This user has blocked you!
+                                </div>
+                            </div>
+                        <?php } else { ?>
+                            <div class="comments-post-container clearfix">
+                                <form method="post" action="/watch?v=<?php echo $_GET['v']; ?>">
+                                    <div class="yt-alert yt-alert-default yt-alert-error hid comments-post-message">
+                                        <div class="yt-alert-icon">
+                                            <img class="icon master-sprite" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" width="32px" height="35px">
+                                        </div>
+                                        <div class="yt-alert-buttons"></div>
+                                        <div class="yt-alert-content" role="alert"></div>
+                                    </div>
+                                    <input type="hidden" name="form_id" value="">
+                                    <input type="hidden" name="source" value="w">
+                                    <input type="hidden" value="" name="reply_parent_id">
+                                    <a href="/user/<?php echo htmlspecialchars($_SESSION['siteusername']); ?>" class="yt-user-photo comments-post-profile"><span class="video-thumb ux-thumb yt-thumb-square-46 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="/dynamic/pfp/<?php echo $__user_h->fetch_pfp($_SESSION['siteusername']); ?>" alt="<?php echo htmlspecialchars($_SESSION['siteusername']); ?>" width="46"><span class="vertical-align"></span></span></span></span></a>
+                                    <div class="comments-textarea-container" onclick="yt.www.comments.initForm(this, true, false);">
+                                        <img src="./intro to RUCA - YouTube_files/pixel-vfl3z5WfW.gif" alt="" class="comments-textarea-tip"><label class="comments-textarea-label" data-upsell="comment">Respond to this video...</label>  
+                                        <div class="yt-uix-form-input yt-grid ">
+                                            <textarea id="" class="yt-uix-form-textarea comments-textarea" onfocus="yt.www.comments.initForm(this, false, false);" data-upsell="comment" name="comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <p class="comments-remaining">
+                                        <span class="comments-remaining-count" data-max-count="500"></span> characters remaining
+                                    </p>
+                                    <p class="comments-threshold-countdown hid">
+                                        <span class="comments-threshold-count"></span> seconds remaining before you can post
+                                    </p>
+                                    <p class="comments-post-buttons">
+                                        <span class="comments-post-video-response-link"></span><button type="submit" class="comments-post yt-uix-button yt-uix-button-default" role="button"><span class="yt-uix-button-content">Post </span></button>    
+                                    </p>
+                                </form>
+                            </div>
+                        <?php } ?><br>
+                        <ul class="comment-list" id="live_comments">
+                                <?php
+                                $results_per_page = 20;
+
+                                $stmt = $__db->prepare("SELECT * FROM comments WHERE toid = :rid ORDER BY id DESC");
+                                $stmt->bindParam(":rid", $_video['rid']);
+                                $stmt->execute();
+
+                                $number_of_result = $stmt->rowCount();
+                                $number_of_page = ceil ($number_of_result / $results_per_page);  
+
+                                if (!isset ($_GET['page']) ) {  
+                                    $page = 1;  
+                                } else {  
+                                    $page = (int)$_GET['page'];  
+                                }  
+
+                                $page_first_result = ($page - 1) * $results_per_page;  
+
+                                $stmt = $__db->prepare("SELECT * FROM comments WHERE toid = :rid ORDER BY id DESC LIMIT :pfirst, :pper");
+                                $stmt->bindParam(":rid", $_video['rid']);
+                                $stmt->bindParam(":pfirst", $page_first_result);
+                                $stmt->bindParam(":pper", $results_per_page);
+                                $stmt->execute();
+
+                                while($comment = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+                            ?>
+
+                            <li class="comment yt-tile-default " data-author-viewing="" data-author-id="-uD01K8FQTeOSS5sniRFzQ" data-id="HdQrMeklJ_5hd_uPDRcvtdaMk2pMVS8d9sufcfiGx0U" data-score="0">
+                                <div class="comment-body">
+                                    <div class="content-container">
+                                        <div class="content">
+                                            <div class="comment-text" dir="ltr">
+                                                <p><?php echo $__video_h->shorten_description($comment['comment'], 3000, true); ?></p>
+                                            </div>
+                                            <p class="metadata">
+                                                <span class="author ">
+                                                <a href="/user/<?php echo htmlspecialchars($comment['author']); ?>" class="yt-uix-sessionlink yt-user-name " data-sessionlink="<?php echo htmlspecialchars($comment['author']); ?>" dir="ltr"><?php echo htmlspecialchars($comment['author']); ?></a>
+                                                </span>
+                                                <span class="time" dir="ltr">
+                                                <span dir="ltr"><?php echo $__time_h->time_elapsed_string($comment['date']); ?><span>
+                                                </span>
+                                                </span></span>
+                                            </p>
+                                        </div>
+                                        <div class="comment-actions">
+                                            <span class="yt-uix-button-group"><button type="button" class="start comment-action-vote-up comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Up" data-action="vote-up" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-up" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Up"><span class="yt-valign-trick"></span></span></button><button type="button" class="end comment-action-vote-down comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Down" data-action="vote-down" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-down" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Down"><span class="yt-valign-trick"></span></span></button></span>
+                                            <span class="yt-uix-button-group">
+                                                <!--<button type="button" class="start comment-action yt-uix-button yt-uix-button-default" onclick=";return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply </span></button>-->
+                                                <button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
+                                                    <img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
+                                                    <div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
+                                                        <ul>
+                                                            <li class="comment-action" data-action="share"><span class="yt-uix-button-menu-item">Share</span></li>
+                                                            <li class="comment-action-remove comment-action" data-action="remove"><span class="yt-uix-button-menu-item">Remove</span></li>
+                                                            <li class="comment-action" data-action="flag"><span class="yt-uix-button-menu-item">Flag for spam</span></li>
+                                                            <li class="comment-action-block comment-action" data-action="block"><span class="yt-uix-button-menu-item">Block User</span></li>
+                                                            <li class="comment-action-unblock comment-action" data-action="unblock"><span class="yt-uix-button-menu-item">Unblock User</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
                 </div>
             </div>  
 			<div id="footer-container"><?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/footer.php"); ?></div>

@@ -28,7 +28,7 @@
     }
 
     .www-header-item {
-        padding-left: 8px !important;
+        margin: 0px !important;
     }
 
     .channel-customization-options {
@@ -132,7 +132,6 @@
         width: 101%;
         background-image: linear-gradient(to bottom,#f0f0f0 0,#e6e6e6 100%);
         height: 43px;
-        padding-top: 9px;
         position: relative;
         left: 1px;
         width: 968px;
@@ -160,6 +159,15 @@
         margin: auto;
         width: 970px;
     }
+
+    .www-header-list .yt-uix-button {
+        width: 100px;
+        height: 100%;
+    }
+
+    .www-header-list .yt-uix-button:nth-child(n+1) {
+        margin-left: -5px;
+    }
 </style>
 <div class="channel-customization-bg">
     <br>
@@ -182,9 +190,9 @@
                     }); 
                 </script>
                 <a class="www-header-item" href="#" onclick="selectTable('#pictures-table');">
-                    <button class="yt-uix-button yt-uix-button-default">Main</button>
+                    <button class="yt-uix-button yt-uix-button-default" style="margin-left: 0px;">Main</button>
                 </a>
-                <a class="www-header-item" href="#" onclick="selectTable('#misc-table');">
+                <a class="www-header-item" href="#" style='display:none;' onclick="selectTable('#misc-table');">
                     <button class="yt-uix-button yt-uix-button-default">Colors</button>
                 </a>
                 <a class="www-header-item" href="#" onclick="selectTable('#bg-table');">
@@ -228,29 +236,29 @@
                         
                         <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -15px;">
                             <span style="font-size: 11px;" class="grey-text">Prefix every image url() with //images.weserv.nl/?url=</span><br>    
-                            <textarea style="width: 288px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biomd" placeholder="Custom CSS" name="css"><?php echo htmlspecialchars($_user['css']); ?></textarea><br><br>
+                            <textarea class="yt-uix-form-input-text"  style="width: 288px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biomd" placeholder="Custom CSS" name="css"><?php echo htmlspecialchars($_user['css']); ?></textarea><br><br>
                         </div><br><br>
                         <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Set">
                     </td>
                     <td class="right-side-customization">
                         <b>Bio</b><br>
                         <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -15px;">
-                            <textarea style="width: 344px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
+                            <textarea class="yt-uix-form-input-text" style="width: 344px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
                         </div><br><br><br><hr class="thin-line-darker" style="width:unset;">
 
                         <b>Featured Video</b>
                         <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;position: relative;bottom: 6px;">
-                        <input style="padding: 5px;background-color: white;border: 1px solid #999;width: 291px;height: 12px;" id="biomd" placeholder="Video ID" value="<?php echo htmlspecialchars($_user['featured']);?>" name="videoid">
+                        <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Video ID" value="<?php echo htmlspecialchars($_user['featured']);?>" name="videoid">
                         </div><br><br><hr class="thin-line-darker" style="width:unset;">
 
                         <b>Featured Channels</b>
                         <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;position: relative;bottom: 6px;">
-                        <input style="padding: 5px;background-color: white;border: 1px solid #999;width: 291px;height: 12px;" id="biomd" placeholder="Seperate by commas!" value="<?php echo htmlspecialchars($_user['featured_channels']);?>" name="featuredchannels">
+                        <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Seperate by commas!" value="<?php echo htmlspecialchars($_user['featured_channels']);?>" name="featuredchannels">
                         </div><br><br><hr class="thin-line-darker" style="width:unset;">
 
                         <b>Website</b>
                         <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -7px;">
-                        <input style="padding: 5px;background-color: white;border: 1px solid #999;width: 291px;height: 12px;" id="biomd" placeholder="Website URL" value="<?php echo htmlspecialchars($_user['website']);?>" name="website">
+                        <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Website URL" value="<?php echo htmlspecialchars($_user['website']);?>" name="website">
                             
                         </div><br><br><hr class="thin-line-darker" style="width:unset;">
 
