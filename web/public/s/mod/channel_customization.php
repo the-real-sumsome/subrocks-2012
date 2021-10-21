@@ -296,7 +296,7 @@
 
                         <b>Country</b><br>
                         <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
-                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"  id="country" name="country">
+                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"  id="country" name="country" value="<?php echo $_user['country']?>">
                             <option value="Afganistan">Afghanistan</option>
                             <option value="Albania">Albania</option>
                             <option value="Algeria">Algeria</option>
