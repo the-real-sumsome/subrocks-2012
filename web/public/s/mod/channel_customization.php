@@ -306,7 +306,7 @@
                             $countryLength = sizeof($countries);
                             $i = 0;
                             $f = 0;
-                            for($i = 0;i <= $countryLength; $i++)
+                            for($i = 0;$i <= $countryLength; $i++)
                             {
                                 $f++;
                                 $c = $countries[$f];
