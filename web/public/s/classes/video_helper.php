@@ -129,6 +129,24 @@ class video_helper {
         }
     }
 
+    function if_comment_liked($user, $reciever, $liked) {
+        if($liked) {
+            $stmt = $this->__db->prepare("SELECT `sender` FROM comment_likes WHERE sender = :sender AND reciever = :reciever AND type = 'l'");
+            $stmt->bindParam(":sender", $user);
+            $stmt->bindParam(":reciever", $reciever);
+            $stmt->execute();
+
+            return $stmt->rowCount() === 1;
+        } else {
+            $stmt = $this->__db->prepare("SELECT `sender` FROM comment_likes WHERE sender = :sender AND reciever = :reciever AND type = 'd'");
+            $stmt->bindParam(":sender", $user);
+            $stmt->bindParam(":reciever", $reciever);
+            $stmt->execute();
+
+            return $stmt->rowCount() === 1;
+        }
+    }
+
     function fetch_video_rid(string $rid) {
         $stmt = $this->__db->prepare("SELECT * FROM videos WHERE rid = :rid");
         $stmt->bindParam(":rid", $rid);

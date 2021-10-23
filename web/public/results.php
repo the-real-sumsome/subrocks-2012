@@ -253,6 +253,9 @@
                                  </div>
                               </li>
                         <?php } ?>
+                        <?php if($request->search_amount == 0)
+                           echo "Your search query has brought no results.<br><br>";
+                        ?>
                      </ol>
                   </div>
                </div>
