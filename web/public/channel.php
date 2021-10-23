@@ -235,7 +235,7 @@
 												<div class="header-stats">
 													<div class="stat-entry">
 														<span class="stat-value"><?php echo $_user['subscribers']; ?></span>
-														<span class="stat-name">subscribers</span>
+														<span class="stat-name"><?php if($_user['subscribers'] == 1){ ?>subscriber<?php }else{ ?>subscribers<?php } ?></span>
 													</div>
 													<div class="stat-entry">
 														<span class="stat-value"><?php echo $_user['views']; ?></span>
