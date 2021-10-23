@@ -215,10 +215,76 @@
                     <form method="post" id="picturesform" action="/d/channel_update" enctype="multipart/form-data">
                     <td class="left-side-customization">
                         <b style="position: relative;top: 11px;">Avatar</b>
+                        <div id="container" style="float: right;margin-top: 4px;">
+                            <a id="browse" href="javascript:;">
+                                <button class="yt-uix-button yt-uix-button-default">
+                                    Browse
+                                </button>
+                            </a>  
+                            <a id="start-upload" href="javascript:;">                                    
+                                <button class="yt-uix-button yt-uix-button-default">
+                                    Upload
+                                </button>
+                            </a>
+                        </div>
                         <div class="customization-module" id="pfp" action="/d/channel_update" enctype="multipart/form-data">
-                            <input style="width: 169px;position: relative;top: 10px;" type="file" name="pfpset" id="avatar-upload">
-                            <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
                         </div><br><br>
+                        <ul id="filelist"></ul>
+                            <pre id="console"></pre>
+
+                            <script type="text/javascript">
+                            var alerts = 0;
+
+                            var uploader = new plupload.Uploader({
+                                browse_button: 'browse', 
+                                url: '/d/channel_update?n=pfp',
+                                multi_selection: false,
+                                
+                                filters: {
+                                    ime_types : [
+                                        { title : "Image files", extensions : "jpg,gif,png" },
+                                    ]
+                                },
+
+                                resize: {
+                                    width: 100,
+                                    height: 100,
+                                    preserve_headers: false
+                                }
+                            });
+                            
+                            uploader.init();
+                            
+                            uploader.bind('FilesAdded', function(up, files) {
+                                var html = '';
+                                plupload.each(files, function(file) {
+                                    console.log("file added");
+                                });
+                            });
+                            
+                            uploader.bind('UploadFile', function(up, file) {
+                                // document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+                                addAlert("editsuccess_" + alerts, "Starting upload.");
+								showAlert("#editsuccess_" + alerts);
+                                alerts++;
+                            });
+
+                            uploader.bind('FileUploaded', function(up, file) {
+                                addAlert("editsuccess_" + alerts, "Succesfully finished uploading " + file.name);
+								showAlert("#editsuccess_" + alerts);
+                                alerts++;  
+                            });
+                            
+                            uploader.bind('Error', function(up, err) {
+                                document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+                            });
+                            
+                            document.getElementById('start-upload').onclick = function() {
+                            uploader.start();
+                            };
+                            
+                            </script>
+                            <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
                         <img src="/dynamic/pfp/<?php echo $_user['pfp']; ?>" style="width:100px;height:100px;"><br>
                         <?php if($_user['pfp'] != "default.png") { ?>
                             <a href="/get/remove_profile_pic">Remove Profile Picture</a><br>

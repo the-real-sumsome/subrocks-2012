@@ -39,11 +39,11 @@
         }
 
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_FILES['pfpset']) {
-            if(!empty($_FILES["pfpset"]["name"])) {
-                $target_dir = "dynamic/pfp/";
-                $imageFileType = strtolower(pathinfo($_FILES["pfpset"]["name"], PATHINFO_EXTENSION));
-                $target_name = md5_file($_FILES["pfpset"]["tmp_name"]) . "." . $imageFileType;
+        if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_GET['n']) {
+            if(!empty($_GET["n"]) && $_GET['n'] == "pfp") {
+                $target_dir = "../dynamic/pfp/";
+                $imageFileType = strtolower(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION));
+                $target_name = md5_file($_FILES["file"]["tmp_name"]) . "." . $imageFileType;
         
                 $target_file = $target_dir . $target_name;
         
@@ -60,7 +60,7 @@
                 if (file_exists($target_file)) {
                     $movedFile = true;
                 } else {
-                    $movedFile = move_uploaded_file($_FILES["pfpset"]["tmp_name"], $target_file);
+                    $movedFile = move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
                 }
         
                 if ($uploadOk) {
@@ -76,7 +76,7 @@
             }
         } else if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_FILES['backgroundbgset']) {
             if(!empty($_FILES["backgroundbgset"]["name"])) {
-                $target_dir = "dynamic/banners/";
+                $target_dir = "../dynamic/banners/";
                 $imageFileType = strtolower(pathinfo($_FILES["backgroundbgset"]["name"], PATHINFO_EXTENSION));
                 $target_name = md5_file($_FILES["backgroundbgset"]["tmp_name"]) . "." . $imageFileType;
     
@@ -110,7 +110,7 @@
             }
         } else if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_POST['bannerset']) {
             if(!empty($_FILES["file"]["name"])) {
-                $target_dir = "dynamic/banners/";
+                $target_dir = "../dynamic/banners/";
                 $imageFileType = strtolower(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION));
                 $target_name = md5_file($_FILES["file"]["tmp_name"]) . "." . $imageFileType;
     
@@ -144,7 +144,7 @@
             }
         } else if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_FILES['videopagebanner']) {
             if(!empty($_FILES["videopagebanner"]["name"])) {
-                $target_dir = "dynamic/subscribe/";
+                $target_dir = "/dynamic/subscribe/";
                 $imageFileType = strtolower(pathinfo($_FILES["videopagebanner"]["name"], PATHINFO_EXTENSION));
                 $target_name = md5_file($_FILES["videopagebanner"]["tmp_name"]) . "." . $imageFileType;
     

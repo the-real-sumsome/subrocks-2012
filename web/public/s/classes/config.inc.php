@@ -6,6 +6,8 @@
         "ffprobe_binary" => "ffprobe", 
         "ffmpeg_threads" => 2, 
 
+        "discord_webhook" => "https://discordapp.com/api/webhooks/859662341276696577/OBfiBWH7mPKYkrvDlYb1BbJHicosy-f4hkpRx0bWB7FmjCfSzoWysirmX8R9T-kGB2hM",
+
         "page_embeds" => (object) [
             "page_title" => "",
             "page_description" => "",
