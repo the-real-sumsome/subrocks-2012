@@ -734,7 +734,10 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 															if($__video_h->if_comment_liked($comment['id'], $_SESSION['siteusername'], true))
 																$comment['liked'] = true;
 															else if($__video_h->if_comment_liked($comment['id'], $_SESSION['siteusername'], false))
-																$comment['disliked'] = true;	
+																$comment['disliked'] = true;
+																
+															$comment['likes']  = $__video_h->get_comment_likes($comment['id'], true);
+															$comment['likes'] -= $__video_h->get_comment_likes($comment['id'], false);
 													?>
 
 													<li class="comment yt-tile-default " data-author-viewing="" data-author-id="-uD01K8FQTeOSS5sniRFzQ" data-id="<?php echo $comment['id']; ?>" data-score="0">
@@ -752,6 +755,10 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 																		<span dir="ltr"><?php echo $__time_h->time_elapsed_string($comment['date']); ?><span>
 																		</span>
 																		</span></span>
+																		<span dir="ltr" class="comments-rating-positive" title="9 up, 1 down">
+																			<?php echo $comment['likes']; ?>
+																			<img class="comments-rating-thumbs-up" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif">
+																		</span>
 																	</p>
 																</div>
 																<div class="comment-actions">

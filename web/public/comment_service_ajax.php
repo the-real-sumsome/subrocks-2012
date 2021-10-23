@@ -1,23 +1,68 @@
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/config.inc.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/db_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/time_manip.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/video_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_update.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_insert.php"); ?>
+<?php $__video_h = new video_helper($__db); ?>
+<?php $__user_h = new user_helper($__db); ?>
+<?php $__user_i = new user_insert($__db); ?>
+<?php $__user_u = new user_update($__db); ?>
+<?php $__db_h = new db_helper(); ?>
+<?php $__time_h = new time_helper(); ?>
 <?php
-header('Content-Type: application/json');
-parse_str(file_get_contents("php://input"), $data);
-// Cast it to an object
-$data = (object)$data;
-
+header("Content-type: text/xml");
+// ugly solution
+$xml = '<?xml version="1.0" encoding="utf-8"?>
+<root>
+<str_code>
+<![CDATA[OK]]>
+</str_code>
+<html_content>
+<![CDATA[<li class="comment yt-tile-default " data-author-viewing="" data-author-id="-uD01K8FQTeOSS5sniRFzQ" data-id="420" data-score="0">
+<div class="comment-body">
+    <div class="content-container">
+        <div class="content">
+            <div class="comment-text" dir="ltr">
+                <p>' . $__video_h->shorten_description($_POST['comment'], 2048, true) . '</p>
+            </div>
+            <p class="metadata">
+                <span class="author ">
+                <a href="/user/bhief" class="yt-uix-sessionlink yt-user-name " data-sessionlink="bhief" dir="ltr">bhief</a>
+                </span>
+                <span class="time" dir="ltr">
+                <span dir="ltr">just now<span>
+                </span>
+                </span></span>
+                
+            </p>
+        </div>
+        <div class="comment-actions">
+            <span class="yt-uix-button-group"><button type="button" class="start comment-action-vote-up comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Up" data-action="vote-up" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-up" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Up"><span class="yt-valign-trick"></span></span></button><button type="button" class="end comment-action-vote-down comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Down" data-action="vote-down" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-down" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Down"><span class="yt-valign-trick"></span></span></button></span>
+            <span class="yt-uix-button-group">
+                <!--<button type="button" class="start comment-action yt-uix-button yt-uix-button-default" onclick=";return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply </span></button>-->
+                <button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
+                    <img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
+                    <div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
+                        <ul>
+                            <li class="comment-action" data-action="share"><span class="yt-uix-button-menu-item">Share</span></li>
+                            <li class="comment-action-remove comment-action" data-action="remove"><span class="yt-uix-button-menu-item">Remove</span></li>
+                            <li class="comment-action" data-action="flag"><span class="yt-uix-button-menu-item">Flag for spam</span></li>
+                            <li class="comment-action-block comment-action" data-action="block"><span class="yt-uix-button-menu-item">Block User</span></li>
+                            <li class="comment-action-unblock comment-action" data-action="unblock"><span class="yt-uix-button-menu-item">Unblock User</span></li>
+                        </ul>
+                    </div>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+</li>]]>
+</html_content>
+<return_code>
+<![CDATA[0]]>
+</return_code>
+</root>';
+echo str_replace(PHP_EOL, "", $xml);
 ?>
-<?php 
-/* xml version="1.0" encoding="utf-8"?>
-<root><return_code><![CDATA[0]]></return_code></root>
-{
-	"content_html": "aaaaaaaa"
-}
-
-*/
-?>
-
-{
-	"html_content": "<section class=\"comment-thread-renderer  vve-check-visible vve-check-hidden\" data-visibility-tracking=\"CL4BEMJ1GAAiEwjpsvbIjMTtAhU3yMEKHRZcD6w\" data-visibility-types=\"12\" data-priority=\"0\">\r\n<div class=\"comment-renderer vve-check-visible vve-check-hidden\" data-visibility-tracking=\"CMMBELZ1IhMI6bL2yIzE7QIVN8jBCh0WXA-s\" data-visibility-types=\"12\" data-cid=\"UgyQ8iceYjqMY000mJ54AaABAg\">\r\n<a href=\"https:\/\/www.youtube.com\/channel\/UCn_XMhUHYRHuB0tZPyNGoSw\/undefined\" class=\" yt-uix-sessionlink      spf-link \" data-sessionlink=\"itct=CMMBELZ1IhMI6bL2yIzE7QIVN8jBCh0WXA-s\">  <span class=\"video-thumb comment-author-thumbnail yt-thumb yt-thumb-48\">\r\n    <span class=\"yt-thumb-square\">\r\n      <span class=\"yt-thumb-clip\">\r\n        \r\n  <img alt=\"F\" data-ytimg=\"1\" onload=\";window.__ytRIL &amp;&amp; __ytRIL(this)\" role=\"img\" tabindex=\"0\" src=\"https:\/\/yt3.ggpht.com\/yti\/APfAmoEOgcOsU3tuc92fkZ2LUIQXv5R2rGIgfdzw3pjH=s88-c-k-c0x00ffffff-no-rj-mo\" width=\"48\" height=\"48\">\r\n\r\n        <span class=\"vertical-align\"><\/span>\r\n      <\/span>\r\n    <\/span>\r\n  <\/span>\r\n<\/a>\r\n\r\n\r\n    <div id=\"comment-renderer-edit-UgyQ8iceYjqMY000mJ54AaABAg\" class=\"comment-simplebox-edit\" data-editable-content-text=\"\" data-image-src=\"\" data-video-id=\"\">\r\n    <\/div>\r\n<div class=\"comment-renderer-content\"><div class=\"comment-renderer-header\"><a href=\"https:\/\/www.youtube.com\/channel\/UCn_XMhUHYRHuB0tZPyNGoSw\/undefined\" class=\"comment-author-text yt-uix-sessionlink      spf-link \" data-sessionlink=\"itct=CMMBELZ1IhMI6bL2yIzE7QIVN8jBCh0WXA-s\">Valmoiiaa<\/a><span class=\"comment-renderer-time\" tabindex=\"0\"><a href=\"https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ&amp;lc=UgyQ8iceYjqMY000mJ54AaABAg\" class=\"yt-uix-sessionlink       spf-link \" data-sessionlink=\"itct=CMMBELZ1IhMI6bL2yIzE7QIVN8jBCh0WXA-s\">1 second ago<\/a><\/span><\/div><div class=\"comment-renderer-text\" tabindex=\"0\" role=\"article\"><div class=\"comment-renderer-text-content\"><?php
-		echo $data->content;
-	?><\/div><div class=\"comment-text-toggle hid\"><div class=\"comment-text-toggle-link read-more\"><button class=\"yt-uix-button yt-uix-button-size-default yt-uix-button-link\" type=\"button\" onclick=\"return false;\"><span class=\"yt-uix-button-content\">Read more\r\n<\/span><\/button><\/div><div class=\"comment-text-toggle-link show-less hid\"><button class=\"yt-uix-button yt-uix-button-size-default yt-uix-button-link\" type=\"button\" onclick=\"return false;\"><span class=\"yt-uix-button-content\">Show less\r\n<\/span><\/button><\/div><\/div><\/div>\r\n\r\n<div class=\"comment-renderer-footer\" data-vote-status=\"INDIFFERENT\"><div class=\"comment-action-buttons-toolbar\">\r\n\r\n\r\n    <button class=\"yt-uix-button yt-uix-button-size-small yt-uix-button-link comment-renderer-reply comment-simplebox-trigger\" type=\"button\" onclick=\";return false;\" data-placeholder=\"Add a public reply...\" data-simplebox-event=\"replycreated\" data-simplebox-id=\"comment-simplebox-reply-UgyQ8iceYjqMY000mJ54AaABAg\" data-simplebox-label=\"Reply\" data-simplebox-params=\"EgtteTJoX19sNDFxYyIaVWd5UThpY2VZanFNWTAwMG1KNTRBYUFCQWcqAggAUAc%3D\" data-simplebox-sessionlink=\"itct=CMgBEPBbIhMI6bL2yIzE7QIVN8jBCh0WXA-s\" data-simplebox-target=\"\/comment_service_ajax?action_create_comment_reply=1\"><span class=\"yt-uix-button-content\">Reply<\/span><\/button>\r\n\r\n\r\n    \r\n\r\n  <span role=\"radiogroup\">\r\n        <button class=\"yt-uix-button yt-uix-button-size-default yt-uix-button-default yt-uix-button-empty yt-uix-button-has-icon no-icon-markup comment-action-buttons-renderer-thumb yt-uix-sessionlink sprite-comment-actions sprite-like i-a-v-sprite-like\" type=\"button\" onclick=\";return false;\" aria-checked=\"false\" aria-label=\"Like\" role=\"radio\" data-action=\"CAUQAhoaVWd5UThpY2VZanFNWTAwMG1KNTRBYUFCQWcqC215MmhfX2w0MXFjMAA4AEoVMTEyOTM1MjAzMzA1OTEyODQ0ODg1UACoAQy6ARhVQ202eUQyNkhsYWZ6cU5sWWFLN3VFYUE%3D\" data-action-type=\"like\" data-sessionlink=\"itct=CMkBEPBbIhMI6bL2yIzE7QIVN8jBCh0WXA-s\" data-sessionlink-target=\"\/comment_service_ajax?action_perform_comment_action=1\" data-url=\"\/comment_service_ajax?action_perform_comment_action=1\"><\/button>\r\n\r\n        <button class=\"yt-uix-button yt-uix-button-size-default yt-uix-button-default yt-uix-button-empty yt-uix-button-has-icon no-icon-markup comment-action-buttons-renderer-thumb yt-uix-sessionlink sprite-comment-actions sprite-dislike i-a-v-sprite-dislike\" type=\"button\" onclick=\";return false;\" aria-checked=\"false\" aria-label=\"Dislike\" role=\"radio\" data-action=\"CAQQAhoaVWd5UThpY2VZanFNWTAwMG1KNTRBYUFCQWcqC215MmhfX2w0MXFjMAA4AEoVMTEyOTM1MjAzMzA1OTEyODQ0ODg1UACoAQy6ARhVQ202eUQyNkhsYWZ6cU5sWWFLN3VFYUE%3D\" data-action-type=\"dislike\" data-sessionlink=\"itct=CMcBEPBbIhMI6bL2yIzE7QIVN8jBCh0WXA-s\" data-sessionlink-target=\"\/comment_service_ajax?action_perform_comment_action=1\" data-url=\"\/comment_service_ajax?action_perform_comment_action=1\"><\/button>\r\n\r\n  <\/span>\r\n  <div class=\"yt-uix-menu-container comment-renderer-action-menu yt-section-hover-container\">\r\n    \r\n      <div class=\"yt-uix-menu yt-uix-menu-flipped hide-until-delayloaded\">  <button class=\"yt-uix-button yt-uix-button-size-default yt-uix-button-action-menu yt-uix-button-empty yt-uix-button-has-icon no-icon-markup yt-uix-menu-trigger\" type=\"button\" onclick=\";return false;\" aria-haspopup=\"true\" aria-label=\"Action menu.\" aria-pressed=\"false\" role=\"button\" aria-controls=\"aria-menu-id-20\" id=\"kbd-nav-113790\"><span class=\"yt-uix-button-arrow yt-sprite\"><\/span><\/button>\r\n<div class=\"yt-uix-menu-content yt-ui-menu-content yt-uix-kbd-nav yt-uix-menu-content-hidden\" role=\"menu\" style=\"min-width: 18px; left: 661.5px; top: 1126.07px;\" aria-expanded=\"false\" id=\"aria-menu-id-20\" data-kbd-nav-move-out=\"kbd-nav-113790\">  <ul tabindex=\"0\" class=\"yt-uix-kbd-nav yt-uix-kbd-nav-list\">\r\n      <li role=\"menuitem\">\r\n                <div class=\"service-endpoint-action-container hid\">\r\n    <\/div>\r\n\r\n    <button type=\"button\" class=\"yt-ui-menu-item yt-uix-menu-close-on-select  report-form-modal-renderer\" data-innertube-clicktracking=\"CMMBELZ1IhMI6bL2yIzE7QIVN8jBCh0WXA-s\" data-params=\"GhpVZ3lROGljZVlqcU1ZMDAwbUo1NEFhQUJBZygCMgFGOmkIARACGhpVZ3lROGljZVlqcU1ZMDAwbUo1NEFhQUJBZyoLbXkyaF9fbDQxcWMwAEoVMTEyOTM1MjAzMzA1OTEyODQ0ODg1UACoAQy6ARhVQ202eUQyNkhsYWZ6cU5sWWFLN3VFYUHgAQA%3D\" data-url=\"\/flag_service_ajax?action_get_report_form=1\">\r\n    <span class=\"yt-ui-menu-item-label\">Report<\/span>\r\n  <\/button>\r\n\r\n\r\n      <\/li>\r\n  <\/ul>\r\n<\/div><\/div>\r\n  <\/div>\r\n<\/div><div class=\"comment-renderer-replybox\" id=\"comment-simplebox-reply-UgyQ8iceYjqMY000mJ54AaABAg\">\r\n  <span class=\"video-thumb comment-author-thumbnail yt-thumb yt-thumb-32\">\r\n    <span class=\"yt-thumb-square\">\r\n      <span class=\"yt-thumb-clip\">\r\n        \r\n  <img alt=\"F\" data-ytimg=\"1\" onload=\";window.__ytRIL &amp;&amp; __ytRIL(this)\" role=\"img\" src=\".\/and old youtube page maybe_ - YouTube_files\/unnamed(3).png\" tabindex=\"0\" width=\"32\" height=\"32\">\r\n\r\n        <span class=\"vertical-align\"><\/span>\r\n      <\/span>\r\n    <\/span>\r\n  <\/span>\r\n<\/div><\/div><\/div><\/div><div class=\"comment-replies-renderer\" data-visibility-tracking=\"CL8BEL51IhMI6bL2yIzE7QIVN8jBCh0WXA-s\">\r\n  <div class=\"yt-uix-expander yt-uix-expander-collapsed comment-replies-renderer-header\" tabindex=\"0\">\r\n    <div class=\"yt-uix-expander-collapsed-body\">\r\n        \r\n\r\n\r\n\r\n\r\n\r\n    \r\n\r\n\r\n        <div class=\"yt-uix-expander-head comment-replies-renderer-expander-down comment-replies-renderer-view hid\" tabindex=\"0\">\r\n          View reply\r\n        <\/div>\r\n\r\n\r\n      \r\n    <\/div>\r\n    <div id=\"comment-replies-renderer-UgyQ8iceYjqMY000mJ54AaABAg\" class=\"yt-uix-expander-body comment-replies-renderer-pages\">\r\n      <div class=\"yt-uix-expander-head comment-replies-renderer-expander-up comment-replies-renderer-hide\" tabindex=\"0\">\r\n        Hide reply\r\n      <\/div>\r\n    aaaaaaaa<\/div>\r\n  <\/div>\r\n<\/div><\/section>",
-	"feedback_text": "aaa"
-}
