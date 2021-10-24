@@ -195,6 +195,11 @@
         }
 
         if(!empty($_POST['solidcolor'])) {
+            $__user_u->update_row($_SESSION['siteusername'], "2012_bgoption", $_POST['bgoption']);
+
+            if($_POST['bgoption'] == "solid")
+                $__user_u->update_row($_SESSION['siteusername'], "2009_bg", "");
+
             $__user_u->update_row($_SESSION['siteusername'], "primary_color", $_POST['solidcolor']);
         }
 

@@ -290,38 +290,47 @@
                             <a href="/get/remove_profile_pic">Remove Profile Picture</a><br>
                         <?php } ?>
                         <br><hr class="thin-line-darker" style="width:unset;">
+                        <!--
                         <b style="position: relative;top: 11px;">Video Page Banner</b>
                         <div class="customization-module" id="watchbanner" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;">
                             <input style="width: 169px;position: relative;top: 10px;" type="file" name="videopagebanner" id="avatar-upload">
-                            <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
+                            <button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>
                         </div><br>                   
                         <?php if(!empty($_user['subbutton'])) { ?>
                             <a href="/get/remove_watch_banner">Remove Watch Page Banner</a><br>
                         <?php } ?><br><hr class="thin-line-darker" style="width:unset;">
-
+                        
                         <b>Custom CSS</b><br>
                         
-                        <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -15px;">
+                        <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="resize:none;float: right;position: relative;top: -15px;">
                             <span style="font-size: 11px;" class="grey-text">Prefix every image url() with //images.weserv.nl/?url=</span><br>    
                             <textarea class="yt-uix-form-input-text"  style="width: 288px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biomd" placeholder="Custom CSS" name="css"><?php echo htmlspecialchars($_user['css']); ?></textarea><br><br>
                         </div><br><br>
+                        -->
+                        <div style="position: relative;top: 7px;">
+                            <b>Bio</b><br>
+                            <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -15px;">
+                                <textarea class="yt-uix-form-input-text" style="resize:none;height: 55px;width: 344px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
+                            </div>
+                        </div>
+                        
+                        <br><br><br><hr class="thin-line-darker" style="width:unset;"><br><br><br><br>
+
                         <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Set">
                     </td>
                     <td class="right-side-customization">
-                        <b>Bio</b><br>
-                        <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -15px;">
-                            <textarea class="yt-uix-form-input-text" style="width: 344px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
-                        </div><br><br><br><hr class="thin-line-darker" style="width:unset;">
 
                         <b>Featured Video</b>
                         <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;position: relative;bottom: 6px;">
                         <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Video ID" value="<?php echo htmlspecialchars($_user['featured']);?>" name="videoid">
                         </div><br><br><hr class="thin-line-darker" style="width:unset;">
 
-                        <b>Featured Channels</b>
-                        <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;position: relative;bottom: 6px;">
-                        <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Seperate by commas!" value="<?php echo htmlspecialchars($_user['featured_channels']);?>" name="featuredchannels">
-                        </div><br><br><hr class="thin-line-darker" style="width:unset;">
+                        <div style="position: relative;top: 7px;">
+                            <b>Featured Channels</b>
+                            <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;position: relative;bottom: 6px;">
+                            <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Seperate by commas!" value="<?php echo htmlspecialchars($_user['featured_channels']);?>" name="featuredchannels">
+                            </div>
+                        </div><br><br><hr class="thin-line-darker" style="margin-top: 0px;width:unset;"><br>
 
                         <b>Website</b>
                         <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -7px;">
@@ -330,40 +339,41 @@
                         </div><br><br><hr class="thin-line-darker" style="width:unset;">
 
                         <?php $categories = ["None", "Director", "Musician", "Comedian", "Guru", "Nonprofit"]; ?>
-                        <b>Channel Genre</b><br>
-                        <span style="font-size: 11px;" class="grey-text">This will show what type of channel you are to other users.</span>
-                        <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
-                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"   name="genre">
-                                <?php foreach($categories as $category) { ?>
-                                    <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
-                                <?php } ?>
-                            </select>
-                            
-                        </div><br><hr class="thin-line-darker" style="width:unset;" style="width: 100%;">
+                        <div style="position: relative;top: 7px;padding-bottom: 6px;">
+                            <b>Channel Genre</b><br>
+                            <span style="font-size: 11px;" class="grey-text">This will show what type of channel you are to other users.</span>
+                            <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
+                                <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"   name="genre">
+                                    <?php foreach($categories as $category) { ?>
+                                        <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div><hr class="thin-line-darker" style="width:unset;" style="width: 100%;">
 
-
-                        <b>Transparency</b><br>
-                        <span style="font-size: 11px;" class="grey-text">This will decide the visibility of ALL of your modules.</span>
-                        <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
-                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"   name="transparency">
-                            <?php
-                            $trans = array(
-                                "1.1","1.0","0.9","0.8","0.7","0.6","0.5","0.4","0.3","0.2","0.1",
-                            );
-                            ?>
-                                <option value="1.0">100% (Visible)</option>
-                                <option value="0.9">90%</option>
-                                <option value="0.8">80%</option>
-                                <option value="0.7">70%</option>
-                                <option value="0.6">60%</option>
-                                <option value="0.5">50%</option>
-                                <option value="0.4">40%</option>
-                                <option value="0.3">30%</option>
-                                <option value="0.2">20%</option>
-                                <option value="0.1">10%</option>
-                            </select>
-                            
-                        </div><br><hr class="thin-line-darker" style="width:unset;" style="width: 100%;">
+                        <div style="position: relative;top: 7px;padding-bottom: 6px;">
+                            <b>Transparency</b><br>
+                            <span style="font-size: 11px;" class="grey-text">This will decide the visibility of ALL of your modules.</span>
+                            <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
+                                <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"   name="transparency">
+                                <?php
+                                $trans = array(
+                                    "1.1","1.0","0.9","0.8","0.7","0.6","0.5","0.4","0.3","0.2","0.1",
+                                );
+                                ?>
+                                    <option value="1.0">100% (Visible)</option>
+                                    <option value="0.9">90%</option>
+                                    <option value="0.8">80%</option>
+                                    <option value="0.7">70%</option>
+                                    <option value="0.6">60%</option>
+                                    <option value="0.5">50%</option>
+                                    <option value="0.4">40%</option>
+                                    <option value="0.3">30%</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.1">10%</option>
+                                </select>
+                            </div>
+                        </div><hr class="thin-line-darker" style="width:unset;" style="width: 100%;">
 
 
                         <b>Country</b><br>
@@ -501,7 +511,7 @@
                         <b>Background Options</b> <br>
                         <span style="font-size: 11px;" class="grey-text">Choose how your background will be displayed.</span><br>
                         <div class="customization-module"  id="backgroundoptions" method="post" action="/d/channel_update" enctype="multipart/form-data">
-                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;bottom:-3px;"   name="bgoption" id="ifyouarereadingthisYOUSUCK">
+                            <select class="yt-uix-button yt-uix-button-default" style="    position: relative;bottom: -2px;right: 4px;"   name="bgoption" id="ifyouarereadingthisYOUSUCK">
                                 <option value="repeaty">Repeat - Y</option>
                                 <option value="repeatx">Repeat - X</option>
                                 <option value="norepeat">No Repeat</option>

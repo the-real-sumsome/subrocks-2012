@@ -139,7 +139,28 @@
 				background-color: <?php echo $_user['primary_color'];  ?>;
 				background-image: url(/dynamic/banners/<?php echo $_user['2009_bg']; ?>);
 				background-repeat: repeat;
-				background-position: center top;
+				<?php
+					switch($_user['2012_bgoption']) {
+						case "stretch":
+						echo "background-size: cover;";
+						break;
+						case "solid":
+						echo "";
+						break;
+						case "norepeat":
+						echo "";
+						break;
+						case "repeatxy":
+						echo "background-repeat: repeat;";
+						break;
+						case "repeaty":
+						echo "background-repeat: repeat-y;";
+						break;
+						case "repeatx":
+						echo "background-repeat: repeat-x;";
+						break;
+					}
+				?>
 			}
    		</style>
 		   <script>
@@ -905,6 +926,47 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 			
 			
 			
+		</script>
+		<script>
+			var subscribed = <?php echo($_user['subscribed'] ? 'true' : 'false') ?>;
+			var loggedIn = <?php echo(isset($_SESSION['siteusername']) ? 'true' : 'false') ?>;
+			var alerts = 0;
+ 
+			function subscribe() {
+				if(loggedIn == true) { 
+					if(subscribed == false) { 
+						$.ajax({
+							url: "/get/subscribe?n=<?php echo htmlspecialchars($_user['username']); ?>",
+							type: 'GET',
+							success: function(res) {
+								alerts++;
+								$("#subscribe-button").addClass("subscribed");
+								addAlert("editsuccess_" + alerts, "Successfully added <?php echo htmlspecialchars($_user['username']); ?> to your subscriptions!");
+								showAlert("#editsuccess_" + alerts);
+								console.log("DEBUG: " + res);
+								subscribed = true;
+							}
+						});
+					} else {
+						$.ajax({
+							url: "/get/unsubscribe?n=<?php echo htmlspecialchars($_user['username']); ?>",
+							type: 'GET',
+							success: function(res) {
+								alerts++;
+								$("#subscribe-button").removeClass("subscribed");
+								addAlert("editsuccess_" + alerts, "Successfully removed <?php echo htmlspecialchars($_user['username']); ?> from your subscriptions!");
+								showAlert("#editsuccess_" + alerts);
+								console.log("DEBUG: " + res);
+								subscribed = false;
+							}
+						});
+					}
+				} else {
+					alerts++;
+					addAlert("editsuccess_" + alerts, "You need to log in to add subscriptions!");
+					showAlert("#editsuccess_" + alerts);
+				}
+			}
 		</script>
 		<script>
 			yt.setConfig('PYV_REQUEST', true);

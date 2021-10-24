@@ -111,6 +111,23 @@ class video_helper {
         }
     }
 
+    function check_view($vidid, $user) {
+        $stmt = $this->__db->prepare("SELECT * FROM views WHERE viewer = :viewer AND videoid = :rid");
+        $stmt->bindParam(":viewer", $user);
+        $stmt->bindParam(":rid", $vidid);
+        $stmt->execute();
+        if($stmt->rowCount() === 0) {
+            $this->add_view($vidid, $user);
+        }
+    }
+
+    function add_view($vidid, $user) {
+        $stmt = $this->__db->prepare("INSERT INTO views (viewer, videoid) VALUES (:user, :vidid)");
+        $stmt->bindParam(":user", $user);
+        $stmt->bindParam(":vidid", $vidid);
+        $stmt->execute();
+    }
+
     function get_comment_likes($reciever, $liked) {
         if($liked) {
             $stmt = $this->__db->prepare("SELECT `sender` FROM comment_likes WHERE reciever = :reciever AND type = 'l'");

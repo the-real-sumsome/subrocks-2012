@@ -120,6 +120,7 @@
 		<meta property="og:url" content="<?php echo $__server->page_embeds->page_url; ?>" />
 		<meta property="og:description" content="<?php echo $__server->page_embeds->page_description; ?>" />
 		<meta property="og:image" content="<?php echo $__server->page_embeds->page_image; ?>" />
+		<script src="/s/js/alert.js"></script>
 		<script>
 			var yt = yt || {};yt.timing = yt.timing || {};yt.timing.tick = function(label, opt_time) {var timer = yt.timing['timer'] || {};if(opt_time) {timer[label] = opt_time;}else {timer[label] = new Date().getTime();}yt.timing['timer'] = timer;};yt.timing.info = function(label, value) {var info_args = yt.timing['info_args'] || {};info_args[label] = value;yt.timing['info_args'] = info_args;};yt.timing.info('e', "904821,919006,922401,920704,912806,913419,913546,913556,919349,919351,925109,919003,920201,912706");if (document.webkitVisibilityState == 'prerender') {document.addEventListener('webkitvisibilitychange', function() {yt.timing.tick('start');}, false);}yt.timing.tick('start');yt.timing.info('li','0');try {yt.timing['srt'] = window.gtbExternal && window.gtbExternal.pageT() ||window.external && window.external.pageT;} catch(e) {}if (window.chrome && window.chrome.csi) {yt.timing['srt'] = Math.floor(window.chrome.csi().pageT);}if (window.msPerformance && window.msPerformance.timing) {yt.timing['srt'] = window.msPerformance.timing.responseStart - window.msPerformance.timing.navigationStart;}    
 		</script>
@@ -203,9 +204,17 @@
 												<h1><?php echo htmlspecialchars($_user['username']); ?></h1>
 											</div>
 											<div class="upper-left-section enable-fancy-subscribe-button">
-												<?php if($_user['username'] != @$_SESSION['siteusername']) { ?>
+											<?php if($_user['username'] != @$_SESSION['siteusername']) { ?>
 													<div class="yt-subscription-button-hovercard yt-uix-hovercard">
-														<button href="https://accounts.google.com/ServiceLogin?uilel=3&amp;service=youtube&amp;passive=true&amp;continue=http%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26feature%3Dsubscribe%26nomobiletemp%3D1%26hl%3Den_US%26next%3D%252Fuser%252F<?php echo htmlspecialchars($_user['username']); ?>%253Ffeature%253Dg-logo-xit&amp;hl=en_US&amp;ltmpl=sso" onclick=";window.location.href=this.getAttribute('href');return false;" title="" type="button" class="yt-subscription-button subscription-button-with-recommended-channels   yt-uix-button yt-uix-button-subscription yt-uix-tooltip" data-enable-hovercard="true" data-subscription-value="UCIwFjwMjI0y7PDBVEO9-bkQ" data-force-position="" data-position="" data-subscription-feature="channels3" data-subscription-type="channel" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-subscribe" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></span><span class="yt-uix-button-content">  <span class="subscribe-label">Subscribe</span>
+														<button 
+															href="#" 
+															onclick=";subscribe();return false;" 
+															title="" 
+															id="subscribe-button"
+															type="button" 
+															class="yt-subscription-button <?php if($_user['subscribed']) { echo "subscribed "; } ?>  yt-uix-button yt-uix-button-subscription yt-uix-tooltip" 
+															role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-subscribe" 
+															src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></span><span class="yt-uix-button-content">  <span class="subscribe-label">Subscribe</span>
 														<span class="subscribed-label">Subscribed</span>
 														<span class="unsubscribe-label">Unsubscribe</span>
 														</span></button>
@@ -518,6 +527,47 @@
 			});
 			yt.pubsub.subscribe('init', yt.www.channels3.channel.init);
 			
+		</script>
+		<script>
+			var subscribed = <?php echo($_user['subscribed'] ? 'true' : 'false') ?>;
+			var loggedIn = <?php echo(isset($_SESSION['siteusername']) ? 'true' : 'false') ?>;
+			var alerts = 0;
+ 
+			function subscribe() {
+				if(loggedIn == true) { 
+					if(subscribed == false) { 
+						$.ajax({
+							url: "/get/subscribe?n=<?php echo htmlspecialchars($_user['username']); ?>",
+							type: 'GET',
+							success: function(res) {
+								alerts++;
+								$("#subscribe-button").addClass("subscribed");
+								addAlert("editsuccess_" + alerts, "Successfully added <?php echo htmlspecialchars($_user['username']); ?> to your subscriptions!");
+								showAlert("#editsuccess_" + alerts);
+								console.log("DEBUG: " + res);
+								subscribed = true;
+							}
+						});
+					} else {
+						$.ajax({
+							url: "/get/unsubscribe?n=<?php echo htmlspecialchars($_user['username']); ?>",
+							type: 'GET',
+							success: function(res) {
+								alerts++;
+								$("#subscribe-button").removeClass("subscribed");
+								addAlert("editsuccess_" + alerts, "Successfully removed <?php echo htmlspecialchars($_user['username']); ?> from your subscriptions!");
+								showAlert("#editsuccess_" + alerts);
+								console.log("DEBUG: " + res);
+								subscribed = false;
+							}
+						});
+					}
+				} else {
+					alerts++;
+					addAlert("editsuccess_" + alerts, "You need to log in to add subscriptions!");
+					showAlert("#editsuccess_" + alerts);
+				}
+			}
 		</script>
 		<script>
 			yt.setAjaxToken('subscription_ajax', "");

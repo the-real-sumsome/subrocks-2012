@@ -358,10 +358,10 @@
 											</div>
 											<div class="user-profile channel-module yt-uix-c3-module-container ">
 												<div class="module-view profile-view-module" data-owner-external-id="IwFjwMjI0y7PDBVEO9-bkQ">
-													<h2>About <?php echo htmlspecialchars($_user['username']); ?></h2>
+													<h2>About this playlist</h2>
 													<div class="section first">
 														<div class="user-profile-item profile-description">
-															<p><?php echo $__video_h->shorten_description($_user['bio'], 5000); ?></p>
+															<p><?php echo $__video_h->shorten_description($_playlist['description'], 5000); ?></p>
 														</div>
 														<div class="user-profile-item">
 														</div>
