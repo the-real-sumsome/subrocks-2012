@@ -15,7 +15,8 @@
 <?php $_video = $__video_h->fetch_video_rid($_GET['v']); ?>
 <?php $_video['comments'] = $__video_h->get_comments_from_video($_video['rid']); ?>
 <?php
-	$__video_h->check_view($_GET['v'], @$_SESSION['siteusername']);
+	if(isset($_SESSION['siteusername']))
+		$__video_h->check_view($_GET['v'], @$_SESSION['siteusername']);
 
 	$_SESSION['current_video'] = $_video['rid'];
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
