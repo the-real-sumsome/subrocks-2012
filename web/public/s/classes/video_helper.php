@@ -76,6 +76,26 @@ class video_helper {
         return $stmt->rowCount();
     }
 
+    /* Function by daylin */
+    function timeToSeekEquation($time) { 
+        $times = preg_split('/:/', $time);
+        $timesc = count($times);
+        $final = '';
+        if ($times[0] != 0) {
+            for ($i = 0; $i < $timesc; $i++) {
+                $remaining = $timesc - $i - 1;
+                if ($i < $timesc - 1) {
+                    $final.=$times[$i].'*'.(60 ** $remaining).'+';
+                } else {
+                    $final.=$times[$i];
+                }
+            }
+        } else {
+            $final = $times[1];
+        }
+        return $final;
+    }
+
     function shorten_description(string $description, int $limit, bool $newlines = false) {
         $description = trim($description);
         if(strlen($description) >= $limit) {
@@ -84,6 +104,8 @@ class video_helper {
 
         $description = htmlspecialchars($description);
         if($newlines) { $description = str_replace(PHP_EOL, "<br>", $description); }
+        $description = preg_replace("/@([a-zA-Z0-9-]+|\\+\\])/", "<a href='/user/$1'>@$1</a>", $description);
+        $description = preg_replace("/((\d{1,2}:)+\d{2})/", "<a onclick=\"yt.www.watch.player.seekTo('$1', false)\">$1</a>", $description);
         return $description;
     }
 

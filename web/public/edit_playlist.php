@@ -6,8 +6,15 @@
 <?php $__video_h = new video_helper($__db); ?>
 <?php $__user_h = new user_helper($__db); ?>
 <?php $__db_h = new db_helper(); ?>
-<?php $__time_h = new time_helper(); error_reporting(E_ERROR | E_PARSE); ?>
+<?php $__time_h = new time_helper(); ?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - Edit Video";
+	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
+	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>
 <?php if(!isset($_SESSION['siteusername'])) { header("Location: /sign_in"); } ?>
+<?php $_playlist = $__video_h->fetch_playlist_rid($_GET['id']); ?>
 <!DOCTYPE html>
 <html dir="ltr">
 	<head>
@@ -24,11 +31,12 @@
 		<link rel="stylesheet" href="/yt/cssbin/www-videos-nav-vflYGt27y.css">
         <link rel="stylesheet" href="/yt/cssbin/www-extra.css">
 		<script src="//s.ytimg.com/yt/jsbin/www-browse-vflu1nggJ.js" data-loaded="true"></script>
+        <script src="/s/js/alert.js" data-loaded="true"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script>
 			if (window.yt.timing) {yt.timing.tick("ct");}    
 		</script>
-                <style>
+        <style>
             .master-myaccount-top {
                 border-bottom: 1px solid #CACACA;
             }
@@ -115,6 +123,7 @@
                 color: black;
             }
         </style>
+        <link rel="stylesheet" href="/yt/cssbin/www-extra.css">
 	</head>
 	<body id="" class="date-20120930 en_US ltr   ytg-old-clearfix guide-feed-v2 " dir="ltr">
 		<form name="logoutForm" method="POST" action="/logout">
@@ -150,165 +159,46 @@
                             <?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/sidebar.php"); ?>
 							<div id="browse-main-column" style="float: right;margin: 0px 0 0 14px;" class="ytg-4col">
 								<div class="browse-collection  has-box-ad">
-                                <?php
-                                    $search = $_SESSION['siteusername'];
-
-                                    $results_per_page = 12;
-
-                                    $stmt = $__db->prepare("SELECT * FROM favorite_video WHERE sender = :username ORDER BY id DESC");
-                                    $stmt->bindParam(":username", $_SESSION['siteusername']);
-                                    $stmt->execute();
-
-                                    $number_of_result = $stmt->rowCount();
-                                    $number_of_page = ceil ($number_of_result / $results_per_page);  
-
-                                    if (!isset ($_GET['page']) ) {  
-                                        $page = 1;  
-                                    } else {  
-                                        $page = (int)$_GET['page'];  
-                                    }  
-
-                                    $page_first_result = ($page - 1) * $results_per_page;  
-                                ?>
-                                <?php 
-                                    $stmt6 = $__db->prepare("SELECT * FROM favorite_video WHERE sender = :search ORDER BY id DESC LIMIT :pfirst, :pper");
-									$stmt6->bindParam(":search", $search);
-                                    $stmt6->bindParam(":pfirst", $page_first_result);
-                                    $stmt6->bindParam(":pper", $results_per_page);
-                                    $stmt6->execute();
-                                ?>                    
-                                
-                                <div class="my_videos_ajax">
-                                <table style="width: 100%;">
-                                    <tr>
-                                        <!-- <th style="margin: 5px; width: 5%;"></th> -->
-                                        <th style="width: 80%;">
-                                        </th>
-                                        <th style="margin: 5px; width: 20%;"></th>
-                                    </tr>
-                                    
-                                    <?php
-                                        while($video = $stmt6->fetch(PDO::FETCH_ASSOC)) { 
-											if($__video_h->video_exists($video['reciever'])) {
-												$_video = $__video_h->fetch_video_rid($video['reciever']);
-												$_video['video_responses'] = $__video_h->get_video_responses($_video['rid']);
-												$_video['age'] = $__time_h->time_elapsed_string($_video['publish']);		
-												$_video['duration'] = $__time_h->timestamp($_video['duration']);
-												$_video['views'] = $__video_h->fetch_video_views($_video['rid']);
-												$_video['author'] = htmlspecialchars($_video['author']);		
-												$_video['title'] = htmlspecialchars($_video['title']);
-												$_video['description'] = $__video_h->shorten_description($_video['description'], 50);
-
-												if($_video['thumbnail'] == ".png" && $_video['filename'] == ".mp4") {
-													$status = "Corrupted";
-												} else if($_video['visibility'] == "v") {
-													$status = "Approved";
-												} else if($_video['visibility'] == "n") {
-													$status = "Approved";
-												} else if($_video['visibility'] == "o") {
-													$status = "Disapproved";
-												} else {
-													$status = "Unknown";
-												}                      
-												
-												if($_video['commenting'] == "a") 
-													$_video['commentstatus'] = "Commenting allowed";
-												else 
-													$_video['commentstatus'] = "Commenting disallowed";
-                                    ?> 
-                                    <tr style="margin-top: 5px;" id="videoslist">
-                                        <td class="video-manager-left">
-                                            <ul>
-                                                <li class="video-list-item "><a href="/watch?v=<?php echo $_video['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="/dynamic/thumbs/<?php echo $_video['thumbnail']; ?>" alt="<?php echo $_video['title']; ?>" data-thumb="/dynamic/thumbs/<?php echo $_video['thumbnail']; ?>" width="120"  onerror=";this.src='/dynamic/thumbs/default.jpg';"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $_video['duration']; ?></span>
-                                                    <button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="yuTBQ86r8o0" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
-                                                    </span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
-                                                    </span><span dir="ltr" class="title" title="<?php echo $_video['title']; ?>"><?php echo $_video['title']; ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $_video['author']; ?></span></span><span class="stat view-count">  <span class="viewcount"><?php echo $_video['views']; ?> views</span>
-                                                    </span></a>
-                                                    <a href="/get/unfavorite?v=<?php echo $_video['rid']; ?>">
-                                                        <button type="button" class=" yt-uix-button yt-uix-button-default" role="button">
-                                                            Remove
-                                                        </button>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                    <h2>Editing <?php echo htmlspecialchars($_playlist['title']); ?></h2>
+                                    <hr><br>
+                                    <form action="/d/edit_video?v=<?php echo $_playlist['rid']; ?>" method="POST" enctype="multipart/form-data" id="edit_video_dom">
+                                    <div class="www-upload-left">
+                                        <div class="upload-stage-2">
+                                            <b>Title</b> <br><input id="video-title" value="<?php echo htmlspecialchars($_playlist['title']); ?>" placeholder="Video Title" class="upload-input" type="text" name="title"><br><br>
+                                            <b>Description</b> <br>
+                                            <textarea name="description" class="upload-input" placeholder="Video Description"><?php echo htmlspecialchars($_playlist['description']); ?></textarea><br><br>
+                                            <input type="submit" value="Apply Changes" class="yt-uix-button yt-uix-button-default">
                                         </div>
-                                        </td>
-                                        <td class="video-manager-stats">
-                                            <span class="video-manager-span" style="width:140px;display: inline-block;margin-bottom: 4px;">
-                                            <span class="small-text">Views: </span><span style="float:right;"><?php echo $__video_h->fetch_video_views($_video['rid']); ?></span>
-                                            </span><br>
-
-                                            <span class="video-manager-span" style="width:140px;display: inline-block;margin-bottom: 4px;">
-                                            <span class="small-text">Comments: </span><span style="float:right;"><?php echo $__video_h->get_comments_from_video($_video['rid']); ?></span>
-                                            </span><br>
-
-                                            <span class="video-manager-span" style="width:140px;display: inline-block;margin-bottom: 4px;">
-                                            <span class="small-text">Video Responses: </span><span style="float:right;"><?php echo $_video['video_responses']; ?></span>
-                                            </span><br>
-                                        </td>
-                                    </tr>
-                                    <?php } } ?>
-                                </table> 
-                                </div>
-
-                                <center class="loading_comm_pagination" style="display: none;">
-                                    <div>
-                                        <img src="/static/img/spinner.gif" style="width:16px;vertical-align: middle;"> Loading...
                                     </div>
-                                </center>
-
-                                <?php for($page = 1; $page<= $number_of_page; $page++) { ?>
-                                    <button class="yt-uix-button yt-uix-button-default" onclick="ajax_fetch_videomanager(<?php echo $page; ?>)"><?php echo $page; ?></button>
-                                <?php } ?>   
-
-                                <script>
-                                    var currentfilter = 'time';
-
-                                    function changeFilter_Title() {
-                                        currentfilter = 'title';
-                                        $("#selector-title").addClass("selected");
-                                        $("#selector-time").removeClass("selected");
-
-                                        console.log(currentfilter);
+                                    <div class="www-upload-right">
                                         
-                                        ajax_fetch_videomanager(1);
-                                    }
-
-                                    function changeFilter_Time() {
-                                        currentfilter = 'time';
-                                        $("#selector-title").removeClass("selected");
-                                        $("#selector-time").addClass("selected");
-
-                                        console.log(currentfilter);
-
-                                        ajax_fetch_videomanager(1);
-                                    }
-
-                                    function ajax_fetch_videomanager(page) {
-                                        $(".loading_comm_pagination").show();
-                                        $(".my_videos_ajax").fadeOut(10);
-                                        $(".my_videos_ajax").html("")
-
-                                        $.ajax({
-                                            url: '/favorite_ajax?filter=' + currentfilter + '&page=' + page,
-                                            method: 'GET'
-                                        })
-
-                                        .done((res) => {
-                                            $(".loading_comm_pagination").hide();
-                                            $(".my_videos_ajax").fadeIn(10);
-                                            $(".my_videos_ajax").html(res.content_html)
-                                        });
-                                    }
-                                </script>
-
-                                <?php 
-                                    if($stmt6->rowCount() == 0) { echo "
-                                        <br>Welcome to your favorite videos page.<br>
-										You can add videos that you like and the video will be added here!
-                                    "; 
-                                } ?>
+                                    </div>
+                                    </form>
 								</div>
+                                <script>
+                                    var alerts = 0; 
+                                    $('#edit_video_dom' ).submit(
+                                        function( e ) {
+                                            var data = new FormData(this);
+
+                                            $.ajax( {
+                                                url: '/d/edit_playlist?v=<?php echo $_playlist['rid']; ?>',
+                                                type: 'POST',
+                                                data: data,
+                                                cache: false,
+                                                processData: false,
+                                                contentType: false,
+                                                success: function(result){
+                                                    alerts++;
+                                                    addAlert("editsuccess_" + alerts, "Successfully updated your video!");
+                                                    showAlert("#editsuccess_" + alerts);
+                                                    console.log("DEBUG: " + result);
+                                                }
+                                            } );
+                                            e.preventDefault();
+                                        } 
+                                    );
+                                </script>
 							</div>
 						</div>
 					</div>

@@ -307,7 +307,7 @@
 																		<span class="video-index"><?php echo $_playlist['count']; ?></span>
 																		<span class="thumb-container">
 																		<span class="ux-thumb-wrap">
-																		<span class="video-thumb ux-thumb yt-thumb-default-124 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="/dynamic/thumbs/<?php echo $_video['thumbnail']; ?>" alt="Thumbnail" width="124"><span class="vertical-align"></span></span></span></span>
+																		<span class="video-thumb ux-thumb yt-thumb-default-124 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img  onerror=";this.src='/dynamic/thumbs/default.jpg';" src="/dynamic/thumbs/<?php echo $_video['thumbnail']; ?>" alt="Thumbnail" width="124"><span class="vertical-align"></span></span></span></span>
 																		<span class="video-time"><?php echo $_video['duration']; ?></span>
 																		<button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="<?php echo $_video['rid']; ?>" role="button"><span class="yt-uix-button-content">  <span class="addto-label">
 																		Watch Later
@@ -336,6 +336,9 @@
 																	</li>
 																	<?php $_playlist['count']++; ?>
 															<?php } } ?>
+															<?php if(count($_playlist['videos']) == 0) { ?>
+																<h4>This playlist has no videos yet.</h4>
+															<?php } ?>
                                                         </ol>
                                                     </div>
 												</div>

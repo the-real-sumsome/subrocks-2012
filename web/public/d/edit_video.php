@@ -34,7 +34,7 @@
     $__video_u->update_row($_GET['v'], "title", $request->title);
     $__video_u->update_row($_GET['v'], "description", $request->description);
     $__video_u->update_row($_GET['v'], "tags", $request->tags);
-    $__video_u->update_row($_GET['v'], "thumbnail", $request->thumbnail);
+    // $__video_u->update_row($_GET['v'], "thumbnail", $request->thumbnail);
     $__video_u->update_row($_GET['v'], "category", $request->category);
 
     if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_FILES['thumbnail']) {

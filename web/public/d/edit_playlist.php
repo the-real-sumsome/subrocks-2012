@@ -11,15 +11,28 @@
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
 <?php
-$video = $__video_h->fetch_video_rid($_GET['id']);
-
-if($video['author'] == $_SESSION['siteusername']) {
-    if($video['commenting'] == "a") {
-        $__video_u->update_row($_GET['id'], "commenting", "d");
-    } else {
-        $__video_u->update_row($_GET['id'], "commenting", "a");
+    $_playlist = $__video_h->fetch_playlist_rid($_GET['v']);
+    if($_playlist['author'] != @$_SESSION['siteusername']) {
+        die();
     }
-}
 
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header("Content-type: application/json");
+
+    $request = (object) [
+        "title" => $_POST['title'],
+        "description" => $_POST['description'],
+        "tags" => $_POST['tags'],
+        "thumbnail" => $_FILES['thumbnail'],
+        "category" => $_POST['category'],
+
+        "error" => (object) [
+            "message" => "",
+            "status" => "OK"
+        ]
+    ]; 
+
+    $__video_u->playlist_update_row($_GET['v'], "title", $request->title);
+    $__video_u->playlist_update_row($_GET['v'], "description", $request->description);
+
+    echo json_encode($request, JSON_PRETTY_PRINT);
 ?>

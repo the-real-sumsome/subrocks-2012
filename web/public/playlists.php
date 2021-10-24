@@ -285,10 +285,10 @@
                                         <tr style="margin-top: 5px;" id="videoslist">
                                             <td class="video-manager-left">
                                                 <ul>
-                                                    <li class="video-list-item "><a href="/view_playlist?v=<?php echo $playlist['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="<?php echo $playlist['title']; ?>" onerror=";this.src='/dynamic/thumbs/default.jpg';"  data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
+                                                    <li class="video-list-item "><a href="/view_playlist?v=<?php echo $playlist['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="/dynamic/thumbs/<?php echo htmlspecialchars($video['thumbnail']); ?>" alt="<?php echo $playlist['title']; ?>" onerror=";this.src='/dynamic/thumbs/default.jpg';"  data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
                                                         <button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="yuTBQ86r8o0" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
                                                         </span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
-                                                        </span><span dir="ltr" class="title" title="<?php echo $playlist['title']; ?>"><?php echo $playlist['title']; ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $playlist['author']; ?></span></span><span class="stat view-count">  <span class="viewcount">0 views</span>
+                                                        </span><span dir="ltr" class="title" title="<?php echo htmlspecialchars($playlist['title']); ?>"><?php echo htmlspecialchars($playlist['title']); ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $playlist['author']; ?></span></span><span class="stat view-count">  <span class="viewcount">0 views</span>
                                                         </span></a>
                                                     </li>
                                                 </ul>
@@ -314,14 +314,14 @@
                                         </tr>
                                     <?php } } ?>
                                 </table> 
-                                </div>
+                                </div><br>
 
                                 <center class="loading_comm_pagination" style="display: none;">
                                     <div>
                                         <img src="/s/img/spinner.gif" style="width:16px;vertical-align: middle;"> Loading...
                                     </div>
                                 </center>
-
+                                        
                                 <?php for($page = 1; $page<= $number_of_page; $page++) { ?>
                                     <button class="yt-uix-button yt-uix-button-default" onclick="ajax_fetch_videomanager(<?php echo $page; ?>)"><?php echo $page; ?></button>
                                 <?php } ?>   
