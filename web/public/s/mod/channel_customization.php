@@ -310,7 +310,7 @@
                         <div style="position: relative;top: 7px;">
                             <b>Bio</b><br>
                             <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -15px;">
-                                <textarea class="yt-uix-form-input-text" style="resize:none;height: 55px;width: 344px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
+                                <textarea class="yt-uix-form-input-text" style="resize:none;height: 50px;width: 344px;padding: 5px 5px 0;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
                             </div>
                         </div>
                         
