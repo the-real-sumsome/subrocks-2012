@@ -1121,7 +1121,7 @@ label {
 
 #logo {
 	display: block;
-	width: 100px;
+	width: 93px;
 	height: 40px;
 	background: url(/yt/imgbin/full-size-logo.png);
 	background-repeat: no-repeat;
@@ -1400,8 +1400,8 @@ label {
 }
 
 #footer-logo img {
-	opacity: .6;
-	background: no-repeat url(/s/img/footerhover.png);
+	opacity: .9;
+	background: no-repeat url(/s/img/footer.png);
 	background-size: contain;
 	width: 93px;
 	height: 40px
