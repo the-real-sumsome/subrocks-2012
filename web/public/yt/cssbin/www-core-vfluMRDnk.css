@@ -1390,7 +1390,7 @@ label {
 	margin-top: 14px
 }
 
-#footer-logo {
+	#footer-logo {
 	position: relative;
 	float: left;
 	font-size: 11px;
@@ -1400,7 +1400,7 @@ label {
 }
 
 #footer-logo img {
-	opacity: .9;
+	opacity: .6;
 	background: no-repeat url(/s/img/footer.png);
 	background-size: contain;
 	width: 93px;
@@ -1408,7 +1408,7 @@ label {
 }
 
 #footer-logo:hover img {
-	opacity: 1
+	opacity: .9
 }
 
 #footer-logo span {
