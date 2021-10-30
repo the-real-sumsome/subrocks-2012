@@ -225,7 +225,7 @@
 							</p>
 							<ul>
 								<?php
-									$stmt = $__db->prepare("SELECT * FROM videos ORDER BY rand() LIMIT 4");
+									$stmt = $__db->prepare("SELECT * FROM videos WHERE visibility = 'n' ORDER BY rand() LIMIT 4");
 									$stmt->execute();
 									while($video = $stmt->fetch(PDO::FETCH_ASSOC)) {	
 										$video['age'] = $__time_h->time_elapsed_string($video['publish']);		
@@ -248,7 +248,7 @@
 							</h3>
 							<ul>
 								<?php
-									$stmt = $__db->prepare("SELECT * FROM videos WHERE featured = 'v' ORDER BY id DESC LIMIT 4");
+									$stmt = $__db->prepare("SELECT * FROM videos WHERE featured = 'v' AND visibility = 'n' ORDER BY id DESC LIMIT 4");
 									$stmt->execute();
 									while($video = $stmt->fetch(PDO::FETCH_ASSOC)) {	
 										$video['age'] = $__time_h->time_elapsed_string($video['publish']);		
@@ -281,7 +281,7 @@
 									<div class="feed-page">
 										<ul>
 											<?php
-												$stmt = $__db->prepare("SELECT * FROM videos ORDER BY id DESC LIMIT 20");
+												$stmt = $__db->prepare("SELECT * FROM videos WHERE visibility = 'n' ORDER BY id DESC LIMIT 20");
 												$stmt->execute();
 												while($video = $stmt->fetch(PDO::FETCH_ASSOC)) {	
 													$video['age'] = $__time_h->time_elapsed_string($video['publish']);		

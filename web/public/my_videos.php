@@ -234,30 +234,30 @@
                                                     </span><span dir="ltr" class="title" title="<?php echo $video['title']; ?>"><?php echo $video['title']; ?></span>
                                                     <span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $video['author']; ?></span></span>
                                                     <span class="stat view-count">  <span class="viewcount"><?php echo $video['views']; ?> views</span>
-                                                    <span class="stat view-count">
-                                                        <a href="/edit_video?id=<?php echo $video['rid']; ?>">
-                                                            <button type="button" class="comment-actions yt-uix-button yt-uix-button-default" role="button">
-                                                                Edit
-                                                            </button>
-                                                        </a>
-                                                        <a href="/get/delete_video?id=<?php echo $video['rid']; ?>">
-                                                            <button type="button" class="comment-actions yt-uix-button yt-uix-button-default" role="button">
-                                                                Delete
-                                                            </button>
-                                                        </a>
-                                                        <a href="/get/toggle_comment?id=<?php echo $video['rid']; ?>">
-                                                            <button type="button" class="comment-actions yt-uix-button yt-uix-button-default" role="button">
-                                                                Toggle Commenting
-                                                            </button>
-                                                        </a>
-
-                                                        <span style="margin-left:10px">
-                                                            <img src="/s/img/world.png"> <span style="font-size: 11px;position: relative;bottom: 2px;left: 5px;">Public</span>
-                                                        </span>
-                                                    </span></span>
                                                     </span></a>
                                                 </li>
                                             </ul>
+                                            <div style="position:relative;bottom:25px;">
+                                                <a href="/edit_video?id=<?php echo $video['rid']; ?>" style="display:inline-block;margin-left: 133px;">
+                                                    <button type="button" class="yt-uix-button yt-uix-button-default" role="button">
+                                                        Edit
+                                                    </button>
+                                                </a>
+                                                <a href="/get/delete_video?id=<?php echo $video['rid']; ?>" style="display:inline-block;">
+                                                    <button type="button" class="yt-uix-button yt-uix-button-default" role="button">
+                                                        Delete
+                                                    </button>
+                                                </a>
+                                                <a href="/get/toggle_comment?id=<?php echo $video['rid']; ?>" style="display:inline-block;">
+                                                    <button type="button" class="yt-uix-button yt-uix-button-default" role="button">
+                                                        Toggle Commenting
+                                                    </button>
+                                                </a>
+
+                                                <span style="margin-left:10px">
+                                                    <img src="/s/img/world.png"> <span style="font-size: 11px;position: relative;bottom: 2px;left: 5px;">Public</span>
+                                                </span>
+                                            </div>
                                         </div>
                                         </td>
                                         <td class="video-manager-stats" style="background: none;padding-left: 8px;">

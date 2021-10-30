@@ -164,10 +164,10 @@
                                     <form action="/d/edit_video?v=<?php echo $_video['rid']; ?>" method="POST" enctype="multipart/form-data" id="edit_video_dom">
                                     <div class="www-upload-left">
                                         <div class="upload-stage-2">
-                                            <b>Title</b> <br><input id="video-title" value="<?php echo htmlspecialchars($_video['title']); ?>" placeholder="Video Title" class="upload-input" type="text" name="title"><br><br>
+                                            <b>Title</b> <br><input class="yt-uix-form-input-text" style="width:100%;margin-top:5px;" id="video-title" value="<?php echo htmlspecialchars($_video['title']); ?>" placeholder="Video Title" class="upload-input" type="text" name="title"><br><br>
                                             <b>Description</b> <br>
-                                            <textarea name="description" class="upload-input" placeholder="Video Description"><?php echo htmlspecialchars($_video['description']); ?></textarea><br><br>
-                                            <b>Tags</b> <br><input placeholder="Seperate with commas" value="<?php echo htmlspecialchars($_video['tags']); ?>" class="upload-input" type="text" name="tags"><br><br>
+                                            <textarea name="description"  class="yt-uix-form-input-text" style="resize:none;width:100%;margin-top:5px;" placeholder="Video Description"><?php echo htmlspecialchars($_video['description']); ?></textarea><br><br>
+                                            <b>Tags</b> <br><input  class="yt-uix-form-input-text" style="width:100%;margin-top:5px;" placeholder="Seperate with commas" value="<?php echo htmlspecialchars($_video['tags']); ?>" class="upload-input" type="text" name="tags"><br><br>
                                             <b>Custom Thumbnail</b> <br><input class="upload-input" id="thumbnail" type="file" name="thumbnail"><br><br>
                                             <br><br>
                                             <input type="submit" value="Apply Changes" class="yt-uix-button yt-uix-button-default">
@@ -182,7 +182,7 @@
                                             <?php } ?>
                                         </select><br><br>
                                         <b>Privacy</b> <br><br>
-                                        <input class="yt-uix-form-input-radio" type="radio" style="vertical-align: top;"> 
+                                        <input class="yt-uix-form-input-radio" name="privacy" value="n" type="radio" style="vertical-align: top;"> 
                                         <span style="display: inline-block;">
                                             <b>Public</b><br>
                                             <span class="small-text">
@@ -190,14 +190,14 @@
                                                 recommended
                                             </span>
                                         </span><br><br>
-                                        <input class="yt-uix-form-input-radio" type="radio" style="vertical-align: top;"> 
+                                        <input class="yt-uix-form-input-radio" name="privacy" value="u" type="radio" style="vertical-align: top;"> 
                                         <span style="display: inline-block;">
                                             <b>Unlisted</b><br>
                                             <span class="small-text">
                                                 anyone with the link can view
                                             </span>
                                         </span><br><br>
-                                        <input class="yt-uix-form-input-radio" type="radio" style="vertical-align: top;"> 
+                                        <input class="yt-uix-form-input-radio" name="privacy" value="v" type="radio" style="vertical-align: top;"> 
                                         <span style="display: inline-block;">
                                             <b>Private</b><br>
                                             <span class="small-text">
@@ -212,8 +212,6 @@
                                                 licenses don't exist on here
                                             </span>
                                         </span><br>
-
-                                        <input name="privacy" type="text" style="visibility: hidden;">
                                         <input id="video-file" type="file" name="video_file" style="visibility: hidden;">
                                     </div>
                                     </form>

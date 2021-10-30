@@ -15,6 +15,9 @@
 <?php $_video = $__video_h->fetch_video_rid($_GET['v']); ?>
 <?php $_video['comments'] = $__video_h->get_comments_from_video($_video['rid']); ?>
 <?php
+	if($_video['visibility'] == "v" && @$_SESSION['siteusername'] != $_video['author'])
+		header("Location: /");
+
 	if(isset($_SESSION['siteusername']))
 		$__video_h->check_view($_GET['v'], @$_SESSION['siteusername']);
 
@@ -204,6 +207,26 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 						<div id="watch-main-container">
 							<div id="watch-main">
 								<div id="watch-panel">
+	  								<?php if($_video['visibility'] == "u") { ?>
+										<div id="masthead_child_div"><div class="yt-alert yt-alert-default yt-alert-warn">  <div class="yt-alert-icon">
+											<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
+										</div>
+										<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
+											<div class="yt-alert-message">
+												This video is unlisted. Only people who have the link can view this video.
+											</div>
+										</div></div></div>
+									<?php } else if($_video['visibility'] == "v") { ?>
+										<div id="masthead_child_div"><div class="yt-alert yt-alert-default yt-alert-error">  <div class="yt-alert-icon">
+											<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
+										</div>
+										<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
+											<div class="yt-alert-message">
+												This video is private. Only you can view this video.
+											</div>
+										</div></div></div>
+									<?php } ?>
+
 									<div class="yt-alert yt-alert-default yt-alert-warn hid " id="flash10-promo-div">
 										<div class="yt-alert-icon">
 											<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
@@ -875,7 +898,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 											<ul id="watch-related" class="video-list">
 												<div id="ppv-container" class="hid"></div>
 												<?php
-													$stmt = $__db->prepare("SELECT * FROM videos ORDER BY rand() LIMIT 20");
+													$stmt = $__db->prepare("SELECT * FROM videos WHERE visibility = 'n' ORDER BY rand() LIMIT 20");
 													$stmt->execute();
 													while($video = $stmt->fetch(PDO::FETCH_ASSOC)) {	
 														$video['age'] = $__time_h->time_elapsed_string($video['publish']);		

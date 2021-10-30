@@ -8,6 +8,9 @@
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
 <?php
+if(!isset($_SESSION['siteusername']))
+    header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=You have to be logged in to report videos.');
+
 $_video = $__video_h->fetch_video_rid($_GET['v']);
 $webhookurl = $__server->discord_webhook;
 $timestamp = date("c", strtotime("now"));
