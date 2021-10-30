@@ -8,6 +8,12 @@
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); error_reporting(E_ERROR | E_PARSE); ?>
 <?php if(!isset($_SESSION['siteusername'])) { header("Location: /sign_in"); } ?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - Favorite Videos";
+	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
+	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>
 <!DOCTYPE html>
 <html dir="ltr">
 	<head>

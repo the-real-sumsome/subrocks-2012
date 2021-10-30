@@ -899,9 +899,6 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 											</p>
 											</ul>
 										</div>
-										<div class="watch-sidebar-foot">
-											<p class="content"><button type="button" id="watch-more-related-button" onclick=";return false;" class=" yt-uix-button yt-uix-button-default" data-button-action="yt.www.watch.watch5.handleLoadMoreRelated" role="button"><span class="yt-uix-button-content">Load more suggestions </span></button></p>
-										</div>
 									</div>
 									<span class="yt-vertical-rule-main"></span>
 									<span class="yt-vertical-rule-corner-top"></span>
