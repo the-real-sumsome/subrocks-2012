@@ -142,7 +142,7 @@
 								My Channel
 								</span>
 							</li>
-                            <a href="/inbox">
+                            <a href="/inbox/">
                             <li class="">
 								<span class="yt-nav-item">
 								Inbox
@@ -378,6 +378,7 @@
 			<!-- end pagebottom -->
 		</div>
 		<!-- end page -->
+<script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script>yt.www.thumbnaildelayload.init(0);</script>
 		<script>
 			yt.setMsg({

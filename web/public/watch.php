@@ -19,26 +19,6 @@
 		$__video_h->check_view($_GET['v'], @$_SESSION['siteusername']);
 
 	$_SESSION['current_video'] = $_video['rid'];
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $error = array();
-
-        if(!isset($_SESSION['siteusername'])){ $error['message'] = "you are not logged in"; $error['status'] = true; }
-        if(!$_POST['comment']){ $error['message'] = "your comment cannot be blank"; $error['status'] = true; }
-        if(strlen($_POST['comment']) > 1000){ $error['message'] = "your comment must be shorter than 1000 characters"; $error['status'] = true; }
-        if($__user_h->if_cooldown($_SESSION['siteusername'])) { $error['message'] = "You are on a cooldown! Wait for a minute before posting another comment."; $error['status'] = true; }
-
-        if(!isset($error['message'])) {
-			$text = $_POST['comment'];
-            $stmt = $__db->prepare("INSERT INTO comments (toid, author, comment) VALUES (:v, :username, :comment)");
-            $stmt->bindParam(":v", $_GET['v']);
-			$stmt->bindParam(":username", $_SESSION['siteusername']);
-			$stmt->bindParam(":comment", $text);
-            $stmt->execute();
-
-			$__user_u->update_cooldown_time($_SESSION['siteusername'], "cooldown_comment");
-			$__user_i->send_message($_SESSION['siteusername'], "New comment", $_video['author'], "I commented \"" . $_POST['comment'] . "\" on your video!", $_video['rid'], "nt");
-        }
-    }
 
 	/* 
 	PREPARE EMBEDS CLASS -- function(string $page_title, string $page_description...) 
@@ -276,7 +256,9 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 									<div id="watch-actions-area-container" class="hid">
 										<div id="watch-actions-area" class="yt-rounded">
 											<div id="watch-actions-loading" class="watch-actions-panel hid">
-												not implemented ismnf
+												<div class="comments-disabled-message">
+													<span>Analytics are not available for this video.</span>
+												</div>
 											</div>
 											<div id="watch-actions-logged-out" class="watch-actions-panel hid">
 												<?php if(!isset($_SESSION['siteusername'])) { ?>
@@ -363,7 +345,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 																		<span class="collapsed-message">
 																		Options
 																		<img class="arrow" src="./intro to RUCA - YouTube_files/pixel-vfl3z5WfW.gif" alt="">
-																		</span>
+																		</span> 
 																		<span class="expanded-message">
 																		Close
 																		<img class="arrow" src="./intro to RUCA - YouTube_files/pixel-vfl3z5WfW.gif" alt="">
@@ -501,21 +483,21 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 																		<label>
 																		<input type="checkbox" class="share-embed-option" name="use-https">
 																		Use HTTPS
-																		[<a href="http://www.google.com/support/youtube/bin/answer.py?answer=171780&amp;expand=UseHTTPS#HTTPS" target="_blank">?</a>]
+																		
 																		</label>
 																	</li>
 																	<li>
 																		<label>
 																		<input type="checkbox" class="share-embed-option" name="delayed-cookies">
 																		Enable privacy-enhanced mode
-																		[<a href="http://www.google.com/support/youtube/bin/answer.py?answer=171780&amp;expand=PrivacyEnhancedMode#privacy" target="_blank">?</a>]
+																		
 																		</label>
 																	</li>
 																	<li>
 																		<label>
 																		<input type="checkbox" class="share-embed-option" name="use-flash-code">
 																		Use old embed code
-																		[<a href="http://www.google.com/support/youtube/bin/answer.py?answer=171780&amp;expand=UseOldEmbedCode#oldcode" target="_blank">?</a>]
+																		
 																		</label>
 																	</li>
 																</ul>
@@ -659,10 +641,9 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 														</div>
 													</div>
 												<?php } else if($_video['commenting'] == "d") { ?>
-													<div class="comments-post-container clearfix">
-														<div class="comments-post-alert">
-															This video has comemnting disabled!
-														</div>
+													<div class="comments-disabled-message">
+														<img src="http://s.ytimg.com/yt/img/icon_comments_disabled-vflxokpZC.png">
+														<span>Adding comments has been disabled for this video.</span>
 													</div>
 												<?php } else if($__user_h->if_blocked($_video['author'], $_SESSION['siteusername'])) { ?>
 													<div class="comments-post-container clearfix">
@@ -744,50 +725,117 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 															$comment['likes'] -= $__video_h->get_comment_likes($comment['id'], false);
 													?>
 
-													<li class="comment yt-tile-default " data-author-viewing="" data-author-id="-uD01K8FQTeOSS5sniRFzQ" data-id="<?php echo $comment['id']; ?>" data-score="0">
-														<div class="comment-body">
-															<div class="content-container">
-																<div class="content">
-																	<div class="comment-text" dir="ltr">
-																		<p><?php echo $__video_h->shorten_description($comment['comment'], 3000, true); ?></p>
+														<li class="comment yt-tile-default " data-author-viewing="" data-author-id="-uD01K8FQTeOSS5sniRFzQ" data-id="<?php echo $comment['id']; ?>" data-score="0">
+															<div class="comment-body">
+																<div class="content-container">
+																	<div class="content">
+																		<div class="comment-text" dir="ltr">
+																			<p><?php echo $__video_h->shorten_description($comment['comment'], 3000, true); ?></p>
+																		</div>
+																		<p class="metadata">
+																			<span class="author ">
+																			<a href="/user/<?php echo htmlspecialchars($comment['author']); ?>" class="yt-uix-sessionlink yt-user-name " data-sessionlink="<?php echo htmlspecialchars($comment['author']); ?>" dir="ltr"><?php echo htmlspecialchars($comment['author']); ?></a>
+																			</span>
+																			<span class="time" dir="ltr">
+																			<span dir="ltr"><?php echo $__time_h->time_elapsed_string($comment['date']); ?><span>
+																			</span>
+																			</span></span>
+																			<?php if($comment['likes'] != 0) { ?>
+																			<span dir="ltr" class="comments-rating-positive" title="9 up, 1 down">
+																				<?php echo $comment['likes']; ?>
+																				<img class="comments-rating-thumbs-up" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif">
+																			</span>
+																			<?php } ?>
+																		</p>
 																	</div>
-																	<p class="metadata">
-																		<span class="author ">
-																		<a href="/user/<?php echo htmlspecialchars($comment['author']); ?>" class="yt-uix-sessionlink yt-user-name " data-sessionlink="<?php echo htmlspecialchars($comment['author']); ?>" dir="ltr"><?php echo htmlspecialchars($comment['author']); ?></a>
+																	<div class="comment-actions">
+																		<span class="yt-uix-button-group"><button type="button" class="start comment-action-vote-up comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Up" data-action="vote-up" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-up" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Up"><span class="yt-valign-trick"></span></span></button><button type="button" class="end comment-action-vote-down comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Down" data-action="vote-down" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-down" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Down"><span class="yt-valign-trick"></span></span></button></span>
+																		<span class="yt-uix-button-group">
+																			<button type="button" 
+																					class="start comment-action yt-uix-button yt-uix-button-default" 
+																					onclick=";$('#reply_to_<?php echo $comment['id']; ?>').show();return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply </span></button>
+																			<button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
+																				<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
+																				<div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
+																					<ul>
+																						<li class="comment-action" data-action="share"><span class="yt-uix-button-menu-item">Share</span></li>
+																						<li class="comment-action-remove comment-action" data-action="remove"><span class="yt-uix-button-menu-item">Remove</span></li>
+																						<li class="comment-action" data-action="flag"><span class="yt-uix-button-menu-item">Flag for spam</span></li>
+																						<li class="comment-action-block comment-action" data-action="block"><span class="yt-uix-button-menu-item">Block User</span></li>
+																						<li class="comment-action-unblock comment-action" data-action="unblock"><span class="yt-uix-button-menu-item">Unblock User</span></li>
+																					</ul>
+																				</div>
+																			</button>
 																		</span>
-																		<span class="time" dir="ltr">
-																		<span dir="ltr"><?php echo $__time_h->time_elapsed_string($comment['date']); ?><span>
-																		</span>
-																		</span></span>
-																		<?php if($comment['likes'] != 0) { ?>
-																		<span dir="ltr" class="comments-rating-positive" title="9 up, 1 down">
-																			<?php echo $comment['likes']; ?>
-																			<img class="comments-rating-thumbs-up" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif">
-																		</span>
-																		<?php } ?>
-																	</p>
-																</div>
-																<div class="comment-actions">
-																	<span class="yt-uix-button-group"><button type="button" class="start comment-action-vote-up comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Up" data-action="vote-up" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-up" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Up"><span class="yt-valign-trick"></span></span></button><button type="button" class="end comment-action-vote-down comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Down" data-action="vote-down" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-down" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Down"><span class="yt-valign-trick"></span></span></button></span>
-																	<span class="yt-uix-button-group">
-																		<!--<button type="button" class="start comment-action yt-uix-button yt-uix-button-default" onclick=";return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply </span></button>-->
-																		<button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
-																			<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
-																			<div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
-																				<ul>
-																					<li class="comment-action" data-action="share"><span class="yt-uix-button-menu-item">Share</span></li>
-																					<li class="comment-action-remove comment-action" data-action="remove"><span class="yt-uix-button-menu-item">Remove</span></li>
-																					<li class="comment-action" data-action="flag"><span class="yt-uix-button-menu-item">Flag for spam</span></li>
-																					<li class="comment-action-block comment-action" data-action="block"><span class="yt-uix-button-menu-item">Block User</span></li>
-																					<li class="comment-action-unblock comment-action" data-action="unblock"><span class="yt-uix-button-menu-item">Unblock User</span></li>
-																				</ul>
-																			</div>
-																		</button>
-																	</span>
+																	</div>
+																<?php if(isset($_SESSION['siteusername'])) { ?> 
+																	<li id="reply_to_<?php echo $comment['id']; ?>" style="display: none;" class="comment yt-tile-default  child" data-tag="O" data-author-viewing="" data-id="iRV7EkT9us81mDLFDSB6FAsB156Fdn13HUmTm26C3PE" data-score="34" data-author="<?php echo htmlspecialchars($row['author']); ?>">
+
+																	<div class="comment-body">
+																		<div class="content-container">
+																		<div class="content">
+																			<div class="comment-text" dir="ltr">
+																			<form method="post" action="/d/reply?id=<?php echo $comment['id']; ?>&v=<?php echo $_GET['v']; ?>">
+																				<img style="width: 50px;" src="">
+																				<textarea style="resize:none;padding:5px;border-radius:5px;background-color:white;border: 1px solid #d3d3d3; width: 577px; resize: none;"cols="32" id="com" placeholder="Share your thoughts" name="comment"></textarea><br><br>
+																				<input style="float: none; margin-right: 0px; margin-top: 0px;" class="yt-uix-button yt-uix-button-default" type="submit" value="Reply" name="replysubmit">
+																				<input style="display: none;" name="id" value="<?php echo $row['id']; ?>">
+																				
+																			</form>
+																		</div>
+																	</div>
+																<?php } ?>
 																</div>
 															</div>
-														</div>
-													</li>
+														</li>
+														<?php 
+															$stmt2 = $__db->prepare("SELECT * FROM comment_reply WHERE toid = :rid ORDER BY id DESC");
+															$stmt2->bindParam(":rid", $comment['id']);
+															$stmt2->execute();
+
+															while($reply = $stmt2->fetch(PDO::FETCH_ASSOC)) { 
+														?>
+															<li class="comment yt-tile-default " style="padding-left: 30px;" data-author-viewing="" data-author-id="-uD01K8FQTeOSS5sniRFzQ" data-id="<?php echo $reply['id']; ?>" data-score="0">
+																<div class="comment-body">
+																	<div class="content-container">
+																		<div class="content">
+																			<div class="comment-text" dir="ltr">
+																				<p><?php echo $__video_h->shorten_description($reply['comment'], 3000, true); ?></p>
+																			</div>
+																			<p class="metadata">
+																				<span class="author ">
+																				<a href="/user/<?php echo htmlspecialchars($reply['author']); ?>" class="yt-uix-sessionlink yt-user-name " data-sessionlink="<?php echo htmlspecialchars($reply['author']); ?>" dir="ltr"><?php echo htmlspecialchars($reply['author']); ?></a>
+																				</span>
+																				<span class="time" dir="ltr">
+																				<span dir="ltr"><?php echo $__time_h->time_elapsed_string($reply['date']); ?><span>
+																				</span>
+																				</span></span>
+																			</p>
+																		</div>
+																		<div class="comment-actions">
+																			<span class="yt-uix-button-group"><button type="button" class="start comment-action-vote-up comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Up" data-action="vote-up" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-up" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Up"><span class="yt-valign-trick"></span></span></button><button type="button" class="end comment-action-vote-down comment-action yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" onclick=";return false;" title="Vote Down" data-action="vote-down" data-tooltip-show-delay="300" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-comment-vote-down" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Vote Down"><span class="yt-valign-trick"></span></span></button></span>
+																			<span class="yt-uix-button-group">
+																				<button type="button" 
+																						class="start comment-action yt-uix-button yt-uix-button-default" 
+																						onclick=";$('#reply_to_<?php echo $comment['id']; ?>').show();return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply </span></button>
+																				<button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
+																					<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
+																					<div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
+																						<ul>
+																							<li class="comment-action" data-action="share"><span class="yt-uix-button-menu-item">Share</span></li>
+																							<li class="comment-action-remove comment-action" data-action="remove"><span class="yt-uix-button-menu-item">Remove</span></li>
+																							<li class="comment-action" data-action="flag"><span class="yt-uix-button-menu-item">Flag for spam</span></li>
+																							<li class="comment-action-block comment-action" data-action="block"><span class="yt-uix-button-menu-item">Block User</span></li>
+																							<li class="comment-action-unblock comment-action" data-action="unblock"><span class="yt-uix-button-menu-item">Unblock User</span></li>
+																						</ul>
+																					</div>
+																				</button>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+															</li>
+														<?php } ?>
 													<?php } ?>
 												</ul>
 											</div>
@@ -1005,6 +1053,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 			</div>
 </div>
 		<!-- end page -->
+<script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script>
 			yt.setConfig({

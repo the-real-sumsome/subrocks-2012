@@ -750,6 +750,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 			</div>
 		</div>
 		<!-- end page -->
+<script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script id="www-core-js" src="//s.ytimg.com/yt/jsbin/www-core-vfl-1JTp7.js" data-loaded="true"></script>
 		<script>
 			yt.setConfig({

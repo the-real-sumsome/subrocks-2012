@@ -24,7 +24,7 @@
         if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) 
             { $request->error->message = "Your email is invalid!"; $request->error->status = "";  }
         if(strlen($request->username) > 21) 
-            { $request->error->message = "Your username must be shorter than 21 characters."; $request->error->status = ""; }
+            { $request->error->message = "Your username must be shorter than 20 characters."; $request->error->status = ""; }
         if(strlen($request->password) < 8) 
             { $request->error->message = "Your password must at least be 8 characters long."; $request->error->status = ""; }
         if(!preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $request->password)) 
