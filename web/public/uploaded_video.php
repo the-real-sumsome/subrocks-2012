@@ -3,24 +3,28 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/time_manip.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_helper.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/video_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_update.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_insert.php"); ?>
 <?php $__video_h = new video_helper($__db); ?>
 <?php $__user_h = new user_helper($__db); ?>
+<?php $__user_i = new user_insert($__db); ?>
+<?php $__user_u = new user_update($__db); ?>
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
 <?php
 	if(!$__video_h->video_exists($_GET['v']))
 		header("Location: /?error=Your video has not processed correctly. Try reuploading it with a shorter title, description, or tag.");
 
-	$video = $__video_h->fetch_video_rid($_GET['v']);
-	$video['video_responses'] = $__video_h->get_video_responses($video['rid']);
-	$video['age'] = $__time_h->time_elapsed_string($video['publish']);		
-	$video['duration'] = $__time_h->timestamp($video['duration']);
-	$video['views'] = $__video_h->fetch_video_views($video['rid']);
-	$video['author'] = htmlspecialchars($video['author']);		
-	$video['title'] = htmlspecialchars($video['title']);
-	$video['description'] = $__video_h->shorten_description($video['description'], 50);
+	$_video = $__video_h->fetch_video_rid($_GET['v']); 
+	$_video['video_responses'] = $__video_h->get_video_responses($_video['rid']);
+	$_video['age'] = $__time_h->time_elapsed_string($_video['publish']);		
+	$_video['duration'] = $__time_h->timestamp($_video['duration']);
+	$_video['views'] = $__video_h->fetch_video_views($_video['rid']);
+	$_video['author'] = htmlspecialchars($_video['author']);		
+	$_video['title'] = htmlspecialchars($_video['title']);
+	$_video['description'] = $__video_h->shorten_description($_video['description'], 50);
 
-    if($_SESSION['siteusername'] != $video['author'])
+    if($_SESSION['siteusername'] != $_video['author'])
         header("Location: /");
 ?>
 <?php
@@ -76,16 +80,16 @@
                     </div><br>
                     <h3>Succesfully uploaded!</h3>
                     <hr><br>
-                    Your video <b><?php echo htmlspecialchars($video['title']); ?></b> has been successfully uploaded.<br><br>
+                    Your video <b><?php echo htmlspecialchars($_video['title']); ?></b> has been successfully uploaded.<br><br>
                     <ul>
-                        <li class="video-list-item "><a href="/watch?v=<?php echo $video['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="<?php echo $video['title']; ?>" data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
+                        <li class="video-list-item "><a href="/watch?v=<?php echo $_video['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="<?php echo $_video['title']; ?>" data-thumb="/dynamic/thumbs/<?php echo $_video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $_video['duration']; ?></span>
                             <button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="yuTBQ86r8o0" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
                             </span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
-                            </span><span dir="ltr" class="title" title="<?php echo $video['title']; ?>"><?php echo $video['title']; ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $video['author']; ?></span></span><span class="stat view-count">  <span class="viewcount"><?php echo $video['views']; ?> views</span>
+                            </span><span dir="ltr" class="title" title="<?php echo $_video['title']; ?>"><?php echo $_video['title']; ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $_video['author']; ?></span></span><span class="stat view-count">  <span class="viewcount"><?php echo $_video['views']; ?> views</span>
                             </span></a>
                         </li>
                     </ul>
-                    <input id="video-link" style="width: 300px;" placeholder="Video Link" class="upload-input" type="text" value="https://subrock.rocks/watch?v=<?php echo $video['rid']; ?>" name="title"><br><br>
+                    <input id="video-link" style="width: 300px;" placeholder="Video Link" class="upload-input" type="text" value="https://subrock.rocks/watch?v=<?php echo $_video['rid']; ?>" name="title"><br><br>
                     <br>
                 </div>
             </div>  
@@ -224,6 +228,7 @@
 			</div>
 		</div>
 		<!-- end page -->
+<script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script id="www-core-js" src="//s.ytimg.com/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script>
 			yt.setConfig({
