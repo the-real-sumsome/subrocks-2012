@@ -2707,7 +2707,8 @@ body.site-left-aligned .sb-card {
 	float: right;
 	margin-left: 50px;
 	margin-top: 3px;
-	color: #555
+	color: #555;
+	cursor: pointer;
 }
 
 #yt-masthead-user-displayname {
