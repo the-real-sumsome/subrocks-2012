@@ -100,8 +100,8 @@
                                         <option value="<?php echo $categoryTag; ?>"><?php echo $categoryTag; ?></option>
                                     <?php } ?>
                                 </select><br><br>
-                                <b>Privacy</b> <br><br>
-                                <input class="yt-uix-form-input-radio" type="radio" style="vertical-align: top;"> 
+                                <b>Privacy</b> <span style="font-size:10px;">Change this option in the video manager.</span> <br><br>
+                                <input class="yt-uix-form-input-radio" disabled type="radio" style="vertical-align: top;"> 
                                 <span style="display: inline-block;">
                                     <b>Public</b><br>
                                     <span class="small-text">
@@ -109,14 +109,14 @@
                                         recommended
                                     </span>
                                 </span><br><br>
-                                <input class="yt-uix-form-input-radio" type="radio" style="vertical-align: top;"> 
+                                <input class="yt-uix-form-input-radio" disabled type="radio" style="vertical-align: top;"> 
                                 <span style="display: inline-block;">
                                     <b>Unlisted</b><br>
                                     <span class="small-text">
                                         anyone with the link can view
                                     </span>
                                 </span><br><br>
-                                <input class="yt-uix-form-input-radio" type="radio" style="vertical-align: top;"> 
+                                <input class="yt-uix-form-input-radio" disabled type="radio" style="vertical-align: top;"> 
                                 <span style="display: inline-block;">
                                     <b>Private</b><br>
                                     <span class="small-text">

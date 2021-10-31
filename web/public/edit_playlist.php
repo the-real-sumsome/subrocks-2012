@@ -8,7 +8,7 @@
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
 <?php
-	$__server->page_embeds->page_title = "SubRocks - Edit Video";
+	$__server->page_embeds->page_title = "SubRocks - Edit Playlist";
 	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
 	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
 	$__server->page_embeds->page_url = "https://subrock.rocks/";
@@ -164,9 +164,9 @@
                                     <form action="/d/edit_video?v=<?php echo $_playlist['rid']; ?>" method="POST" enctype="multipart/form-data" id="edit_video_dom">
                                     <div class="www-upload-left">
                                         <div class="upload-stage-2">
-                                            <b>Title</b> <br><input id="video-title" value="<?php echo htmlspecialchars($_playlist['title']); ?>" placeholder="Video Title" class="upload-input" type="text" name="title"><br><br>
+                                            <b>Title</b> <br><input class="yt-uix-form-input-text" style="width:100%;margin-top:5px;" id="video-title" value="<?php echo htmlspecialchars($_playlist['title']); ?>" placeholder="Video Title" class="upload-input" type="text" name="title"><br><br>
                                             <b>Description</b> <br>
-                                            <textarea name="description" class="upload-input" placeholder="Video Description"><?php echo htmlspecialchars($_playlist['description']); ?></textarea><br><br>
+                                            <textarea class="yt-uix-form-input-text" style="width:100%;margin-top:5px;resize:none;" name="description" class="upload-input" placeholder="Video Description"><?php echo htmlspecialchars($_playlist['description']); ?></textarea><br><br>
                                             <input type="submit" value="Apply Changes" class="yt-uix-button yt-uix-button-default">
                                         </div>
                                     </div>

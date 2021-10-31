@@ -22,6 +22,12 @@
         "title" => $_POST['title'],
         "description" => $_POST['description'],
         "tags" => $_POST['tags'],
+        "privacy" => $_POST['privacy'],
+         /* 
+            Public   : n
+            Unlisted : u
+            Private  : v
+         */
         "thumbnail" => $_FILES['thumbnail'],
         "category" => $_POST['category'],
 
@@ -34,6 +40,7 @@
     $__video_u->update_row($_GET['v'], "title", $request->title);
     $__video_u->update_row($_GET['v'], "description", $request->description);
     $__video_u->update_row($_GET['v'], "tags", $request->tags);
+    $__video_u->update_row($_GET['v'], "visibility", $request->privacy);
     // $__video_u->update_row($_GET['v'], "thumbnail", $request->thumbnail);
     $__video_u->update_row($_GET['v'], "category", $request->category);
 

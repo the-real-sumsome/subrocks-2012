@@ -7,6 +7,12 @@
 <?php $__user_h = new user_helper($__db); ?>
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - My Videos";
+	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
+	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>
 <?php if(!isset($_SESSION['siteusername'])) { header("Location: /sign_in"); } ?>
 <!DOCTYPE html>
 <html dir="ltr">
@@ -138,7 +144,7 @@
 							</li>
                             <a href="/inbox/">
                             <li class="">
-								<span class="yt-nav-item">
+								<span class="yt-nav-item"> 
 								Inbox
 								</span>
 							</li>
@@ -225,31 +231,34 @@
                                                 <li class="video-list-item "><a href="/watch?v=<?php echo $video['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img onerror=";this.src='/dynamic/thumbs/default.jpg';" src="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" alt="<?php echo $video['title']; ?>" data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
                                                     <button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="yuTBQ86r8o0" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
                                                     </span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
-                                                    </span><span dir="ltr" class="title" title="<?php echo $video['title']; ?>"><?php echo $video['title']; ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $video['author']; ?></span></span><span class="stat view-count">  <span class="viewcount"><?php echo $video['views']; ?> views</span>
+                                                    </span><span dir="ltr" class="title" title="<?php echo $video['title']; ?>"><?php echo $video['title']; ?></span>
+                                                    <span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $video['author']; ?></span></span>
+                                                    <span class="stat view-count">  <span class="viewcount"><?php echo $video['views']; ?> views</span>
                                                     </span></a>
                                                 </li>
                                             </ul>
-                                        </div>
-                                                
-                                            <a href="/edit_video?id=<?php echo $video['rid']; ?>">
-                                                <button type="button" class=" yt-uix-button yt-uix-button-default" role="button">
-                                                    Edit
-                                                </button>
-                                            </a>
-                                            <a href="/get/delete_video?id=<?php echo $video['rid']; ?>">
-                                                <button type="button" class=" yt-uix-button yt-uix-button-default" role="button">
-                                                    Delete
-                                                </button>
-                                            </a>
-                                            <a href="/get/toggle_comment?id=<?php echo $video['rid']; ?>">
-                                                <button type="button" class=" yt-uix-button yt-uix-button-default" role="button">
-                                                    Toggle Commenting
-                                                </button>
-                                            </a>
+                                            <div style="position:relative;bottom:25px;">
+                                                <a href="/edit_video?id=<?php echo $video['rid']; ?>" style="display:inline-block;margin-left: 133px;">
+                                                    <button type="button" class="yt-uix-button yt-uix-button-default" role="button">
+                                                        Edit
+                                                    </button>
+                                                </a>
+                                                <a href="/get/delete_video?id=<?php echo $video['rid']; ?>" style="display:inline-block;">
+                                                    <button type="button" class="yt-uix-button yt-uix-button-default" role="button">
+                                                        Delete
+                                                    </button>
+                                                </a>
+                                                <a href="/get/toggle_comment?id=<?php echo $video['rid']; ?>" style="display:inline-block;">
+                                                    <button type="button" class="yt-uix-button yt-uix-button-default" role="button">
+                                                        Toggle Commenting
+                                                    </button>
+                                                </a>
 
-                                            <span style="margin-left:10px">
-                                                <img src="/s/img/world.png"> <span style="font-size: 11px;position: relative;bottom: 2px;left: 5px;">Public</span>
-                                            </span>
+                                                <span style="margin-left:10px">
+                                                    <img src="/s/img/world.png"> <span style="font-size: 11px;position: relative;bottom: 2px;left: 5px;">Public</span>
+                                                </span>
+                                            </div>
+                                        </div>
                                         </td>
                                         <td class="video-manager-stats" style="background: none;padding-left: 8px;">
                                             <span class="video-manager-span" style="width:140px;display: inline-block;margin-bottom: 4px;">

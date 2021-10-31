@@ -36,6 +36,12 @@
         }
     }
 ?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - Your Playlists";
+	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
+	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>
 <!DOCTYPE html>
 <html dir="ltr">
 	<head>
