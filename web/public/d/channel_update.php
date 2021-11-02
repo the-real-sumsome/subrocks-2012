@@ -15,29 +15,6 @@
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
 
-        if(isset($_POST['layout'])) { 
-            $stmt = $__db->prepare("UPDATE users SET layout = :layout WHERE username = :username");
-            $stmt->bindParam(":layout", $_POST['layout']);
-            $stmt->bindParam(":username", $_SESSION['siteusername']);
-            $stmt->execute();
-        }
-
-        if(isset($_POST['left'])) {
-            $clean = $_POST['left'];
-            $stmt = $__db->prepare("UPDATE users SET 2009_user_left = :clean WHERE username = :username");
-            $stmt->bindParam(":clean", $clean);
-            $stmt->bindParam(":username", $_SESSION['siteusername']);
-            $stmt->execute();
-        }
-
-        if(isset($_POST['right'])) {
-            $clean = $_POST['right'];
-            $stmt = $__db->prepare("UPDATE users SET 2009_user_right = :clean WHERE username = :username");
-            $stmt->bindParam(":clean", $clean);
-            $stmt->bindParam(":username", $_SESSION['siteusername']);
-            $stmt->execute();
-        }
-
 
         if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_GET['n']) {
             if(!empty($_GET["n"]) && $_GET['n'] == "pfp") {
@@ -102,7 +79,7 @@
     
                 if ($uploadOk) {
                     if ($movedFile) {
-                        $__user_u->update_row($_SESSION['siteusername'], "2009_bg", $target_name);
+                        $__user_u->update_row($_SESSION['siteusername'], "2012_bg", $target_name);
                     } else {
                         $fileerror = 'fatal error';
                     }
@@ -198,7 +175,7 @@
             $__user_u->update_row($_SESSION['siteusername'], "2012_bgoption", $_POST['bgoption']);
 
             if($_POST['bgoption'] == "solid")
-                $__user_u->update_row($_SESSION['siteusername'], "2009_bg", "");
+                $__user_u->update_row($_SESSION['siteusername'], "2012_bg", "");
 
             $__user_u->update_row($_SESSION['siteusername'], "primary_color", $_POST['solidcolor']);
         }
@@ -252,19 +229,23 @@
         $bgcolor = $_POST['solidcolor'];
         $default = "default.png";
 
-        $__user_u->update_row($_SESSION['siteusername'], "2009_bgoption", $bgoption);
+        $__user_u->update_row($_SESSION['siteusername'], "2012_bgoption", $bgoption);
         
-        $__user_u->update_row($_SESSION['siteusername'], "2009_bgcolor", $bgcolor);
+        $__user_u->update_row($_SESSION['siteusername'], "2012_bgcolor", $bgcolor);
 
         if($bgoption == "solid") {
-            $__user_u->update_row($_SESSION['siteusername'], "2009_bg", $default);
+            $__user_u->update_row($_SESSION['siteusername'], "2012_bg ", $default);
         }
     }
     
     skip:
 
-    print_r($_POST);
-    print_R($_FILES);
+    $response = (object) [
+        "profile_picture" => $target_name,
+        "bio" => $_POST['bio']
+    ];
+
+    echo json_encode($response);
 
     //echo "<script>
     //window.location = '/channel_2?n=" . htmlspecialchars($_SESSION['siteusername']) . "';

@@ -1,3 +1,4 @@
+<?Php /* DO NOT USE THIS IN PRODUCTION. ONLY USE AS A ROLLBACK IF SOMETHING FUCKS UP */ ?>
 <style>
     .example-parent {
     color: black;
@@ -18,25 +19,6 @@
     margin-bottom: 10px;
     margin-top: 10px;
     padding: 10px;
-    }
-
-    #solidcolor {
-        vertical-align: middle;
-        text-shadow: 0 1px 0 #fff;
-        border-color: #ccc #ccc #aaa;
-        background-color: #e0e0e0;
-        -moz-box-shadow: inset 0 0 1px #fff;
-        -ms-box-shadow: inset 0 0 1px #fff;
-        -webkit-box-shadow: inset 0 0 1px #fff;
-        box-shadow: inset 0 0 1px #fff;
-        background-image: -moz-linear-gradient(top, #fafafa 0, #dcdcdc 100%);
-        background-image: -ms-linear-gradient(top, #fafafa 0, #dcdcdc 100%);
-        background-image: -o-linear-gradient(top, #fafafa 0, #dcdcdc 100%);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), color-stop(100%, #dcdcdc));
-        background-image: -webkit-linear-gradient(top, #fafafa 0, #dcdcdc 100%);
-        background-image: linear-gradient(to bottom, #fafafa 0, #dcdcdc 100%);
-        height: 32px;
-        border: 0;
     }
 
     .example-dropzone {
@@ -118,20 +100,18 @@
     .left-side-customization {
         width: 450px;
         vertical-align: top;
-        padding-left: 25px;
+        padding: 5px;
     }
 
-    /*
-        .right-side-customization input[type="submit"], .left-side-customization input[type="submit"] {
-            color: #039;
-            background: #c6d7f3 url(/yt/imgbin/spritesheet_main.png)repeat-x center -1602px;
-            border: 1px solid #a0b1dc;
-            text-decoration: none;
-            border-radius: 3px;
-            padding: 3px 0.833em;
-            font-weight: bold;
-        }
-    */
+    .right-side-customization input[type="submit"], .left-side-customization input[type="submit"] {
+        color: #039;
+        background: #c6d7f3 url(/yt/imgbin/spritesheet_main.png)repeat-x center -1602px;
+        border: 1px solid #a0b1dc;
+        text-decoration: none;
+        border-radius: 3px;
+        padding: 3px 0.833em;
+        font-weight: bold;
+    }
 
     .customization-module {
         display: inline-block;
@@ -141,6 +121,11 @@
     .user-header-bottom table {
         border: 1px solid #999;
         border-top: 0px;
+    }
+
+    #backgroundimage, #backgroundoptions {
+        position: relative;
+        bottom: 26px;
     }
 
     .www-header-list {
@@ -177,7 +162,7 @@
     }
 
     .www-header-list .yt-uix-button {
-        width: 128px;
+        width: 100px;
         height: 100%;
     }
 
@@ -200,7 +185,7 @@
 <div class="channel-customization-bg">
     <br>
     <div class="channel-custom-top">
-        <h1 style="color: white;font-weight: bolder;font-weight:normal;display:inline-block;">Edit my channel</h1>
+        <h1 style="color: white;font-weight: bolder;">Edit my channel</h1>
     </div>
     <br>
     <div class="channel-customization-base" id="channel-customize">
@@ -218,16 +203,16 @@
                     }); 
                 </script>
                 <a class="www-header-item" href="#" id="pictures-table-button" onclick="selectTable('#pictures-table');">
-                    <button class="yt-uix-button yt-uix-button-default" style="margin-left: 0px;">Apperance</button>
+                    <button class="yt-uix-button yt-uix-button-default" style="margin-left: 0px;">Main</button>
                 </a>
                 <a class="www-header-item" href="#" id="misc-table-button" style='display:none;' onclick="selectTable('#misc-table');">
-                    <button class="yt-uix-button yt-uix-button-default">Info and Settings</button>
+                    <button class="yt-uix-button yt-uix-button-default">Colors</button>
                 </a>
                 <a class="www-header-item" href="#" id="bg-table-button" onclick="selectTable('#bg-table');">
-                    <button class="yt-uix-button yt-uix-button-default">Info and Settings</button>
+                    <button class="yt-uix-button yt-uix-button-default">Background</button>
                 </a>
                 <a class="www-header-item" href="#" id="layout-table-button" onclick="selectTable('#layout-table');">
-                    <button class="yt-uix-button yt-uix-button-default">Tabs</button>
+                    <button class="yt-uix-button yt-uix-button-default">Layout</button>
                 </a>
                 <div class="channel-customization-options">
                 </div>
@@ -241,25 +226,19 @@
                 <tr>
                     <form method="post" id="picturesform" action="/d/channel_update" enctype="multipart/form-data">
                     <td class="left-side-customization">
-                        <h2>Avatar</h2>
-                        <p style="font-size: 11px;color: grey;">
-                            Choose image. Non-square images wil be cropped.<br>
-                            Suggested dimensions: 800x800 pixels. Max size: 1MB.
-                        </p>
-                        <?php if($_user['pfp'] != "default.png") { ?>
-                            <a style="font-size: 11px;" href="/get/remove_profile_pic">Remove Profile Picture</a><br>
-                        <?php } ?>
-                        <br>
-                        <a id="browse" href="javascript:;">
-                            <button class="yt-uix-button yt-uix-button-default">
-                                Browse
-                            </button>
-                        </a>  
-                        <a id="start-upload" href="javascript:;">                                    
-                            <button class="yt-uix-button yt-uix-button-default">
-                                Upload
-                            </button>
-                        </a>
+                        <b style="position: relative;top: 11px;">Avatar</b>
+                        <div id="container" style="float: right;margin-top: 4px;">
+                            <a id="browse" href="javascript:;">
+                                <button class="yt-uix-button yt-uix-button-default">
+                                    Browse
+                                </button>
+                            </a>  
+                            <a id="start-upload" href="javascript:;">                                    
+                                <button class="yt-uix-button yt-uix-button-default">
+                                    Upload
+                                </button>
+                            </a>
+                        </div>
                         <div class="customization-module" id="pfp" action="/d/channel_update" enctype="multipart/form-data">
                         </div><br><br>
                         <ul id="filelist"></ul>
@@ -302,12 +281,10 @@
                                 alerts++;
                             });
 
-                            uploader.bind('FileUploaded', function(up, file, response) {
+                            uploader.bind('FileUploaded', function(up, file) {
                                 addAlert("editsuccess_" + alerts, "Succesfully finished uploading " + file.name);
 								showAlert("#editsuccess_" + alerts);
                                 alerts++;  
-                                response = JSON.parse(response.response);
-                                $("#photo-update").attr("src", "/dynamic/pfp/" + response.profile_picture);
                             });
                             
                             uploader.bind('Error', function(up, err) {
@@ -320,24 +297,126 @@
                             
                             </script>
                             <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
-                            <br>
-                            <h2>Background Options</h2>
-                            <span style="font-size: 11px;color:grey;">Choose image (Max file size: 1MB)</span><br><br>
-                            <div id="backgroundoptions" method="post" action="/d/channel_update" enctype="multipart/form-data">
-                                <select class="yt-uix-button yt-uix-button-default" name="bgoption">
-                                    <option value="repeaty">Repeat only vertically</option>
-                                    <option value="repeatx">Repeat only horrizontaly</option>
-                                    <option value="norepeat">Don't Repeat</option>
-                                    <option value="repeatxy">Repeat</option>
-                                    <option value="stretch">Stretch to fit</option>
-                                    <option value="solid">Solid</option>
-                                </select>
-                                <input style="vertical-align: middle;" type="color" id="solidcolor" name="solidcolor" value="<?php echo htmlspecialchars($_user['primary_color']); ?>">
-                            </div><br>
-                            <input class="yt-uix-button yt-uix-button-default" type="submit" value="Set"><br><br>
+                        <img src="/dynamic/pfp/<?php echo $_user['pfp']; ?>" style="width:100px;height:100px;"><br>
+                        <?php if($_user['pfp'] != "default.png") { ?>
+                            <a href="/get/remove_profile_pic">Remove Profile Picture</a><br>
+                        <?php } ?>
+                        <br><hr class="thin-line-darker" style="width:unset;">
+                        <!--
+                        <b style="position: relative;top: 11px;">Video Page Banner</b>
+                        <div class="customization-module" id="watchbanner" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;">
+                            <input style="width: 169px;position: relative;top: 10px;" type="file" name="videopagebanner" id="avatar-upload">
+                            <button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>
+                        </div><br>                   
+                        <?php if(!empty($_user['subbutton'])) { ?>
+                            <a href="/get/remove_watch_banner">Remove Watch Page Banner</a><br>
+                        <?php } ?><br><hr class="thin-line-darker" style="width:unset;">
+                        
+                        <b>Custom CSS</b><br>
+                        
+                        <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="resize:none;float: right;position: relative;top: -15px;">
+                            <span style="font-size: 11px;" class="grey-text">Prefix every image url() with //images.weserv.nl/?url=</span><br>    
+                            <textarea class="yt-uix-form-input-text"  style="width: 288px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biomd" placeholder="Custom CSS" name="css"><?php echo htmlspecialchars($_user['css']); ?></textarea><br><br>
+                        </div><br><br>
+                        -->
+                        <div style="position: relative;top: 7px;">
+                            <b>Bio</b><br>
+                            <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -15px;">
+                                <textarea class="yt-uix-form-input-text" style="resize:none;height: 55px;width: 344px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
+                            </div>
+                        </div>
+                        
+                        <br><br><br><hr class="thin-line-darker" style="width:unset;"><br><br><br><br>
+
+                        <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Set">
                     </td>
                     <td class="right-side-customization">
-                        
+
+                        <b>Featured Video</b>
+                        <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;position: relative;bottom: 6px;">
+                        <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Video ID" value="<?php echo htmlspecialchars($_user['featured']);?>" name="videoid">
+                        </div><br><br><hr class="thin-line-darker" style="width:unset;">
+
+                        <div style="position: relative;top: 7px;">
+                            <b>Featured Channels</b>
+                            <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;position: relative;bottom: 6px;">
+                            <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Seperate by commas!" value="<?php echo htmlspecialchars($_user['featured_channels']);?>" name="featuredchannels">
+                            </div>
+                        </div><br><br><hr class="thin-line-darker" style="margin-top: 0px;width:unset;"><br>
+
+                        <b>Website</b>
+                        <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -7px;">
+                        <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Website URL" value="<?php echo htmlspecialchars($_user['website']);?>" name="website">
+                            
+                        </div><br><br><hr class="thin-line-darker" style="width:unset;">
+
+                        <?php $categories = ["None", "Director", "Musician", "Comedian", "Guru", "Nonprofit"]; ?>
+                        <div style="position: relative;top: 7px;padding-bottom: 6px;">
+                            <b>Channel Genre</b><br>
+                            <span style="font-size: 11px;" class="grey-text">This will show what type of channel you are to other users.</span>
+                            <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
+                                <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"   name="genre">
+                                    <?php foreach($categories as $category) { ?>
+                                        <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div><hr class="thin-line-darker" style="width:unset;" style="width: 100%;">
+
+                        <div style="position: relative;top: 7px;padding-bottom: 6px;">
+                            <b>Transparency</b><br>
+                            <span style="font-size: 11px;" class="grey-text">This will decide the visibility of ALL of your modules.</span>
+                            <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
+                                <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"   name="transparency">
+                                <?php
+                                $trans = array(
+                                    "1.1","1.0","0.9","0.8","0.7","0.6","0.5","0.4","0.3","0.2","0.1",
+                                );
+                                ?>
+                                    <option value="1.0">100% (Visible)</option>
+                                    <option value="0.9">90%</option>
+                                    <option value="0.8">80%</option>
+                                    <option value="0.7">70%</option>
+                                    <option value="0.6">60%</option>
+                                    <option value="0.5">50%</option>
+                                    <option value="0.4">40%</option>
+                                    <option value="0.3">30%</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.1">10%</option>
+                                </select>
+                            </div>
+                        </div><hr class="thin-line-darker" style="width:unset;" style="width: 100%;">
+
+
+                        <b>Country</b><br>
+                        <div class="customization-module" id="countryselect" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
+                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"  id="country" name="country" value="<?php echo $_user['country']?>">
+                            <?php
+                            $countries = array(
+                                "Select country","Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"
+                            );
+
+                            $countryLength = sizeof($countries);
+                            $i = 0;
+                            for($i = 0;$i <= $countryLength; $i++)
+                            {
+                                $c = $countries[$i];
+                                if ($c == $_user['country'])
+                                //country is the same as in database
+                                {
+                                ?>
+                                <option value="<?php echo $c; ?>" selected="selected"><?php echo $c; ?></option>
+                                <?php
+                                }
+                                else
+                                {
+                                ?>
+                                <option value="<?php echo $c;?>"><?php echo $c; ?></option>
+                                <?php
+                                }
+                            }
+                            ?>
+                        </div>
                     </td>
                     </form>
                 </tr>
@@ -392,7 +471,7 @@
                 </tr>
             </table>
 
-            <table id="misc-table" style="width: 970px;padding: 10px;display:none;">
+            <table id="misc-table" style="display:none;width: 970px;padding: 10px;">
                 <tr>
                     <th></th>
                     <th></th>
@@ -401,17 +480,17 @@
                 <form method="post" id="miscform" action="/d/channel_update" enctype="multipart/form-data">
                     <td class="left-side-customization">
                         <b>Primary Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the text color of your channel ribbon.</span>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the text color of your channel ribbon.</span>
                         <div class="customization-module" id="primarycolor" style="float: right;position: relative;bottom: 15px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="solidcolor" name="solidcolor" value="<?php echo htmlspecialchars($_user['primary_color']); ?>">
                         </div><br><hr class="thin-line-darker" style="width: unset !important;">
                         <b>Channel Box Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the background color of the channel info box and the channel ribbon at top.</span><br>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the background color of the channel info box and the channel ribbon at top.</span><br>
                         <div class="customization-module" id="channelboxcolor" style="float: right;position: relative;bottom: 30px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="channelboxcolorpicker" name="channelboxcolor" value="<?php echo htmlspecialchars($_user['secondary_color']); ?>">
                         </div><br><hr class="thin-line-darker" style="width: unset !important;">
                         <b>Border Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the border color of all the elements.</span><br>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the border color of all the elements.</span><br>
                         <div class="customization-module" id="bordercolor" style="float: right;position: relative;bottom: 30px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="bordercolorpicker" name="bordercolor" value="<?php echo htmlspecialchars($_user['border_color']); ?>">
                         </div><br><hr class="thin-line-darker" style="width: unset !important;"><br><br><br>
@@ -419,12 +498,12 @@
                     </td>
                     <td class="right-side-customization">
                         <b>Background Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the background of all the other boxes including the top featured area.</span><br>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the background of all the other boxes including the top featured area.</span><br>
                         <div class="customization-module" id="boxbackgroundcolor" style="float: right;position: relative;bottom: 30px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="solidcolorbackground" name="backgroundcolor" value="<?php echo htmlspecialchars($_user['third_color']); ?>">
                         </div><br><hr class="thin-line-darker">
                         <b>Text Main Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the color of the text for boxes.</span><br>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the color of the text for boxes.</span><br>
                         <div class="customization-module" id="textmaincolor" style="float: right;position: relative;bottom: 30px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="textmaincolor" name="textmaincolor" value="<?php echo htmlspecialchars($_user['primary_color_text']); ?>">
                         </div><br><hr class="thin-line-darker">
@@ -441,20 +520,29 @@
                 <tr>
                 <form method="post" id="bgform" action="/d/channel_update" enctype="multipart/form-data">
                     <td class="left-side-customization">
-                        <h2>Channel information & Settings</h2>
-                        <span style="font-size: 10px;color: grey;">Featured Video</span><br>
-                        <input class="yt-uix-form-input-text" style="width: 225px;" id="biomd" placeholder="Video ID" value="<?php echo htmlspecialchars($_user['featured']);?>" name="videoid"><br><br>
-                        <span style="font-size: 10px;color: grey;">Description</span><br>
-                        <div id="bio" action="/d/channel_update" enctype="multipart/form-data">
-                            <textarea class="yt-uix-form-input-text" style="resize:none;height: 55px;width: 225px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
-                        </div>
+                        <b>Background Options</b> <br>
+                        <span style="font-size: 11px;" class="grey-text">Choose how your background will be displayed.</span><br>
+                        <div class="customization-module"  id="backgroundoptions" method="post" action="/d/channel_update" enctype="multipart/form-data">
+                            <select class="yt-uix-button yt-uix-button-default" style="    position: relative;bottom: -2px;right: 4px;"   name="bgoption" id="ifyouarereadingthisYOUSUCK">
+                                <option value="repeaty">Repeat - Y</option>
+                                <option value="repeatx">Repeat - X</option>
+                                <option value="norepeat">No Repeat</option>
+                                <option value="repeatxy">Repeat - X and Y</option>
+                                <option value="stretch">Stretch</option>
+                                <option value="solid">Solid</option>
+                            </select>
+                            <div style="float: right;">
+                                <input style="position: relative;bottom: -2px;" type="color" id="solidcolor" name="solidcolor" value="<?php echo htmlspecialchars($_user['2009_bgcolor']); ?>">
+                            </div>
+                        </div><br><br>
 
-
-                        <br><br><input class="yt-uix-button yt-uix-button-default" type="submit" value="Set">
+                        <hr class="thin-line-darker" style="width: unset;">
+                        <br><br>
+                        <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Set">
                     </td>
                     <td class="right-side-customization">
                         <b>Background</b> <br>
-                        <span style="font-size: 11px;">Choose Image (Max file size: 10MB)</span><br>
+                        <span style="font-size: 11px;" class="grey-text">Choose Image (Max file size: 10MB)</span><br>
                         <div class="customization-module"  id="backgroundimage" method="post" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="file" name="backgroundbgset" id="background-upload">
                             <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->

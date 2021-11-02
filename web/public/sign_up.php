@@ -24,9 +24,12 @@
         <script>
             var yt = yt || {};yt.timing = yt.timing || {};yt.timing.tick = function(label, opt_time) {var timer = yt.timing['timer'] || {};if(opt_time) {timer[label] = opt_time;}else {timer[label] = new Date().getTime();}yt.timing['timer'] = timer;};yt.timing.info = function(label, value) {var info_args = yt.timing['info_args'] || {};info_args[label] = value;yt.timing['info_args'] = info_args;};yt.timing.info('e', "904821,919006,922401,920704,912806,913419,913546,913556,919349,919351,925109,919003,920201,912706");if (document.webkitVisibilityState == 'prerender') {document.addEventListener('webkitvisibilitychange', function() {yt.timing.tick('start');}, false);}yt.timing.tick('start');yt.timing.info('li','0');try {yt.timing['srt'] = window.gtbExternal && window.gtbExternal.pageT() ||window.external && window.external.pageT;} catch(e) {}if (window.chrome && window.chrome.csi) {yt.timing['srt'] = Math.floor(window.chrome.csi().pageT);}if (window.msPerformance && window.msPerformance.timing) {yt.timing['srt'] = window.msPerformance.timing.responseStart - window.msPerformance.timing.navigationStart;}    
         </script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link id="www-core-css" rel="stylesheet" href="/yt/cssbin/www-core-vfluMRDnk.css">
         <link rel="stylesheet" href="/yt/cssbin/www-guide-vflx0V5Tq.css">
 		<link rel="stylesheet" href="/yt/cssbin/www-extra.css">
+		<link rel="stylesheet" href="/yt/password_strength.css">
+		<script src="/yt/password_strength_lightweight.js"></script>
         <script>
             if (window.yt.timing) {yt.timing.tick("ct");}    
         </script>
@@ -61,7 +64,10 @@
 								<input class="yt-uix-form-input-text" type="text" name="username" placeholder="Username"><br><br>
 								<b>Password</b><br>
 								<span class="small-text">Your password must contain special characters. <br>Passwords are hashed with bcrypt.</span><br>
-								<input class="yt-uix-form-input-text" type="password" name="password" placeholder="Password"><br><br>
+								<div id="password">
+								<input class="yt-uix-form-input-text" type="password" name="password" placeholder="Password">
+								</div><br>
+								<script>$('#password').strength_meter();</script>
                                 <b>E-Mail</b><br>
 								<span class="small-text">Your email must be a valid email or you will not be able to comment, and upload!</span><br>
 								<input class="yt-uix-form-input-text" type="email" name="email" placeholder="E-Mail"><br><br>

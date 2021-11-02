@@ -62,7 +62,7 @@
     $_user['third_color'] = substr($_user['third_color'], 0, 7);
     $_user['text_color'] = substr($_user['text_color'], 0, 7);
     $_user['primary_color_text'] = substr($_user['primary_color_text'], 0, 7);
-    $_user['2009_bgcolor'] = substr($_user['2009_bgcolor'], 0, 7);
+    $_user['2012_bgcolor'] = substr($_user['2012_bgcolor'], 0, 7);
 
     $_user['genre'] = strtolower($_user['genre']);
 	$_user['subscribed'] = $__user_h->if_subscribed(@$_SESSION['siteusername'], $_user['username']);
@@ -72,7 +72,7 @@
     if(!check_valid_colorhex($_user['third_color']) && strlen($_user['third_color']) != 6) { $_user['third_color'] = ""; }
     if(!check_valid_colorhex($_user['text_color']) && strlen($_user['text_color']) != 6) { $_user['text_color'] = ""; }
     if(!check_valid_colorhex($_user['primary_color_text']) && strlen($_user['primary_color_text']) != 6) { $_user['primary_color_text'] = ""; }
-    if(!check_valid_colorhex($_user['2009_bgcolor']) && strlen($_user['2009_bgcolor']) != 6) { $_user['2009_bgcolor'] = ""; }
+    if(!check_valid_colorhex($_user['2012_bgcolor']) && strlen($_user['2012_bgcolor']) != 6) { $_user['2012_bgcolor'] = ""; }
 
 	if(isset($_SESSION['siteusername']))
     	$__user_i->check_view_channel($_user['username'], @$_SESSION['siteusername']);
@@ -137,7 +137,7 @@
 		<style>
 			#content-container {
 				background-color: <?php echo $_user['primary_color'];  ?>;
-				background-image: url(/dynamic/banners/<?php echo $_user['2009_bg']; ?>);
+				background-image: url(/dynamic/banners/<?php echo $_user['2012_bg']; ?>);
 				background-repeat: repeat;
 				<?php
 					switch($_user['2012_bgoption']) {
@@ -148,7 +148,7 @@
 						echo "";
 						break;
 						case "norepeat":
-						echo "";
+						echo "background-repeat: no-repeat !important;";
 						break;
 						case "repeatxy":
 						echo "background-repeat: repeat;";
@@ -235,7 +235,7 @@
 											<a href="/user/<?php echo htmlspecialchars($_user['username']); ?>">
 											<span class="profile-thumb">
 											<span class="centering-wrap">
-											<img src="/dynamic/pfp/<?php echo htmlspecialchars($_user['pfp']); ?>" title="<?php echo htmlspecialchars($_user['username']); ?>" alt="<?php echo htmlspecialchars($_user['username']); ?>">
+											<img id="photo-update" src="/dynamic/pfp/<?php echo htmlspecialchars($_user['pfp']); ?>" title="<?php echo htmlspecialchars($_user['username']); ?>" alt="<?php echo htmlspecialchars($_user['username']); ?>">
 											</span>
 											</span>
 											</a>
@@ -533,7 +533,10 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 												<?php $_user['featured_channels'] = explode(",", $_user['featured_channels']); ?>
 												<?php if(count($_user['featured_channels']) != 0) { ?>
 												<div class="module-view other-channels-view">
-													<h2>Featured Channels</h2>
+													<h2 <?php if(@$_SESSION['siteusername'] == $_user['username']) { ?>style="display: inline-block;position: relative;bottom: 10px;"<?php } ?>>Featured Channels</h2> 
+													<?php if(@$_SESSION['siteusername'] == $_user['username']) { 
+														echo "<a href='#' style='float:right;font-size:11px;color:black;' onclick=';return false;'>edit</a>"; 
+													} ?>
 													<ul class="channel-summary-list ">
 														<?php 
 															foreach($_user['featured_channels'] as $user) {
