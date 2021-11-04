@@ -33,6 +33,16 @@
         <script>
             if (window.yt.timing) {yt.timing.tick("ct");}    
         </script>
+		<style>
+			.password-verdict {
+				white-space: nowrap;
+				width: 266px;
+				display: inline-block;
+				background-color: aliceblue;
+				padding: 3px;
+				border-radius: 2px;
+			}
+		</style>
 	</head>
 	<body id="" class="date-20120930 en_US ltr   ytg-old-clearfix guide-feed-v2 " dir="ltr">
 		<form name="logoutForm" method="POST" action="/logout">
@@ -64,8 +74,13 @@
 								<input class="yt-uix-form-input-text" type="text" name="username" placeholder="Username"><br><br>
 								<b>Password</b><br>
 								<span class="small-text">Your password must contain special characters. <br>Passwords are hashed with bcrypt.</span><br>
-								<div id="password">
-								<input class="yt-uix-form-input-text" type="password" name="password" placeholder="Password">
+								<div>
+								<input class="yt-uix-form-input-text" type="password" id="password" name="password" placeholder="Password">
+								<script>
+									$('#password').pwstrength({
+										ui: { showVerdictsInsideProgressBar: true }
+									});
+								</script>
 								</div><br>
 								<script>$('#password').strength_meter();</script>
                                 <b>E-Mail</b><br>
