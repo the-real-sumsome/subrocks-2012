@@ -440,7 +440,7 @@
                 </tr>
                 <tr>
                 <form method="post" id="bgform" action="/d/channel_update" enctype="multipart/form-data">
-                    <td class="left-side-customization">
+                    <td class="left-side-customization" style="width: 247px;">
                         <h2>Channel information & Settings</h2>
                         <span style="font-size: 10px;color: grey;">Featured Video</span><br>
                         <input class="yt-uix-form-input-text" style="width: 225px;" id="biomd" placeholder="Video ID" value="<?php echo htmlspecialchars($_user['featured']);?>" name="videoid"><br><br>
@@ -450,17 +450,61 @@
                         </div>
 
 
-                        <br><br><input class="yt-uix-button yt-uix-button-default" type="submit" value="Set">
+                        <br><input class="yt-uix-button yt-uix-button-default" type="submit" value="Set"><br><br>
                     </td>
-                    <td class="right-side-customization">
-                        <b>Background</b> <br>
-                        <span style="font-size: 11px;">Choose Image (Max file size: 10MB)</span><br>
-                        <div class="customization-module"  id="backgroundimage" method="post" action="/d/channel_update" enctype="multipart/form-data">
-                            <input type="file" name="backgroundbgset" id="background-upload">
-                            <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
-                        </div><br><br> 
+                    <td class="right-side-customization" style="width: 630px;border: 0px;padding:0px;">
+                        <h2>Advanced</h2>
+                        <span style="font-size: 10px;color: grey;">Website URL</span><br>
+                        <div id="featuredvid" action="/d/channel_update" enctype="multipart/form-data">
+                        <input class="yt-uix-form-input-text" style="width: 225px;" id="biomd" placeholder="Website URL" value="<?php echo htmlspecialchars($_user['website']);?>" name="website">
+                        </div><br>
+                        <div>
+                            <span style="font-size: 10px;color: grey;">Featured Channels</span>
+                            <div id="featuredvid" action="/d/channel_update" enctype="multipart/form-data">
+                            <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Seperate by commas!" value="<?php echo htmlspecialchars($_user['featured_channels']);?>" name="featuredchannels">
+                            </div>
+                        </div><br>
 
-                        <hr class="thin-line-darker">
+                        <span style="font-size: 10px;color: grey;">Country</span><br>
+                        <div id="countryselect" action="/d/channel_update" enctype="multipart/form-data">
+                            <select style="width: 246px;" class="yt-uix-button yt-uix-button-default" id="country" name="country" value="<?php echo $_user['country']?>">
+                            <?php
+                            $countries = ["Select country","Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"];
+
+                            $countryLength = sizeof($countries);
+                            $i = 0;
+                            for($i = 0;$i <= $countryLength; $i++)
+                            {
+                                $c = $countries[$i];
+                                if ($c == $_user['country'])
+                                //country is the same as in database
+                                {
+                                ?>
+                                <option value="<?php echo $c; ?>" selected="selected"><?php echo $c; ?></option>
+                                <?php
+                                }
+                                else
+                                {
+                                ?>
+                                <option value="<?php echo $c;?>"><?php echo $c; ?></option>
+                                <?php
+                                }
+                            }
+                            ?>
+                            </select>
+                        </div>
+
+                        <?php $categories = ["None", "Director", "Musician", "Comedian", "Guru", "Nonprofit"]; ?>
+                        <div style="position: relative;top: 7px;padding-bottom: 6px;">
+                            <span style="font-size: 10px;color: grey;">Channel Genre</span><br>
+                            <div id="channellayout" action="/d/channel_update" enctype="multipart/form-data">
+                                <select style="width: 246px;" class="yt-uix-button yt-uix-button-default" name="genre">
+                                    <?php foreach($categories as $category) { ?>
+                                        <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div><br><br>
                     </td>
                 </form>
                 </tr>
