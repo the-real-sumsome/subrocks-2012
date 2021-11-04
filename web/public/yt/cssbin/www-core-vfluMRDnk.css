@@ -1125,7 +1125,7 @@ label {
 	height: 40px;
 	background: url(/yt/imgbin/full-size-logo.png);
 	background-repeat: no-repeat;
-	background-size: contain
+	background-size: 93px 40px;
 }
 
 #logo.doodle {
@@ -1408,7 +1408,7 @@ label {
 }
 
 #footer-logo:hover img {
-	opacity: 1
+	opacity: .9;
 }
 
 #footer-logo span {
@@ -2707,7 +2707,8 @@ body.site-left-aligned .sb-card {
 	float: right;
 	margin-left: 50px;
 	margin-top: 3px;
-	color: #555
+	color: #555;
+	cursor: pointer;
 }
 
 #yt-masthead-user-displayname {
