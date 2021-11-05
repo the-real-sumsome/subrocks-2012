@@ -522,7 +522,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 														<?php if($_user['genre'] != "none") { ?>
 															<div class="user-profile-item ">
 																<h5>Channel Genre</h5>
-																<span class="value"><?php echo htmlspecialchars($_user['genre']); ?></span>
+																<span class="value"><?php echo htmlspecialchars(ucfirst($_user['genre'])); ?></span>
 															</div>
 														<?php } ?>
 													</div>
@@ -535,7 +535,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 												<div class="module-view other-channels-view">
 													<h2 <?php if(@$_SESSION['siteusername'] == $_user['username']) { ?>style="display: inline-block;position: relative;bottom: 10px;"<?php } ?>>Featured Channels</h2> 
 													<?php if(@$_SESSION['siteusername'] == $_user['username']) { 
-														echo "<a href='#' style='float:right;font-size:11px;color:black;' onclick=';return false;'>edit</a>"; 
+														echo "<a href='#' style='float:right;font-size:11px;color:black;' onclick=';open_featured_channels();return false;'>edit</a>"; 
 													} ?>
 													<ul class="channel-summary-list ">
 														<?php 

@@ -18,7 +18,7 @@ function addAlert(id, text) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div><br>
         `
     );
 }

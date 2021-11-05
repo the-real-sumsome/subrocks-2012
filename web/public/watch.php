@@ -896,6 +896,64 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 									<div class="watch-sidebar-section">
 										<div id="watch-related-container" class="watch-sidebar-body">
 											<ul id="watch-related" class="video-list">
+												<?php
+													$stmt = $__db->prepare("SELECT * FROM playlists ORDER BY rand() LIMIT 2");
+													$stmt->execute();
+													while($_playlist = $stmt->fetch(PDO::FETCH_ASSOC)) {	
+														$_playlist['videos'] = json_decode($_playlist['videos']);
+														$_playlist['count'] = 1;
+
+														if($__video_h->video_exists($_playlist['videos'][0])) {
+															$video = $__video_h->fetch_video_rid($_playlist['videos'][0]);
+														} else {
+															$video = [];
+															$video['thumbnail'] = "default.jpg";
+														}
+												?>
+												<li class="video-list-item">
+													<a href="/view_playlist?v=<?php echo $_playlist['rid']; ?>" class="related-playlist yt-uix-contextlink  yt-uix-sessionlink" data-sessionlink="ved=CAMQzhooAA%3D%3D&amp;ei=CKf4md_r7rMCFYMfRAodLGlRiA%3D%3D&amp;feature=list_other">
+														<span class="ux-thumb-wrap">
+															<span class="video-thumb ux-thumb yt-thumb-default-120 ">
+																<span class="yt-thumb-clip">
+																	<span class="yt-thumb-clip-inner">
+																		<img src="http://s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="<?php echo htmlspecialchars($_playlist['title']); ?>" data-thumb="/dynamic/thumbs/<?php echo htmlspecialchars($video['thumbnail']); ?>" width="120">
+																		<span class="vertical-align"></span>
+																	</span>
+																</span>
+															</span>
+															<span class="video-count">
+																<strong><?php echo count($_playlist['videos']); ?></strong> videos </span>
+														</span>
+														<span class="thumb-row">
+															<span class="video-thumb ux-thumb yt-thumb-default-40 ">
+																<span class="yt-thumb-clip">
+																	<span class="yt-thumb-clip-inner">
+																		<img src="http://s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="Thumbnail" data-thumb="/dynamic/thumbs/<?php echo htmlspecialchars($video['thumbnail']); ?>" width="40">
+																		<span class="vertical-align"></span>
+																	</span>
+																</span>
+															</span>
+															<span class="video-thumb ux-thumb yt-thumb-default-40 "> 
+																<span class="yt-thumb-clip">
+																	<span class="yt-thumb-clip-inner">
+																		<img src="http://s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="Thumbnail" data-thumb="/dynamic/thumbs/<?php echo htmlspecialchars($video['thumbnail']); ?>" width="40">
+																		<span class="vertical-align"></span>
+																	</span>
+																</span>
+															</span>
+															<span class="video-thumb ux-thumb yt-thumb-default-40 ">
+																<span class="yt-thumb-clip">
+																	<span class="yt-thumb-clip-inner">
+																		<img src="http://s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt="Thumbnail" data-thumb="/dynamic/thumbs/<?php echo htmlspecialchars($video['thumbnail']); ?>" width="40">
+																		<span class="vertical-align"></span>
+																	</span>
+																</span>
+															</span>
+														</span>
+														<span dir="ltr" class="title" title="<?php echo htmlspecialchars($_playlist['title']); ?>"><?php echo htmlspecialchars($_playlist['title']); ?></span>
+													</a>
+												</li>
+												<?php } ?>
 												<div id="ppv-container" class="hid"></div>
 												<?php
 													$stmt = $__db->prepare("SELECT * FROM videos WHERE visibility = 'n' ORDER BY rand() LIMIT 20");

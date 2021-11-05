@@ -49,6 +49,16 @@
         $video_validation->upload_ok = 0;
     }
 
+    if( $video_validation->video_file_type == ".png" || 
+        $video_validation->video_file_type == ".jpg" || 
+        $video_validation->video_file_type == ".jpeg" || 
+        $video_validation->video_file_type == ".gif"
+    ) {
+        $video_validation->upload_error = "You cannot upload an image as a video." . $_FILES['video_file']['error'];
+        $video_validation->upload_ok = 0;
+    }
+        
+
     /* 
         I'm going to hopefully guess that
         user input is fine because I moved

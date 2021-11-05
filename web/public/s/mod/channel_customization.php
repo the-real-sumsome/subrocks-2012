@@ -201,6 +201,7 @@
     <br>
     <div class="channel-custom-top">
         <h1 style="color: white;font-weight: bolder;font-weight:normal;display:inline-block;">Edit my channel</h1>
+        <button style="float: right;" onclick='$(".channel-customization-bg").fadeOut(300);' class="yt-uix-button yt-uix-button-default">Cancel</button>
     </div>
     <br>
     <div class="channel-customization-base" id="channel-customize">
@@ -276,7 +277,8 @@
                                 filters: {
                                     ime_types : [
                                         { title : "Image files", extensions : "jpg,gif,png" },
-                                    ]
+                                    ],
+                                    max_file_size: "1024kb"
                                 },
 
                                 resize: {
@@ -296,15 +298,10 @@
                             });
                             
                             uploader.bind('UploadFile', function(up, file) {
-                                // document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
-                                addAlert("editsuccess_" + alerts, "Starting upload.");
-								showAlert("#editsuccess_" + alerts);
-                                alerts++;
+
                             });
 
                             uploader.bind('FileUploaded', function(up, file, response) {
-                                addAlert("editsuccess_" + alerts, "Succesfully finished uploading " + file.name);
-								showAlert("#editsuccess_" + alerts);
                                 alerts++;  
                                 response = JSON.parse(response.response);
                                 $("#photo-update").attr("src", "/dynamic/pfp/" + response.profile_picture);
