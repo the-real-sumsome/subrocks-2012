@@ -6,6 +6,12 @@
             "selected" => false,
         ],
 
+        "ban" => (object) [
+            "label" => "Ban Accounts",
+            "url" => "/admin/bans",
+            "selected" => false,
+        ],
+
         "stats" => (object) [
             "label" => "Stats",
             "url" => "/admin/status",
