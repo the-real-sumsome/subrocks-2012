@@ -224,6 +224,11 @@
             $__user_u->update_row($_SESSION['siteusername'], "primary_color_text", $_POST['textmaincolor']);
         }
 
+        if(!empty($_POST['layout_channel'])) {
+            if($_POST['layout_channel'] == "feed" || $_POST['layout_channel'] == "featured" || $_POST['layout_channel'] == "playlists")
+                $__user_u->update_row($_SESSION['siteusername'], "layout", $_POST['layout_channel']);
+        }
+
     if(!empty($_POST['bgoptionset'])) {
         $bgoption = $_POST['bgoption'];
         $bgcolor = $_POST['solidcolor'];
@@ -246,6 +251,7 @@
     ];
 
     echo json_encode($response);
+    print_r($_POST);
 
     //echo "<script>
     //window.location = '/channel_2?n=" . htmlspecialchars($_SESSION['siteusername']) . "';

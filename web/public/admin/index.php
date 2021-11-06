@@ -10,6 +10,7 @@
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
 <?php if(!isset($_SESSION['siteusername'])) { header("Location: /sign_in"); } ?>
+<?php if(!$__user_h->if_admin($_SESSION['siteusername'])) { header("Location: /"); } ?>
 <?php
 	$__server->page_embeds->page_title = "SubRocks - Inbox";
 	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";

@@ -331,7 +331,7 @@
                                 </select>
                                 <input style="vertical-align: middle;" type="color" id="solidcolor" name="solidcolor" value="<?php echo htmlspecialchars($_user['primary_color']); ?>">
                             </div><br>
-                            <input class="yt-uix-button yt-uix-button-default" type="submit" value="Set"><br><br>
+                            <input class="yt-uix-button yt-uix-button-default" style="position: absolute;top: -89px;right: -412px;" type="submit" value="Done Editing"><br><br>
                     </td>
                     <td class="right-side-customization">
                         
@@ -349,30 +349,36 @@
                     <td>
                         <center>
                             <div class="channel-layout-selector">
-                                <img src="/s/img/creator.png">
-                                <h2>Creator</h2>
-                                <p>
-                                    A featured video from a playlist<br>
-                                    with a group of featured playlists
-                                </p>
+                                <button onclick=";upload_layout('feed');return false;">
+                                    <img src="/s/img/creator.png">
+                                    <h2>Feed</h2>
+                                    <p>
+                                        A list of recent comments<br>
+                                        and videos from you
+                                    </p>
+                                </button>
                             </div>
                             <div class="channel-layout-selector">
-                                <img src="/s/img/blogger.png">
-                                <h2>Blogger</h2>
-                                <p>
-                                    A reverse chronological list of<br>
-                                    your recent uploads or a<br>
-                                    featured playlist<br>
-                                </p>
+                                <button onclick=";upload_layout('featured');return false;">
+                                    <img src="/s/img/blogger.png">
+                                    <h2>Blogger</h2>
+                                    <p>
+                                        A reverse chronological list of<br>
+                                        your recent uploads or a<br>
+                                        featured playlist<br>
+                                    </p>
+                                </button>
                             </div>
                             <div class="channel-layout-selector">
-                                <img src="/s/img/network.png">
-                                <h2>Network</h2>
-                                <p>
-                                    A featured video from a playlist <br>
-                                    with a group of featured<br>
-                                    channels
-                                </p>
+                                <button onclick=";upload_layout('playlists');return false;">
+                                    <img src="/s/img/network.png">
+                                    <h2>Network</h2>
+                                    <p>
+                                        A featured video from a playlist <br>
+                                        with a group of featured<br>
+                                        channels
+                                    </p>
+                                </button>
                             </div>
                             <div class="channel-layout-selector">
                                 <img src="/s/img/everything.png">
@@ -412,7 +418,7 @@
                         <div class="customization-module" id="bordercolor" style="float: right;position: relative;bottom: 30px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="bordercolorpicker" name="bordercolor" value="<?php echo htmlspecialchars($_user['border_color']); ?>">
                         </div><br><hr class="thin-line-darker" style="width: unset !important;"><br><br><br>
-                        <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Set">
+                        <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Done Editing">
                     </td>
                     <td class="right-side-customization">
                         <b>Background Color</b><br>
@@ -447,7 +453,7 @@
                         </div>
 
 
-                        <br><input class="yt-uix-button yt-uix-button-default" type="submit" value="Set"><br><br>
+                        <br><input class="yt-uix-button yt-uix-button-default" type="submit" style="position: absolute;top: -89px;right: 66px;" value="Done Editing"><br><br>
                     </td>
                     <td class="right-side-customization" style="width: 630px;border: 0px;padding:0px;">
                         <h2>Advanced</h2>
@@ -645,6 +651,18 @@
             e.preventDefault();
         } 
     );
+
+    function upload_layout(layout) {
+        $.post("/d/channel_update",
+        {
+            layout_channel: layout
+        },
+        function(data, status){
+            alerts++;
+            addAlert("editsuccess_" + alerts, "Successfully updated your channel!");
+            showAlert("#editsuccess_" + alerts);
+        });
+    }
 </script>
 <script src="/s/js/channelEdit.js"></script>
 <script src="/s/js/alert.js"></script>
