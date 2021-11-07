@@ -7,13 +7,13 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-CREATE DATABASE IF NOT EXISTS `fulptube` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `fulptube` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `fulptube`;
 
 CREATE TABLE `admin_logs` (
   `id` int NOT NULL,
   `log` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `bans` (
   `id` int NOT NULL,
@@ -21,20 +21,20 @@ CREATE TABLE `bans` (
   `reason` varchar(1024) NOT NULL,
   `expire` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `moderator` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `block` (
   `id` int NOT NULL,
   `sender` varchar(255) NOT NULL,
   `reciever` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `channel_views` (
   `id` int NOT NULL,
   `viewer` varchar(255) NOT NULL,
   `channel` varchar(255) NOT NULL,
   `viewed` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `comments` (
   `id` int NOT NULL,
@@ -42,14 +42,14 @@ CREATE TABLE `comments` (
   `author` varchar(255) NOT NULL,
   `comment` varchar(1000) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `comment_likes` (
   `id` int NOT NULL,
   `sender` varchar(255) NOT NULL,
   `reciever` varchar(255) NOT NULL,
   `type` varchar(1) NOT NULL DEFAULT 'l'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `comment_reply` (
   `id` int NOT NULL,
@@ -57,21 +57,21 @@ CREATE TABLE `comment_reply` (
   `author` varchar(255) NOT NULL,
   `comment` varchar(1024) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `favorite_video` (
   `id` int NOT NULL,
   `sender` varchar(255) NOT NULL,
   `reciever` varchar(255) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `forum_category` (
   `id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `lastmodified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `forum_replies` (
   `id` int NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE `forum_replies` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `author` varchar(255) NOT NULL,
   `toid` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `forum_thread` (
   `id` int NOT NULL,
@@ -88,14 +88,14 @@ CREATE TABLE `forum_thread` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `author` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `friends` (
   `id` int NOT NULL,
   `sender` varchar(255) NOT NULL,
   `reciever` varchar(255) NOT NULL,
   `status` varchar(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `group_discussion` (
   `id` int NOT NULL,
@@ -103,27 +103,27 @@ CREATE TABLE `group_discussion` (
   `author` varchar(255) NOT NULL,
   `comment` varchar(500) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `group_members` (
   `id` int NOT NULL,
   `username` varchar(255) NOT NULL,
   `togroup` varchar(255) NOT NULL,
   `status` varchar(1) NOT NULL DEFAULT 'a'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `history` (
   `id` int NOT NULL,
   `video` varchar(255) NOT NULL,
   `author` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `likes` (
   `id` int NOT NULL,
   `sender` varchar(255) NOT NULL,
   `reciever` varchar(255) NOT NULL,
   `type` varchar(1) NOT NULL DEFAULT 'l'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `playlists` (
   `id` int NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE `playlists` (
   `author` varchar(255) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `videos` varchar(10000) NOT NULL DEFAULT '[]'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `pms` (
   `id` int NOT NULL,
@@ -145,7 +145,7 @@ CREATE TABLE `pms` (
   `readed` varchar(1) NOT NULL DEFAULT 'n',
   `video_attribute` varchar(255) NOT NULL DEFAULT '',
   `type` varchar(2) NOT NULL DEFAULT 'nm'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `profile_comments` (
   `id` int NOT NULL,
@@ -153,14 +153,14 @@ CREATE TABLE `profile_comments` (
   `author` varchar(255) NOT NULL,
   `comment` varchar(512) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `quicklist_videos` (
   `id` int NOT NULL,
   `video` varchar(255) NOT NULL,
   `author` varchar(255) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `reports` (
   `id` int NOT NULL,
@@ -168,21 +168,21 @@ CREATE TABLE `reports` (
   `type` varchar(50) NOT NULL,
   `reason` varchar(500) NOT NULL,
   `sender` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `stars` (
   `id` int NOT NULL,
   `sender` varchar(255) NOT NULL,
   `reciever` varchar(255) NOT NULL,
   `type` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `subscribers` (
   `id` int NOT NULL,
   `sender` varchar(255) NOT NULL,
   `reciever` varchar(255) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `ugc_ads` (
   `id` int NOT NULL,
@@ -191,7 +191,7 @@ CREATE TABLE `ugc_ads` (
   `link` varchar(255) NOT NULL,
   `author` varchar(255) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `users` (
   `id` int NOT NULL,
@@ -234,7 +234,7 @@ CREATE TABLE `users` (
   `genre` varchar(255) NOT NULL DEFAULT 'None',
   `css` varchar(2048) NOT NULL DEFAULT '',
   `partner` varchar(1) NOT NULL DEFAULT 'n'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `user_groups` (
   `id` int NOT NULL,
@@ -244,7 +244,7 @@ CREATE TABLE `user_groups` (
   `group_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `group_picture` varchar(255) NOT NULL DEFAULT 'default.png',
   `group_category` varchar(255) NOT NULL DEFAULT 'None'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `videos` (
   `id` int NOT NULL,
@@ -263,7 +263,7 @@ CREATE TABLE `videos` (
   `captions` varchar(255) NOT NULL DEFAULT 'sample.vtt',
   `category` varchar(60) NOT NULL DEFAULT 'None',
   `featured` varchar(1) NOT NULL DEFAULT 'n'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `video_response` (
   `id` int NOT NULL,
@@ -271,14 +271,14 @@ CREATE TABLE `video_response` (
   `author` varchar(255) NOT NULL,
   `video` varchar(255) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `views` (
   `id` int NOT NULL,
   `viewer` varchar(255) NOT NULL,
   `videoid` varchar(255) NOT NULL,
   `viewed` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 ALTER TABLE `admin_logs`
