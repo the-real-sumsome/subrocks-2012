@@ -12,6 +12,60 @@
 	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
 	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
 	$__server->page_embeds->page_url = "https://subrock.rocks/";
+
+	function get_server_array_stats() {
+		$stat1 = file('/proc/stat'); 
+		sleep(1); 
+		$stat2 = file('/proc/stat'); 
+		$info1 = explode(" ", preg_replace("!cpu +!", "", $stat1[0])); 
+		$info2 = explode(" ", preg_replace("!cpu +!", "", $stat2[0])); 
+		$dif = array(); 
+		$dif['user'] = $info2[0] - $info1[0]; 
+		$dif['nice'] = $info2[1] - $info1[1]; 
+		$dif['sys'] = $info2[2] - $info1[2]; 
+		$dif['idle'] = $info2[3] - $info1[3]; 
+		$total = array_sum($dif); 
+		$cpu = array(); 
+		foreach($dif as $x=>$y) $cpu[$x] = round($y / $total * 100, 1);
+
+		return $cpu;
+	}
+
+	function adjustBrightness($hexCode, $adjustPercent) {
+		$hexCode = ltrim($hexCode, '#');
+
+		if (strlen($hexCode) == 3) {
+			$hexCode = $hexCode[0] . $hexCode[0] . $hexCode[1] . $hexCode[1] . $hexCode[2] . $hexCode[2];
+		}
+
+		$hexCode = array_map('hexdec', str_split($hexCode, 2));
+
+		foreach ($hexCode as & $color) {
+			$adjustableLimit = $adjustPercent < 0 ? $color : 255 - $color;
+			$adjustAmount = ceil($adjustableLimit * $adjustPercent);
+
+			$color = str_pad(dechex($color + $adjustAmount), 2, '0', STR_PAD_LEFT);
+		}
+
+		return '#' . implode($hexCode);
+	}
+
+	function get_server_memory_usage() {
+		$free = shell_exec('free');
+		$free = (string)trim($free);
+		$free_arr = explode("\n", $free);
+		$mem = explode(" ", $free_arr[1]);
+		$mem = array_filter($mem);
+		$mem = array_merge($mem);
+		$memory_usage = $mem[2]/$mem[1]*100;
+	
+		return $memory_usage;
+	}
+
+	function get_server_cpu_usage() {
+		$load = sys_getloadavg();
+		return $load[0];
+	}	
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,6 +94,72 @@
 			<div id="content-container">
 				<!-- begin content -->
 				<div id="content">
+					<style>
+						.box-gray {
+							position: relative;
+							padding: 15px;
+							border: 1px solid #c5c5c5;
+							background-color: #f7f7f7;
+							border-radius: 10px;
+							-moz-border-radius: 10px;
+							-webkit-border-radius: 10px;
+							width:300px;
+						}
+					</style>
+					<?php if($__user_h->if_admin(@$_SESSION['siteusername'])) { ?>
+						<div class="box-gray" style="width: 95%;margin-bottom: 8px;">
+							<h3>Statistics</h3>
+							<?php 
+								$stmt = $__db->prepare("SELECT id FROM videos");
+								$stmt->execute();
+								$videos = $stmt->rowCount();
+
+								$stmt = $__db->prepare("SELECT id FROM users");
+								$stmt->execute();
+								$users = $stmt->rowCount();
+
+								$stmt = $__db->prepare("SELECT id FROM comments");
+								$stmt->execute();
+								$comments = $stmt->rowCount();
+
+								$stmt = $__db->prepare("SELECT id FROM views");
+								$stmt->execute();
+								$views = $stmt->rowCount();
+
+								$stmt = $__db->prepare("SELECT id FROM pms");
+								$stmt->execute();
+								$pms = $stmt->rowCount();
+
+								$stmt = $__db->prepare("SELECT id FROM playlists");
+								$stmt->execute();
+								$playlists = $stmt->rowCount();
+							?>
+							<div style="width: 200px;display:inline-block;">
+								<?php $server = get_server_array_stats(); ?>
+								Videos uploaded: <b style="float:right;"><?php echo $videos; ?></b><br>
+								Users registered: <b style="float:right;"><?php echo $users; ?></b><br><br>
+
+								CPU User Usage: 
+									<b style="float:right;color:<?php echo adjustBrightness("#FF0000", $server['user']); ?>">
+										<?php echo $server['user']; ?>%</b><br>
+								CPU NICE Usage: 
+									<b style="float:right;color:<?php echo adjustBrightness("#FF0000", $server['nice']); ?>">
+										<?php echo $server['nice']; ?>%</b><br>
+								CPU Idle Usage: 
+									<b style="float:right;color:<?php echo adjustBrightness("#FF0000", $server['idle']); ?>">
+										<?php echo $server['idle']; ?>%</b><br>
+								RAM Usage: <b style="float:right;"><?php echo round(get_server_memory_usage(), 3)	; ?> megabytes</b>
+							</div>
+							<div style="width: 200px;display:inline-block;margin-right:20px;vertical-align: top;margin-left: 22px;">
+								<?php $server = get_server_array_stats(); ?>
+								Comments on site: <b style="float:right;"><?php echo $comments; ?></b><br>
+								Private messages: <b style="float:right;"><?php echo $pms; ?></b><br>
+								Playlists on site: <b style="float:right;"><?php echo $playlists; ?></b><br>
+								Video views: <b style="float:right;"><?php echo $views; ?></b><br><br>
+							</div><br><br>
+							<button href="/admin/stats" type="button" class=" yt-uix-button yt-uix-button-default" onclick=";window.location.href=this.getAttribute('href');return false;" role="button"><span class="yt-uix-button-content">See more statistics </span></button>
+						</div>
+					<?php } ?>
 					<div class="guide-layout-container enable-fancy-subscribe-button">
 						<div class="guide-container">
 						<?php if(!isset($_SESSION['siteusername'])) { ?>

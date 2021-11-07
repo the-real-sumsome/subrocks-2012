@@ -11,11 +11,6 @@
                                                                 Activity
                                                                 </a>
                                                             </li>
-                                                            <li class="user-feed-filter ">
-                                                                <a href="/user/<?php echo htmlspecialchars($_SESSION['siteusername']); ?>/feed?filter=1">
-                                                                Comments
-                                                                </a>
-                                                            </li>
                                                         </ul>
                                                     </div>
                                                     <div id="channel-feed-post-form">

@@ -331,6 +331,13 @@
                                 </select>
                                 <input style="vertical-align: middle;" type="color" id="solidcolor" name="solidcolor" value="<?php echo htmlspecialchars($_user['primary_color']); ?>">
                             </div><br>
+                            <h2>Background</h2>
+                            <span style="font-size: 11px;color:grey;" class="grey-text">Choose Image (Max file size: 10MB)</span><br>
+                            <div id="backgroundimage" method="post" action="/d/channel_update" enctype="multipart/form-data">
+                                <input type="file" name="backgroundbgset" id="background-upload">
+                                <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
+                            </div>
+                            
                             <input class="yt-uix-button yt-uix-button-default" style="position: absolute;top: -89px;right: -412px;" type="submit" value="Done Editing"><br><br>
                     </td>
                     <td class="right-side-customization">

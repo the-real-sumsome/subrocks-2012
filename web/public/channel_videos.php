@@ -134,9 +134,30 @@
 		<style>
 			#content-container {
 				background-color: <?php echo $_user['primary_color'];  ?>;
-				background-image: url(/dynamic/banners/<?php echo $_user['2009_bg']; ?>);
+				background-image: url(/dynamic/banners/<?php echo $_user['2012_bg']; ?>);
 				background-repeat: repeat;
-				background-position: center top;
+				<?php
+					switch($_user['2012_bgoption']) {
+						case "stretch":
+						echo "background-size: cover;";
+						break;
+						case "solid":
+						echo "";
+						break;
+						case "norepeat":
+						echo "background-repeat: no-repeat !important;";
+						break;
+						case "repeatxy":
+						echo "background-repeat: repeat;";
+						break;
+						case "repeaty":
+						echo "background-repeat: repeat-y;";
+						break;
+						case "repeatx":
+						echo "background-repeat: repeat-x;";
+						break;
+					}
+				?>
 			}
    		</style>
 	</head>

@@ -170,7 +170,7 @@
 								<div class="browse-collection  has-box-ad">
 									<h2>Admin Panel</h2>
 									<hr>
-									<form method="POST" action="/post/admin?action=ban_users">
+									<form method="POST" action="/d/admin?action=ban_users">
 										<br>
 										<b>Ban Users</b><br>
 										<span style="font-size:11px;color:grey;">
@@ -181,7 +181,7 @@
 										<input type="submit" value="Banhammer" class="yt-uix-button yt-uix-button-default">
 									</form>
 									<hr>
-									<form method="POST" action="/post/admin?action=delete_videos">
+									<form method="POST" action="/d/admin?action=delete_videos">
 										<br>
 										<b>Delete Video</b><br>
 										<span style="font-size:11px;color:grey;">

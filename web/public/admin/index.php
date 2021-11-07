@@ -35,16 +35,6 @@
 		return $cpu;
 	}
 
-	/**
-	 * Increases or decreases the brightness of a color by a percentage of the current brightness.
-	 *
-	 * @param   string  $hexCode        Supported formats: `#FFF`, `#FFFFFF`, `FFF`, `FFFFFF`
-	 * @param   float   $adjustPercent  A number between -1 and 1. E.g. 0.3 = 30% lighter; -0.4 = 40% darker.
-	 *
-	 * @return  string
-	 *
-	 * @author  maliayas
-	*/
 	function adjustBrightness($hexCode, $adjustPercent) {
 		$hexCode = ltrim($hexCode, '#');
 

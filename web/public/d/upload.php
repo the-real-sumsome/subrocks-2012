@@ -3,9 +3,10 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/time_manip.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_helper.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/video_helper.php"); ?>
-<?php $__server->page_title = "test"; ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_update.php"); ?>
 <?php $__video_h = new video_helper($__db); ?>
 <?php $__user_h = new user_helper($__db); ?>
+<?php $__user_u = new user_update($__db); ?>
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
 <?php
@@ -38,6 +39,11 @@
 
     // $_FILES['video_file']['tmp_name'] = substr_replace($_FILES['video_file']['tmp_name'], '/', 8, 0);
     /* -- /tmp/phpfAN4Xu -- Why in the fuck does this happen? I love PHP */
+
+    if($__user_h->if_upload_cooldown($_SESSION['siteusername'])) { 
+        $video_validation->upload_error = "Under an upload cooldown";
+        $video_validation->upload_ok = 0;
+    }
 
     if(move_uploaded_file(
         $_FILES['video_file']['tmp_name'], 
@@ -108,6 +114,8 @@
         $stmt->bindParam(":xml", $video_properties->video_xml);
         $stmt->bindParam(":category", $video_properties->video_category);
         $stmt->execute();
+
+        $__user_u->update_cooldown_time($_SESSION['siteusername'], "upload_cooldown");
         echo($video_properties->video_rid);
     } else {
         die($video_validation->upload_error);

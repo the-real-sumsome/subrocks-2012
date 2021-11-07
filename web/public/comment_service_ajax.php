@@ -31,7 +31,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
 
         $__user_u->update_cooldown_time($_SESSION['siteusername'], "cooldown_comment");
-        $__user_i->send_message($_SESSION['siteusername'], "New comment", $_video['author'], "I commented \"" . $_POST['comment'] . "\" on your video!", $_video['rid'], "nt");
+        if(@$_SESSION['siteusername'] != $_video['author'])
+            $__user_i->send_message($_SESSION['siteusername'], "New comment", $_video['author'], "I commented \"" . $_POST['comment'] . "\" on your video!", $_video['rid'], "nt");
     }
 }
 

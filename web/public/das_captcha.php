@@ -1,9 +1,12 @@
-<?php $root = "/ian-subrocks-2012/web/public"?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . $root . "/s/classes/config.inc.php"); ?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . $root . "/s/classes/db_helper.php"); ?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . $root . "/s/classes/time_manip.php"); ?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . $root . "/s/classes/user_helper.php"); ?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . $root . "/s/classes/video_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/config.inc.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/db_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/time_manip.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/video_helper.php"); ?>
+<?php $__video_h = new video_helper($__db); ?>
+<?php $__user_h = new user_helper($__db); ?>
+<?php $__db_h = new db_helper(); ?>
+<?php $__time_h = new time_helper(); ?>
 <?php
 // get the next page
 if (isset($_GET['next']))
