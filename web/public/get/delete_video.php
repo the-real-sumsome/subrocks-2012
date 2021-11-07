@@ -8,7 +8,7 @@
 <?php $__user_u = new user_update($__db); ?>
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
-<?php $video = $__video_h->fetch_video_rid($_GET['v']); ?>
+<?php $video = $__video_h->fetch_video_rid($_GET['id']); ?>
 <?php
 
 if($video['author'] == $_SESSION['siteusername']) {
@@ -19,5 +19,5 @@ if($video['author'] == $_SESSION['siteusername']) {
   ));
 }
 
-header('Location: /video_manager');
+header('Location: /my_videos');
 ?>

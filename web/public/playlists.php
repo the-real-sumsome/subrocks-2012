@@ -36,6 +36,12 @@
         }
     }
 ?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - Your Playlists";
+	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
+	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>
 <!DOCTYPE html>
 <html dir="ltr">
 	<head>
@@ -166,7 +172,7 @@
 								My Channel
 								</span>
 							</li>
-                            <a href="/inbox">
+                            <a href="/inbox/">
                             <li class="">
 								<span class="yt-nav-item">
 								Inbox
@@ -210,11 +216,11 @@
                                     <form method="post" enctype="multipart/form-data" id="submitform" style="top:0px;">
                                         <div >
                                             <h2>Create a Playlist</h2>
-                                            <span style="font-size: 11px;" class="grey-text">Playlists are still in a buggy state. Report bugs to the forums.</span><br>
-                                            <input placeholder="Playlist Title" type="text" name="title" style="width: 100%;" required="required" row="20"><br>
+                                            <span style="font-size: 11px;" class="grey-text">Playlists are still in a buggy state. Report bugs to the forums.</span><br><br>
+                                            <input class="yt-uix-form-input-text" placeholder="Playlist Title" type="text" name="title" style="width: 85% !important;" required="required"><br>
                                         </div><br>
                                         <div >
-                                            <textarea style="width: 100%;" id="com" placeholder="Description" name="comment"></textarea><br><br>
+                                            <textarea class="yt-uix-form-input-text" style="width: 85%;width: 85% !important;" id="com" placeholder="Description" name="comment"></textarea><br><br>
                                             <input class="yt-uix-button yt-uix-button-default" type="submit" value="Create">
                                         </div><br>
                                     </form>
@@ -231,17 +237,13 @@
                                     <tr>
                                         <!-- <th style="margin: 5px; width: 5%;"></th> -->
                                         <th style="width: 80%;">
-                                            <small class="video-filter-options">
-                                                Sort by:  
-                                                    <a id="selector-title" onclick="changeFilter_Title();">Title</a> | 
-                                                    <a id="selector-time" onclick="changeFilter_Time();" class="selected">Time</a>
-                                            </small>
+
                                         </th>
                                         <th style="margin: 5px; width: 20%;"></th>
                                     </tr>
                                     
                                     <?php
-                                        while($playlist = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+                                        while($playlist = $stmt6->fetch(PDO::FETCH_ASSOC)) { 
                                             $playlist['videos'] = json_decode($playlist['videos']);
                                             if($__video_h->video_exists(@$playlist['videos'][0])) {
                                                 if(count($playlist['videos']) != 0) {
@@ -258,10 +260,10 @@
                                         <tr style="margin-top: 5px;" id="videoslist">
                                             <td class="video-manager-left">
                                                 <ul>
-                                                    <li class="video-list-item "><a href="/view_playlist?v=<?php echo $playlist['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="<?php echo $playlist['title']; ?>" data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
+                                                    <li class="video-list-item "><a href="/view_playlist?v=<?php echo $playlist['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" alt="<?php echo htmlspecialchars($playlist['title']); ?>" onerror=";this.src='/dynamic/thumbs/default.jpg';"  data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
                                                         <button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="yuTBQ86r8o0" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
                                                         </span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
-                                                        </span><span dir="ltr" class="title" title="<?php echo $playlist['title']; ?>"><?php echo $playlist['title']; ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $playlist['author']; ?></span></span><span class="stat view-count">  <span class="viewcount"><?php echo $video['views']; ?> views</span>
+                                                        </span><span dir="ltr" class="title" title="<?php echo htmlspecialchars($playlist['title']); ?>"><?php echo htmlspecialchars($playlist['title']); ?></span><span class="stat"><?php echo htmlspecialchars($playlist['description']); ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo htmlspecialchars($playlist['author']); ?></span></span><span class="stat view-count">  <span class="viewcount"><?php echo $video['views']; ?> views</span>
                                                         </span></a>
                                                     </li>
                                                 </ul>
@@ -289,10 +291,10 @@
                                         <tr style="margin-top: 5px;" id="videoslist">
                                             <td class="video-manager-left">
                                                 <ul>
-                                                    <li class="video-list-item "><a href="/view_playlist?v=<?php echo $playlist['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="<?php echo $playlist['title']; ?>" data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
+                                                    <li class="video-list-item "><a href="/view_playlist?v=<?php echo $playlist['rid']; ?>" class="video-list-item-link yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-sptl%26cid%3Dinp-hs-ytg"><span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-120 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="/dynamic/thumbs/<?php echo htmlspecialchars($video['thumbnail']); ?>" alt="<?php echo $playlist['title']; ?>" onerror=";this.src='/dynamic/thumbs/default.jpg';"  data-thumb="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" width="120"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
                                                         <button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="yuTBQ86r8o0" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
                                                         </span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
-                                                        </span><span dir="ltr" class="title" title="<?php echo $playlist['title']; ?>"><?php echo $playlist['title']; ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $playlist['author']; ?></span></span><span class="stat view-count">  <span class="viewcount">0 views</span>
+                                                        </span><span dir="ltr" class="title" title="<?php echo htmlspecialchars($playlist['title']); ?>"><?php echo htmlspecialchars($playlist['title']); ?></span><span class="stat">by <span class="yt-user-name " dir="ltr"><?php echo $playlist['author']; ?></span></span><span class="stat view-count">  <span class="viewcount">0 views</span>
                                                         </span></a>
                                                     </li>
                                                 </ul>
@@ -318,14 +320,14 @@
                                         </tr>
                                     <?php } } ?>
                                 </table> 
-                                </div>
+                                </div><br>
 
                                 <center class="loading_comm_pagination" style="display: none;">
                                     <div>
-                                        <img src="/static/img/spinner.gif" style="width:16px;vertical-align: middle;"> Loading...
+                                        <img src="/s/img/spinner.gif" style="width:16px;vertical-align: middle;"> Loading...
                                     </div>
                                 </center>
-
+                                        
                                 <?php for($page = 1; $page<= $number_of_page; $page++) { ?>
                                     <button class="yt-uix-button yt-uix-button-default" onclick="ajax_fetch_videomanager(<?php echo $page; ?>)"><?php echo $page; ?></button>
                                 <?php } ?>   
@@ -521,6 +523,7 @@
 			<!-- end pagebottom -->
 		</div>
 		<!-- end page -->
+<script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script>yt.www.thumbnaildelayload.init(0);</script>
 		<script>
 			yt.setMsg({

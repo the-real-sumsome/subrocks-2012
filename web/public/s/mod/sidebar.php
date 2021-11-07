@@ -40,7 +40,7 @@
 <div id="browse-side-column" class="ytg-2col ytg-last">
     <ol class="navigation-menu">
         <?php foreach($__tabs as $_tab) { 
-            if($_SERVER['REQUEST_URI'] != $_tab->url)
+            if(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) != $_tab->url)
                 $_tab->selected = true;
             ?>
             <li class="menu-item">

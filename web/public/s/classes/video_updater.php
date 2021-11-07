@@ -22,6 +22,15 @@ class video_updater {
         
         return true;
     }
+
+    function playlist_update_row($video, $rowName, $new) {
+        $stmt = $this->__db->prepare("UPDATE playlists SET ".$rowName." = :new WHERE rid = :rid");
+        $stmt->bindParam(":new", $new);
+        $stmt->bindParam(":rid", $video);
+        $stmt->execute();
+        
+        return true;
+    }
 }
 
 ?>

@@ -1,30 +1,23 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/static/important/config.inc.php"); ?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/static/lib/new/base.php"); ?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/static/lib/new/fetch.php"); ?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/static/lib/new/update.php"); ?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/static/lib/new/delete.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/config.inc.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/db_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/time_manip.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/video_helper.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/video_updater.php"); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_update.php"); ?><?php $__video_h = new video_helper($__db); ?>
+<?php $__video_u = new video_updater($__db); ?>
+<?php $__user_h = new user_helper($__db); ?>
+<?php $__user_u = new user_update($__db); ?>
+<?php $__db_h = new db_helper(); ?>
+<?php $__time_h = new time_helper(); ?>
 <?php
-    $_user_fetch_utils = new user_fetch_utils();
-    $_video_fetch_utils = new video_fetch_utils();
-    $_video_delete_utils = new video_delete_utils();
-    $_base_utils = new config_setup();
-    $_video_update_utils = new video_update_utils();
-    
-    $_base_utils->initialize_db_var($conn);
-    $_video_fetch_utils->initialize_db_var($conn);
-    $_user_fetch_utils->initialize_db_var($conn);
-    $_video_delete_utils->initialize_db_var($conn);
-    $_video_update_utils->initialize_db_var($conn);
-
-    $video = $_video_fetch_utils->fetch_video_rid($_GET['id']);
-?>
-<?php
+$video = $__video_h->fetch_video_rid($_GET['id']);
 
 if($video['author'] == $_SESSION['siteusername']) {
     if($video['commenting'] == "a") {
-        $_video_update_utils->update_video_commenting($_GET['id'], "d");
+        $__video_u->update_row($_GET['id'], "commenting", "d");
     } else {
-        $_video_update_utils->update_video_commenting($_GET['id'], "a");
+        $__video_u->update_row($_GET['id'], "commenting", "a");
     }
 }
 

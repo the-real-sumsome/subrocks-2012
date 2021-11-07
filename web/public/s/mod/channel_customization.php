@@ -20,6 +20,25 @@
     padding: 10px;
     }
 
+    #solidcolor {
+        vertical-align: middle;
+        text-shadow: 0 1px 0 #fff;
+        border-color: #ccc #ccc #aaa;
+        background-color: #e0e0e0;
+        -moz-box-shadow: inset 0 0 1px #fff;
+        -ms-box-shadow: inset 0 0 1px #fff;
+        -webkit-box-shadow: inset 0 0 1px #fff;
+        box-shadow: inset 0 0 1px #fff;
+        background-image: -moz-linear-gradient(top, #fafafa 0, #dcdcdc 100%);
+        background-image: -ms-linear-gradient(top, #fafafa 0, #dcdcdc 100%);
+        background-image: -o-linear-gradient(top, #fafafa 0, #dcdcdc 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), color-stop(100%, #dcdcdc));
+        background-image: -webkit-linear-gradient(top, #fafafa 0, #dcdcdc 100%);
+        background-image: linear-gradient(to bottom, #fafafa 0, #dcdcdc 100%);
+        height: 32px;
+        border: 0;
+    }
+
     .example-dropzone {
     background-color: #6DB65B;
     flex-basis: 100%;
@@ -28,7 +47,7 @@
     }
 
     .www-header-item {
-        padding-left: 8px !important;
+        margin: 0px !important;
     }
 
     .channel-customization-options {
@@ -99,18 +118,20 @@
     .left-side-customization {
         width: 450px;
         vertical-align: top;
-        padding: 5px;
+        padding-left: 25px;
     }
 
-    .right-side-customization input[type="submit"], .left-side-customization input[type="submit"] {
-        color: #039;
-        background: #c6d7f3 url(/yt/imgbin/spritesheet_main.png)repeat-x center -1602px;
-        border: 1px solid #a0b1dc;
-        text-decoration: none;
-        border-radius: 3px;
-        padding: 3px 0.833em;
-        font-weight: bold;
-    }
+    /*
+        .right-side-customization input[type="submit"], .left-side-customization input[type="submit"] {
+            color: #039;
+            background: #c6d7f3 url(/yt/imgbin/spritesheet_main.png)repeat-x center -1602px;
+            border: 1px solid #a0b1dc;
+            text-decoration: none;
+            border-radius: 3px;
+            padding: 3px 0.833em;
+            font-weight: bold;
+        }
+    */
 
     .customization-module {
         display: inline-block;
@@ -122,17 +143,11 @@
         border-top: 0px;
     }
 
-    #backgroundimage, #backgroundoptions {
-        position: relative;
-        bottom: 26px;
-    }
-
     .www-header-list {
         margin-top: 0px;
         width: 101%;
         background-image: linear-gradient(to bottom,#f0f0f0 0,#e6e6e6 100%);
         height: 43px;
-        padding-top: 9px;
         position: relative;
         left: 1px;
         width: 968px;
@@ -160,11 +175,33 @@
         margin: auto;
         width: 970px;
     }
+
+    .www-header-list .yt-uix-button {
+        width: 128px;
+        height: 100%;
+    }
+
+    .www-header-list .yt-uix-button:nth-child(n+1) {
+        margin-left: -5px;
+    }
+
+    .www-header-list .yt-uix-button {
+        background: rgb(239, 239, 239);
+        font-weight: lighter;
+        font-size: 13px;
+        outline: 0;
+    }
+
+    .www-header-list .yt-uix-button:focus {
+        outline: 0;
+    }
 </style>
+
 <div class="channel-customization-bg">
     <br>
     <div class="channel-custom-top">
-        <h1 style="color: white;font-weight: bolder;">Edit my channel</h1>
+        <h1 style="color: white;font-weight: bolder;font-weight:normal;display:inline-block;">Edit my channel</h1>
+        <button style="float: right;" onclick='$(".channel-customization-bg").fadeOut(300);' class="yt-uix-button yt-uix-button-default">Cancel</button>
     </div>
     <br>
     <div class="channel-customization-base" id="channel-customize">
@@ -181,17 +218,17 @@
                         
                     }); 
                 </script>
-                <a class="www-header-item" href="#" onclick="selectTable('#pictures-table');">
-                    <button class="yt-uix-button yt-uix-button-default">Main</button>
+                <a class="www-header-item" href="#" id="pictures-table-button" onclick="selectTable('#pictures-table');">
+                    <button class="yt-uix-button yt-uix-button-default" style="margin-left: 0px;">Apperance</button>
                 </a>
-                <a class="www-header-item" href="#" onclick="selectTable('#misc-table');">
-                    <button class="yt-uix-button yt-uix-button-default">Colors</button>
+                <a class="www-header-item" href="#" id="misc-table-button" style='display:none;' onclick="selectTable('#misc-table');">
+                    <button class="yt-uix-button yt-uix-button-default">Info and Settings</button>
                 </a>
-                <a class="www-header-item" href="#" onclick="selectTable('#bg-table');">
-                    <button class="yt-uix-button yt-uix-button-default">Background</button>
+                <a class="www-header-item" href="#" id="bg-table-button" onclick="selectTable('#bg-table');">
+                    <button class="yt-uix-button yt-uix-button-default">Info and Settings</button>
                 </a>
-                <a class="www-header-item" href="#" onclick="selectTable('#layout-table');">
-                    <button class="yt-uix-button yt-uix-button-default">Layout</button>
+                <a class="www-header-item" href="#" id="layout-table-button" onclick="selectTable('#layout-table');">
+                    <button class="yt-uix-button yt-uix-button-default">Tabs</button>
                 </a>
                 <div class="channel-customization-options">
                 </div>
@@ -205,339 +242,99 @@
                 <tr>
                     <form method="post" id="picturesform" action="/d/channel_update" enctype="multipart/form-data">
                     <td class="left-side-customization">
-                        <b style="position: relative;top: 11px;">Avatar</b>
-                        <div class="customization-module" id="pfp" action="/d/channel_update" enctype="multipart/form-data">
-                            <input style="width: 169px;position: relative;top: 10px;" type="file" name="pfpset" id="avatar-upload">
-                            <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
-                        </div><br><br>
-                        <img src="/dynamic/pfp/<?php echo $_user['pfp']; ?>" style="width:100px;height:100px;"><br>
+                        <h2>Avatar</h2>
+                        <p style="font-size: 11px;color: grey;">
+                            Choose image. Non-square images wil be cropped.<br>
+                            Suggested dimensions: 800x800 pixels. Max size: 1MB.
+                        </p>
                         <?php if($_user['pfp'] != "default.png") { ?>
-                            <a href="/get/remove_profile_pic">Remove Profile Picture</a><br>
+                            <a style="font-size: 11px;" href="/get/remove_profile_pic">Remove Profile Picture</a><br>
                         <?php } ?>
-                        <br><hr class="thin-line-darker" style="width:unset;">
-                        <b style="position: relative;top: 11px;">Video Page Banner</b>
-                        <div class="customization-module" id="watchbanner" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;">
-                            <input style="width: 169px;position: relative;top: 10px;" type="file" name="videopagebanner" id="avatar-upload">
-                            <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
-                        </div><br>                   
-                        <?php if(!empty($_user['subbutton'])) { ?>
-                            <a href="/get/remove_watch_banner">Remove Watch Page Banner</a><br>
-                        <?php } ?><br><hr class="thin-line-darker" style="width:unset;">
-
-                        <b>Custom CSS</b><br>
-                        
-                        <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -15px;">
-                            <span style="font-size: 11px;" class="grey-text">Prefix every image url() with //images.weserv.nl/?url=</span><br>    
-                            <textarea style="width: 288px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biomd" placeholder="Custom CSS" name="css"><?php echo htmlspecialchars($_user['css']); ?></textarea><br><br>
+                        <br>
+                        <a id="browse" href="javascript:;">
+                            <button class="yt-uix-button yt-uix-button-default">
+                                Browse
+                            </button>
+                        </a>  
+                        <a id="start-upload" href="javascript:;">                                    
+                            <button class="yt-uix-button yt-uix-button-default">
+                                Upload
+                            </button>
+                        </a>
+                        <div class="customization-module" id="pfp" action="/d/channel_update" enctype="multipart/form-data">
                         </div><br><br>
-                        <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Set">
+                        <ul id="filelist"></ul>
+                            <pre id="console"></pre>
+
+                            <script type="text/javascript">
+                            var alerts = 0;
+
+                            var uploader = new plupload.Uploader({
+                                browse_button: 'browse', 
+                                url: '/d/channel_update?n=pfp',
+                                multi_selection: false,
+                                
+                                filters: {
+                                    ime_types : [
+                                        { title : "Image files", extensions : "jpg,gif,png" },
+                                    ],
+                                    max_file_size: "1024kb"
+                                },
+
+                                resize: {
+                                    width: 100,
+                                    height: 100,
+                                    preserve_headers: false
+                                }
+                            });
+                            
+                            uploader.init();
+                            
+                            uploader.bind('FilesAdded', function(up, files) {
+                                var html = '';
+                                plupload.each(files, function(file) {
+                                    console.log("file added");
+                                });
+                            });
+                            
+                            uploader.bind('UploadFile', function(up, file) {
+
+                            });
+
+                            uploader.bind('FileUploaded', function(up, file, response) {
+                                alerts++;  
+                                response = JSON.parse(response.response);
+                                $("#photo-update").attr("src", "/dynamic/pfp/" + response.profile_picture);
+                            });
+                            
+                            uploader.bind('Error', function(up, err) {
+                                document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+                            });
+                            
+                            document.getElementById('start-upload').onclick = function() {
+                            uploader.start();
+                            };
+                            
+                            </script>
+                            <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
+                            <br>
+                            <h2>Background Options</h2>
+                            <span style="font-size: 11px;color:grey;">Choose image (Max file size: 1MB)</span><br><br>
+                            <div id="backgroundoptions" method="post" action="/d/channel_update" enctype="multipart/form-data">
+                                <select class="yt-uix-button yt-uix-button-default" name="bgoption">
+                                    <option value="repeaty">Repeat only vertically</option>
+                                    <option value="repeatx">Repeat only horrizontaly</option>
+                                    <option value="norepeat">Don't Repeat</option>
+                                    <option value="repeatxy">Repeat</option>
+                                    <option value="stretch">Stretch to fit</option>
+                                    <option value="solid">Solid</option>
+                                </select>
+                                <input style="vertical-align: middle;" type="color" id="solidcolor" name="solidcolor" value="<?php echo htmlspecialchars($_user['primary_color']); ?>">
+                            </div><br>
+                            <input class="yt-uix-button yt-uix-button-default" style="position: absolute;top: -89px;right: -412px;" type="submit" value="Done Editing"><br><br>
                     </td>
                     <td class="right-side-customization">
-                        <b>Bio</b><br>
-                        <div class="customization-module" id="bio" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -15px;">
-                            <textarea style="width: 344px;padding: 0px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
-                        </div><br><br><br><hr class="thin-line-darker" style="width:unset;">
-
-                        <b>Featured Video</b>
-                        <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;position: relative;bottom: 6px;">
-                        <input style="padding: 5px;background-color: white;border: 1px solid #999;width: 291px;height: 12px;" id="biomd" placeholder="Video ID" value="<?php echo htmlspecialchars($_user['featured']);?>" name="videoid">
-                        </div><br><br><hr class="thin-line-darker" style="width:unset;">
-
-                        <b>Featured Channels</b>
-                        <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="display: inline-block;float:right;position: relative;bottom: 6px;">
-                        <input style="padding: 5px;background-color: white;border: 1px solid #999;width: 291px;height: 12px;" id="biomd" placeholder="Seperate by commas!" value="<?php echo htmlspecialchars($_user['featured_channels']);?>" name="featuredchannels">
-                        </div><br><br><hr class="thin-line-darker" style="width:unset;">
-
-                        <b>Website</b>
-                        <div class="customization-module" id="featuredvid" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -7px;">
-                        <input style="padding: 5px;background-color: white;border: 1px solid #999;width: 291px;height: 12px;" id="biomd" placeholder="Website URL" value="<?php echo htmlspecialchars($_user['website']);?>" name="website">
-                            
-                        </div><br><br><hr class="thin-line-darker" style="width:unset;">
-
-                        <?php $categories = ["None", "Director", "Musician", "Comedian", "Guru", "Nonprofit"]; ?>
-                        <b>Channel Genre</b><br>
-                        <span style="font-size: 11px;" class="grey-text">This will show what type of channel you are to other users.</span>
-                        <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
-                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"   name="genre">
-                                <?php foreach($categories as $category) { ?>
-                                    <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
-                                <?php } ?>
-                            </select>
-                            
-                        </div><br><hr class="thin-line-darker" style="width:unset;" style="width: 100%;">
-
-
-                        <b>Transparency</b><br>
-                        <span style="font-size: 11px;" class="grey-text">This will decide the visibility of ALL of your modules.</span>
-                        <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
-                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"   name="transparency">
-                                <option value="1.0">100% (Visible)</option>
-                                <option value="0.9">90%</option>
-                                <option value="0.8">80%</option>
-                                <option value="0.7">70%</option>
-                                <option value="0.6">60%</option>
-                                <option value="0.5">50%</option>
-                                <option value="0.4">40%</option>
-                                <option value="0.3">30%</option>
-                                <option value="0.2">20%</option>
-                                <option value="0.1">10%</option>
-                            </select>
-                            
-                        </div><br><hr class="thin-line-darker" style="width:unset;" style="width: 100%;">
-
-
-                        <b>Country</b><br>
-                        <div class="customization-module" id="channellayout" action="/d/channel_update" enctype="multipart/form-data" style="float: right;position: relative;top: -19px;">
-                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;top:6px;"  id="country" name="country">
-                            <option value="Afganistan">Afghanistan</option>
-                            <option value="Albania">Albania</option>
-                            <option value="Algeria">Algeria</option>
-                            <option value="American Samoa">American Samoa</option>
-                            <option value="Andorra">Andorra</option>
-                            <option value="Angola">Angola</option>
-                            <option value="Anguilla">Anguilla</option>
-                            <option value="Antigua & Barbuda">Antigua & Barbuda</option>
-                            <option value="Argentina">Argentina</option>
-                            <option value="Armenia">Armenia</option>
-                            <option value="Aruba">Aruba</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Austria">Austria</option>
-                            <option value="Azerbaijan">Azerbaijan</option>
-                            <option value="Bahamas">Bahamas</option>
-                            <option value="Bahrain">Bahrain</option>
-                            <option value="Bangladesh">Bangladesh</option>
-                            <option value="Barbados">Barbados</option>
-                            <option value="Belarus">Belarus</option>
-                            <option value="Belgium">Belgium</option>
-                            <option value="Belize">Belize</option>
-                            <option value="Benin">Benin</option>
-                            <option value="Bermuda">Bermuda</option>
-                            <option value="Bhutan">Bhutan</option>
-                            <option value="Bolivia">Bolivia</option>
-                            <option value="Bonaire">Bonaire</option>
-                            <option value="Bosnia & Herzegovina">Bosnia & Herzegovina</option>
-                            <option value="Botswana">Botswana</option>
-                            <option value="Brazil">Brazil</option>
-                            <option value="British Indian Ocean Ter">British Indian Ocean Ter</option>
-                            <option value="Brunei">Brunei</option>
-                            <option value="Bulgaria">Bulgaria</option>
-                            <option value="Burkina Faso">Burkina Faso</option>
-                            <option value="Burundi">Burundi</option>
-                            <option value="Cambodia">Cambodia</option>
-                            <option value="Cameroon">Cameroon</option>
-                            <option value="Canada">Canada</option>
-                            <option value="Canary Islands">Canary Islands</option>
-                            <option value="Cape Verde">Cape Verde</option>
-                            <option value="Cayman Islands">Cayman Islands</option>
-                            <option value="Central African Republic">Central African Republic</option>
-                            <option value="Chad">Chad</option>
-                            <option value="Channel Islands">Channel Islands</option>
-                            <option value="Chile">Chile</option>
-                            <option value="China">China</option>
-                            <option value="Christmas Island">Christmas Island</option>
-                            <option value="Cocos Island">Cocos Island</option>
-                            <option value="Colombia">Colombia</option>
-                            <option value="Comoros">Comoros</option>
-                            <option value="Congo">Congo</option>
-                            <option value="Cook Islands">Cook Islands</option>
-                            <option value="Costa Rica">Costa Rica</option>
-                            <option value="Cote DIvoire">Cote DIvoire</option>
-                            <option value="Croatia">Croatia</option>
-                            <option value="Cuba">Cuba</option>
-                            <option value="Curaco">Curacao</option>
-                            <option value="Cyprus">Cyprus</option>
-                            <option value="Czech Republic">Czech Republic</option>
-                            <option value="Denmark">Denmark</option>
-                            <option value="Djibouti">Djibouti</option>
-                            <option value="Dominica">Dominica</option>
-                            <option value="Dominican Republic">Dominican Republic</option>
-                            <option value="East Timor">East Timor</option>
-                            <option value="Ecuador">Ecuador</option>
-                            <option value="Egypt">Egypt</option>
-                            <option value="El Salvador">El Salvador</option>
-                            <option value="Equatorial Guinea">Equatorial Guinea</option>
-                            <option value="Eritrea">Eritrea</option>
-                            <option value="Estonia">Estonia</option>
-                            <option value="Ethiopia">Ethiopia</option>
-                            <option value="Falkland Islands">Falkland Islands</option>
-                            <option value="Faroe Islands">Faroe Islands</option>
-                            <option value="Fiji">Fiji</option>
-                            <option value="Finland">Finland</option>
-                            <option value="France">France</option>
-                            <option value="French Guiana">French Guiana</option>
-                            <option value="French Polynesia">French Polynesia</option>
-                            <option value="French Southern Ter">French Southern Ter</option>
-                            <option value="Gabon">Gabon</option>
-                            <option value="Gambia">Gambia</option>
-                            <option value="Georgia">Georgia</option>
-                            <option value="Germany">Germany</option>
-                            <option value="Ghana">Ghana</option>
-                            <option value="Gibraltar">Gibraltar</option>
-                            <option value="Great Britain">Great Britain</option>
-                            <option value="Greece">Greece</option>
-                            <option value="Greenland">Greenland</option>
-                            <option value="Grenada">Grenada</option>
-                            <option value="Guadeloupe">Guadeloupe</option>
-                            <option value="Guam">Guam</option>
-                            <option value="Guatemala">Guatemala</option>
-                            <option value="Guinea">Guinea</option>
-                            <option value="Guyana">Guyana</option>
-                            <option value="Haiti">Haiti</option>
-                            <option value="Hawaii">Hawaii</option>
-                            <option value="Honduras">Honduras</option>
-                            <option value="Hong Kong">Hong Kong</option>
-                            <option value="Hungary">Hungary</option>
-                            <option value="Iceland">Iceland</option>
-                            <option value="Indonesia">Indonesia</option>
-                            <option value="India">India</option>
-                            <option value="Iran">Iran</option>
-                            <option value="Iraq">Iraq</option>
-                            <option value="Ireland">Ireland</option>
-                            <option value="Isle of Man">Isle of Man</option>
-                            <option value="Israel">Israel</option>
-                            <option value="Italy">Italy</option>
-                            <option value="Jamaica">Jamaica</option>
-                            <option value="Japan">Japan</option>
-                            <option value="Jordan">Jordan</option>
-                            <option value="Kazakhstan">Kazakhstan</option>
-                            <option value="Kenya">Kenya</option>
-                            <option value="Kiribati">Kiribati</option>
-                            <option value="Korea North">Korea North</option>
-                            <option value="Korea Sout">Korea South</option>
-                            <option value="Kuwait">Kuwait</option>
-                            <option value="Kyrgyzstan">Kyrgyzstan</option>
-                            <option value="Laos">Laos</option>
-                            <option value="Latvia">Latvia</option>
-                            <option value="Lebanon">Lebanon</option>
-                            <option value="Lesotho">Lesotho</option>
-                            <option value="Liberia">Liberia</option>
-                            <option value="Libya">Libya</option>
-                            <option value="Liechtenstein">Liechtenstein</option>
-                            <option value="Lithuania">Lithuania</option>
-                            <option value="Luxembourg">Luxembourg</option>
-                            <option value="Macau">Macau</option>
-                            <option value="Macedonia">Macedonia</option>
-                            <option value="Madagascar">Madagascar</option>
-                            <option value="Malaysia">Malaysia</option>
-                            <option value="Malawi">Malawi</option>
-                            <option value="Maldives">Maldives</option>
-                            <option value="Mali">Mali</option>
-                            <option value="Malta">Malta</option>
-                            <option value="Marshall Islands">Marshall Islands</option>
-                            <option value="Martinique">Martinique</option>
-                            <option value="Mauritania">Mauritania</option>
-                            <option value="Mauritius">Mauritius</option>
-                            <option value="Mayotte">Mayotte</option>
-                            <option value="Mexico">Mexico</option>
-                            <option value="Midway Islands">Midway Islands</option>
-                            <option value="Moldova">Moldova</option>
-                            <option value="Monaco">Monaco</option>
-                            <option value="Mongolia">Mongolia</option>
-                            <option value="Montserrat">Montserrat</option>
-                            <option value="Morocco">Morocco</option>
-                            <option value="Mozambique">Mozambique</option>
-                            <option value="Myanmar">Myanmar</option>
-                            <option value="Nambia">Nambia</option>
-                            <option value="Nauru">Nauru</option>
-                            <option value="Nepal">Nepal</option>
-                            <option value="Netherland Antilles">Netherland Antilles</option>
-                            <option value="Netherlands">Netherlands (Holland, Europe)</option>
-                            <option value="Nevis">Nevis</option>
-                            <option value="New Caledonia">New Caledonia</option>
-                            <option value="New Zealand">New Zealand</option>
-                            <option value="Nicaragua">Nicaragua</option>
-                            <option value="Niger">Niger</option>
-                            <option value="Nigeria">Nigeria</option>
-                            <option value="Niue">Niue</option>
-                            <option value="Norfolk Island">Norfolk Island</option>
-                            <option value="Norway">Norway</option>
-                            <option value="Oman">Oman</option>
-                            <option value="Pakistan">Pakistan</option>
-                            <option value="Palau Island">Palau Island</option>
-                            <option value="Palestine">Palestine</option>
-                            <option value="Panama">Panama</option>
-                            <option value="Papua New Guinea">Papua New Guinea</option>
-                            <option value="Paraguay">Paraguay</option>
-                            <option value="Peru">Peru</option>
-                            <option value="Phillipines">Philippines</option>
-                            <option value="Pitcairn Island">Pitcairn Island</option>
-                            <option value="Poland">Poland</option>
-                            <option value="Portugal">Portugal</option>
-                            <option value="Puerto Rico">Puerto Rico</option>
-                            <option value="Qatar">Qatar</option>
-                            <option value="Republic of Montenegro">Republic of Montenegro</option>
-                            <option value="Republic of Serbia">Republic of Serbia</option>
-                            <option value="Reunion">Reunion</option>
-                            <option value="Romania">Romania</option>
-                            <option value="Russia">Russia</option>
-                            <option value="Rwanda">Rwanda</option>
-                            <option value="St Barthelemy">St Barthelemy</option>
-                            <option value="St Eustatius">St Eustatius</option>
-                            <option value="St Helena">St Helena</option>
-                            <option value="St Kitts-Nevis">St Kitts-Nevis</option>
-                            <option value="St Lucia">St Lucia</option>
-                            <option value="St Maarten">St Maarten</option>
-                            <option value="St Pierre & Miquelon">St Pierre & Miquelon</option>
-                            <option value="St Vincent & Grenadines">St Vincent & Grenadines</option>
-                            <option value="Saipan">Saipan</option>
-                            <option value="Samoa">Samoa</option>
-                            <option value="Samoa American">Samoa American</option>
-                            <option value="San Marino">San Marino</option>
-                            <option value="Sao Tome & Principe">Sao Tome & Principe</option>
-                            <option value="Saudi Arabia">Saudi Arabia</option>
-                            <option value="Senegal">Senegal</option>
-                            <option value="Seychelles">Seychelles</option>
-                            <option value="Sierra Leone">Sierra Leone</option>
-                            <option value="Singapore">Singapore</option>
-                            <option value="Slovakia">Slovakia</option>
-                            <option value="Slovenia">Slovenia</option>
-                            <option value="Solomon Islands">Solomon Islands</option>
-                            <option value="Somalia">Somalia</option>
-                            <option value="South Africa">South Africa</option>
-                            <option value="Spain">Spain</option>
-                            <option value="Sri Lanka">Sri Lanka</option>
-                            <option value="Sudan">Sudan</option>
-                            <option value="Suriname">Suriname</option>
-                            <option value="Swaziland">Swaziland</option>
-                            <option value="Sweden">Sweden</option>
-                            <option value="Switzerland">Switzerland</option>
-                            <option value="Syria">Syria</option>
-                            <option value="Tahiti">Tahiti</option>
-                            <option value="Taiwan">Taiwan</option>
-                            <option value="Tajikistan">Tajikistan</option>
-                            <option value="Tanzania">Tanzania</option>
-                            <option value="Thailand">Thailand</option>
-                            <option value="Togo">Togo</option>
-                            <option value="Tokelau">Tokelau</option>
-                            <option value="Tonga">Tonga</option>
-                            <option value="Trinidad & Tobago">Trinidad & Tobago</option>
-                            <option value="Tunisia">Tunisia</option>
-                            <option value="Turkey">Turkey</option>
-                            <option value="Turkmenistan">Turkmenistan</option>
-                            <option value="Turks & Caicos Is">Turks & Caicos Is</option>
-                            <option value="Tuvalu">Tuvalu</option>
-                            <option value="Uganda">Uganda</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="Ukraine">Ukraine</option>
-                            <option value="United Arab Erimates">United Arab Emirates</option>
-                            <option value="United States of America">United States of America</option>
-                            <option value="Uraguay">Uruguay</option>
-                            <option value="Uzbekistan">Uzbekistan</option>
-                            <option value="Vanuatu">Vanuatu</option>
-                            <option value="Vatican City State">Vatican City State</option>
-                            <option value="Venezuela">Venezuela</option>
-                            <option value="Vietnam">Vietnam</option>
-                            <option value="Virgin Islands (Brit)">Virgin Islands (Brit)</option>
-                            <option value="Virgin Islands (USA)">Virgin Islands (USA)</option>
-                            <option value="Wake Island">Wake Island</option>
-                            <option value="Wallis & Futana Is">Wallis & Futana Is</option>
-                            <option value="Yemen">Yemen</option>
-                            <option value="Zaire">Zaire</option>
-                            <option value="Zambia">Zambia</option>
-                            <option value="Zimbabwe">Zimbabwe</option>
-                            </select>
                         
-                        </div>
                     </td>
                     </form>
                 </tr>
@@ -552,30 +349,36 @@
                     <td>
                         <center>
                             <div class="channel-layout-selector">
-                                <img src="/s/img/creator.png">
-                                <h2>Creator</h2>
-                                <p>
-                                    A featured video from a playlist<br>
-                                    with a group of featured playlists
-                                </p>
+                                <button onclick=";upload_layout('feed');return false;">
+                                    <img src="/s/img/creator.png">
+                                    <h2>Feed</h2>
+                                    <p>
+                                        A list of recent comments<br>
+                                        and videos from you
+                                    </p>
+                                </button>
                             </div>
                             <div class="channel-layout-selector">
-                                <img src="/s/img/blogger.png">
-                                <h2>Blogger</h2>
-                                <p>
-                                    A reverse chronological list of<br>
-                                    your recent uploads or a<br>
-                                    featured playlist<br>
-                                </p>
+                                <button onclick=";upload_layout('featured');return false;">
+                                    <img src="/s/img/blogger.png">
+                                    <h2>Blogger</h2>
+                                    <p>
+                                        A reverse chronological list of<br>
+                                        your recent uploads or a<br>
+                                        featured playlist<br>
+                                    </p>
+                                </button>
                             </div>
                             <div class="channel-layout-selector">
-                                <img src="/s/img/network.png">
-                                <h2>Network</h2>
-                                <p>
-                                    A featured video from a playlist <br>
-                                    with a group of featured<br>
-                                    channels
-                                </p>
+                                <button onclick=";upload_layout('playlists');return false;">
+                                    <img src="/s/img/network.png">
+                                    <h2>Network</h2>
+                                    <p>
+                                        A featured video from a playlist <br>
+                                        with a group of featured<br>
+                                        channels
+                                    </p>
+                                </button>
                             </div>
                             <div class="channel-layout-selector">
                                 <img src="/s/img/everything.png">
@@ -592,7 +395,7 @@
                 </tr>
             </table>
 
-            <table id="misc-table" style="display:none;width: 970px;padding: 10px;">
+            <table id="misc-table" style="width: 970px;padding: 10px;display:none;">
                 <tr>
                     <th></th>
                     <th></th>
@@ -601,30 +404,30 @@
                 <form method="post" id="miscform" action="/d/channel_update" enctype="multipart/form-data">
                     <td class="left-side-customization">
                         <b>Primary Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the text color of your channel ribbon.</span>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the text color of your channel ribbon.</span>
                         <div class="customization-module" id="primarycolor" style="float: right;position: relative;bottom: 15px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="solidcolor" name="solidcolor" value="<?php echo htmlspecialchars($_user['primary_color']); ?>">
                         </div><br><hr class="thin-line-darker" style="width: unset !important;">
                         <b>Channel Box Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the background color of the channel info box and the channel ribbon at top.</span><br>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the background color of the channel info box and the channel ribbon at top.</span><br>
                         <div class="customization-module" id="channelboxcolor" style="float: right;position: relative;bottom: 30px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="channelboxcolorpicker" name="channelboxcolor" value="<?php echo htmlspecialchars($_user['secondary_color']); ?>">
                         </div><br><hr class="thin-line-darker" style="width: unset !important;">
                         <b>Border Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the border color of all the elements.</span><br>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the border color of all the elements.</span><br>
                         <div class="customization-module" id="bordercolor" style="float: right;position: relative;bottom: 30px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="bordercolorpicker" name="bordercolor" value="<?php echo htmlspecialchars($_user['border_color']); ?>">
                         </div><br><hr class="thin-line-darker" style="width: unset !important;"><br><br><br>
-                        <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Set">
+                        <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Done Editing">
                     </td>
                     <td class="right-side-customization">
                         <b>Background Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the background of all the other boxes including the top featured area.</span><br>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the background of all the other boxes including the top featured area.</span><br>
                         <div class="customization-module" id="boxbackgroundcolor" style="float: right;position: relative;bottom: 30px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="solidcolorbackground" name="backgroundcolor" value="<?php echo htmlspecialchars($_user['third_color']); ?>">
                         </div><br><hr class="thin-line-darker">
                         <b>Text Main Color</b><br>
-                        <span style="font-size: 11px;display: inline-block;width: 256px;" class="grey-text">This will change the color of the text for boxes.</span><br>
+                        <span style="font-size: 11px;display: inline-block;width: 256px;">This will change the color of the text for boxes.</span><br>
                         <div class="customization-module" id="textmaincolor" style="float: right;position: relative;bottom: 30px;" action="/d/channel_update" enctype="multipart/form-data">
                             <input type="color" id="textmaincolor" name="textmaincolor" value="<?php echo htmlspecialchars($_user['primary_color_text']); ?>">
                         </div><br><hr class="thin-line-darker">
@@ -640,36 +443,71 @@
                 </tr>
                 <tr>
                 <form method="post" id="bgform" action="/d/channel_update" enctype="multipart/form-data">
-                    <td class="left-side-customization">
-                        <b>Background Options</b> <br>
-                        <span style="font-size: 11px;" class="grey-text">Choose how your background will be displayed.</span><br>
-                        <div class="customization-module"  id="backgroundoptions" method="post" action="/d/channel_update" enctype="multipart/form-data">
-                            <select class="yt-uix-button yt-uix-button-default" style="position:relative;bottom:-3px;"   name="bgoption" id="ifyouarereadingthisYOUSUCK">
-                                <option value="repeaty">Repeat - Y</option>
-                                <option value="repeatx">Repeat - X</option>
-                                <option value="norepeat">No Repeat</option>
-                                <option value="repeatxy">Repeat - X and Y</option>
-                                <option value="stretch">Stretch</option>
-                                <option value="solid">Solid</option>
+                    <td class="left-side-customization" style="width: 247px;">
+                        <h2>Channel information & Settings</h2>
+                        <span style="font-size: 10px;color: grey;">Featured Video</span><br>
+                        <input class="yt-uix-form-input-text" style="width: 225px;" id="biomd" placeholder="Video ID" value="<?php echo htmlspecialchars($_user['featured']);?>" name="videoid"><br><br>
+                        <span style="font-size: 10px;color: grey;">Description</span><br>
+                        <div id="bio" action="/d/channel_update" enctype="multipart/form-data">
+                            <textarea class="yt-uix-form-input-text" style="resize:none;height: 55px;width: 225px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
+                        </div>
+
+
+                        <br><input class="yt-uix-button yt-uix-button-default" type="submit" style="position: absolute;top: -89px;right: 66px;" value="Done Editing"><br><br>
+                    </td>
+                    <td class="right-side-customization" style="width: 630px;border: 0px;padding:0px;">
+                        <h2>Advanced</h2>
+                        <span style="font-size: 10px;color: grey;">Website URL</span><br>
+                        <div id="featuredvid" action="/d/channel_update" enctype="multipart/form-data">
+                        <input class="yt-uix-form-input-text" style="width: 225px;" id="biomd" placeholder="Website URL" value="<?php echo htmlspecialchars($_user['website']);?>" name="website">
+                        </div><br>
+                        <div>
+                            <span style="font-size: 10px;color: grey;">Featured Channels</span>
+                            <div id="featuredvid" action="/d/channel_update" enctype="multipart/form-data">
+                            <input class="yt-uix-form-input-text" style="width: 291px;"  id="biomd" placeholder="Seperate by commas!" value="<?php echo htmlspecialchars($_user['featured_channels']);?>" name="featuredchannels">
+                            </div>
+                        </div><br>
+
+                        <span style="font-size: 10px;color: grey;">Country</span><br>
+                        <div id="countryselect" action="/d/channel_update" enctype="multipart/form-data">
+                            <select style="width: 246px;" class="yt-uix-button yt-uix-button-default" id="country" name="country" value="<?php echo $_user['country']?>">
+                            <?php
+                            $countries = ["Select country","Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"];
+
+                            $countryLength = sizeof($countries);
+                            $i = 0;
+                            for($i = 0;$i <= $countryLength; $i++)
+                            {
+                                $c = $countries[$i];
+                                if ($c == $_user['country'])
+                                //country is the same as in database
+                                {
+                                ?>
+                                <option value="<?php echo $c; ?>" selected="selected"><?php echo $c; ?></option>
+                                <?php
+                                }
+                                else
+                                {
+                                ?>
+                                <option value="<?php echo $c;?>"><?php echo $c; ?></option>
+                                <?php
+                                }
+                            }
+                            ?>
                             </select>
-                            <div style="float: right;">
-                                <input style="position: relative;bottom: -2px;" type="color" id="solidcolor" name="solidcolor" value="<?php echo htmlspecialchars($_user['2009_bgcolor']); ?>">
+                        </div>
+
+                        <?php $categories = ["None", "Director", "Musician", "Comedian", "Guru", "Nonprofit"]; ?>
+                        <div style="position: relative;top: 7px;padding-bottom: 6px;">
+                            <span style="font-size: 10px;color: grey;">Channel Genre</span><br>
+                            <div id="channellayout" action="/d/channel_update" enctype="multipart/form-data">
+                                <select style="width: 246px;" class="yt-uix-button yt-uix-button-default" name="genre">
+                                    <?php foreach($categories as $category) { ?>
+                                        <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div><br><br>
-
-                        <hr class="thin-line-darker" style="width: unset;">
-                        <br><br>
-                        <input class="yt-uix-button yt-uix-button-default" style="position: absolute;left: 6px;bottom: 8px;" type="submit" value="Set">
-                    </td>
-                    <td class="right-side-customization">
-                        <b>Background</b> <br>
-                        <span style="font-size: 11px;" class="grey-text">Choose Image (Max file size: 10MB)</span><br>
-                        <div class="customization-module"  id="backgroundimage" method="post" action="/d/channel_update" enctype="multipart/form-data">
-                            <input type="file" name="backgroundbgset" id="background-upload">
-                            <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
-                        </div><br><br> 
-
-                        <hr class="thin-line-darker">
                     </td>
                 </form>
                 </tr>
@@ -813,6 +651,18 @@
             e.preventDefault();
         } 
     );
+
+    function upload_layout(layout) {
+        $.post("/d/channel_update",
+        {
+            layout_channel: layout
+        },
+        function(data, status){
+            alerts++;
+            addAlert("editsuccess_" + alerts, "Successfully updated your channel!");
+            showAlert("#editsuccess_" + alerts);
+        });
+    }
 </script>
 <script src="/s/js/channelEdit.js"></script>
 <script src="/s/js/alert.js"></script>

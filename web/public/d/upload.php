@@ -3,6 +3,7 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/time_manip.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_helper.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/video_helper.php"); ?>
+<?php $__server->page_title = "test"; ?>
 <?php $__video_h = new video_helper($__db); ?>
 <?php $__user_h = new user_helper($__db); ?>
 <?php $__db_h = new db_helper(); ?>
@@ -35,15 +36,28 @@
         'target_upload_name' => md5_file($_FILES["video_file"]["tmp_name"]) . ".mp4",
     ];
 
+    // $_FILES['video_file']['tmp_name'] = substr_replace($_FILES['video_file']['tmp_name'], '/', 8, 0);
+    /* -- /tmp/phpfAN4Xu -- Why in the fuck does this happen? I love PHP */
+
     if(move_uploaded_file(
         $_FILES['video_file']['tmp_name'], 
-        "dynamic/temp/" . $video_properties->video_rid . $video_validation->video_file_type
+        "../dynamic/temp/" . $video_properties->video_rid . $video_validation->video_file_type
     )) {
-        $video_properties->video_filename = "dynamic/temp/" . $video_properties->video_rid . $video_validation->video_file_type;
+        $video_properties->video_filename = "../dynamic/temp/" . $video_properties->video_rid . $video_validation->video_file_type;
     } else {
-        $video_validation->upload_error = "Failed to move temp file to dynamic folder. Pottential IO/permission problem.";
+        $video_validation->upload_error = "Failed to move temp file to dynamic folder. Pottential IO/permission problem." . $_FILES['video_file']['error'];
         $video_validation->upload_ok = 0;
     }
+
+    if( $video_validation->video_file_type == ".png" || 
+        $video_validation->video_file_type == ".jpg" || 
+        $video_validation->video_file_type == ".jpeg" || 
+        $video_validation->video_file_type == ".gif"
+    ) {
+        $video_validation->upload_error = "You cannot upload an image as a video." . $_FILES['video_file']['error'];
+        $video_validation->upload_ok = 0;
+    }
+        
 
     /* 
         I'm going to hopefully guess that
@@ -63,13 +77,13 @@
 
         /* Process the video... */
         $video_validation->video_processing_logs = shell_exec('
-            ' . $__server->ffmpeg_binary . ' -hide_banner -loglevel error -i "' . $video_properties->video_filename . '" -vcodec h264 -acodec aac -pix_fmt yuv420p -threads 2 -preset medium -vf "scale=-1:480,pad=ceil(iw/2)*2:ceil(ih/2)*2" -b:v 1500k "dynamic/videos/' . $video_properties->video_rid . '.mp4" 2>&1
+            ' . $__server->ffmpeg_binary . ' -hide_banner -loglevel error -i "' . $video_properties->video_filename . '" -vcodec h264 -acodec aac -pix_fmt yuv420p -threads 2 -preset medium -vf "scale=-1:480,pad=ceil(iw/2)*2:ceil(ih/2)*2" -b:v 1500k "../dynamic/videos/' . $video_properties->video_rid . '.mp4" 2>&1
         ');
 
 
         /* Process the thumbnail... */
         $video_properties->video_thumbnail = shell_exec('
-            ' . $__server->ffmpeg_binary . ' -hide_banner -loglevel error -i "dynamic/videos/' . $video_properties->video_rid . '.mp4" -vf "select=eq(n\\,34),scale=-1:360" -vframes 1 "dynamic/thumbs/' . $video_properties->video_rid . '.png" 2>&1
+            ' . $__server->ffmpeg_binary . ' -hide_banner -loglevel error -i "../dynamic/videos/' . $video_properties->video_rid . '.mp4" -vf "select=eq(n\\,34),scale=-1:360" -vframes 1 "../dynamic/thumbs/' . $video_properties->video_rid . '.png" 2>&1
         ');
         
         /* For some reason, I have to do this manually for only the thumbnail */
@@ -94,7 +108,8 @@
         $stmt->bindParam(":xml", $video_properties->video_xml);
         $stmt->bindParam(":category", $video_properties->video_category);
         $stmt->execute();
+        echo($video_properties->video_rid);
+    } else {
+        die($video_validation->upload_error);
     }
-
-    echo $video_properties->video_rid;
 ?>

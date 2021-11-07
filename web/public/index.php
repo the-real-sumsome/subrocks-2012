@@ -3,11 +3,16 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/time_manip.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_helper.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/video_helper.php"); ?>
-
 <?php $__video_h = new video_helper($__db); ?>
 <?php $__user_h = new user_helper($__db); ?>
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - Homepage";
+	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
+	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -220,7 +225,7 @@
 							</p>
 							<ul>
 								<?php
-									$stmt = $__db->prepare("SELECT * FROM videos ORDER BY rand() LIMIT 4");
+									$stmt = $__db->prepare("SELECT * FROM videos WHERE visibility = 'n' ORDER BY rand() LIMIT 4");
 									$stmt->execute();
 									while($video = $stmt->fetch(PDO::FETCH_ASSOC)) {	
 										$video['age'] = $__time_h->time_elapsed_string($video['publish']);		
@@ -243,7 +248,7 @@
 							</h3>
 							<ul>
 								<?php
-									$stmt = $__db->prepare("SELECT * FROM videos WHERE featured = 'v' ORDER BY id DESC LIMIT 4");
+									$stmt = $__db->prepare("SELECT * FROM videos WHERE featured = 'v' AND visibility = 'n' ORDER BY id DESC LIMIT 4");
 									$stmt->execute();
 									while($video = $stmt->fetch(PDO::FETCH_ASSOC)) {	
 										$video['age'] = $__time_h->time_elapsed_string($video['publish']);		
@@ -276,7 +281,7 @@
 									<div class="feed-page">
 										<ul>
 											<?php
-												$stmt = $__db->prepare("SELECT * FROM videos ORDER BY id DESC LIMIT 20");
+												$stmt = $__db->prepare("SELECT * FROM videos WHERE visibility = 'n' ORDER BY id DESC LIMIT 20");
 												$stmt->execute();
 												while($video = $stmt->fetch(PDO::FETCH_ASSOC)) {	
 													$video['age'] = $__time_h->time_elapsed_string($video['publish']);		
@@ -527,6 +532,7 @@
 			</div>
 		</div>
 		<!-- end page -->
+<script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script id="www-core-js" src="//s.ytimg.com/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script>
 			yt.setConfig({

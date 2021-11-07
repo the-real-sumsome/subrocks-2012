@@ -62,7 +62,7 @@
     $_user['third_color'] = substr($_user['third_color'], 0, 7);
     $_user['text_color'] = substr($_user['text_color'], 0, 7);
     $_user['primary_color_text'] = substr($_user['primary_color_text'], 0, 7);
-    $_user['2009_bgcolor'] = substr($_user['2009_bgcolor'], 0, 7);
+    $_user['2012_bgcolor'] = substr($_user['2012_bgcolor'], 0, 7);
 
     $_user['genre'] = strtolower($_user['genre']);
 	$_user['subscribed'] = $__user_h->if_subscribed(@$_SESSION['siteusername'], $_user['username']);
@@ -72,7 +72,7 @@
     if(!check_valid_colorhex($_user['third_color']) && strlen($_user['third_color']) != 6) { $_user['third_color'] = ""; }
     if(!check_valid_colorhex($_user['text_color']) && strlen($_user['text_color']) != 6) { $_user['text_color'] = ""; }
     if(!check_valid_colorhex($_user['primary_color_text']) && strlen($_user['primary_color_text']) != 6) { $_user['primary_color_text'] = ""; }
-    if(!check_valid_colorhex($_user['2009_bgcolor']) && strlen($_user['2009_bgcolor']) != 6) { $_user['2009_bgcolor'] = ""; }
+    if(!check_valid_colorhex($_user['2012_bgcolor']) && strlen($_user['2012_bgcolor']) != 6) { $_user['2012_bgcolor'] = ""; }
 
 	if(isset($_SESSION['siteusername']))
     	$__user_i->check_view_channel($_user['username'], @$_SESSION['siteusername']);
@@ -103,11 +103,21 @@
             }
         }
     }
-	?>
+?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - " . htmlspecialchars($_user['username']);
+	$__server->page_embeds->page_description = htmlspecialchars($_user['bio']);
+	$__server->page_embeds->page_image = "/dynamic/pfp/" . htmlspecialchars($_user['pfp']);
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>
 <!DOCTYPE html>
 <html dir="ltr" xmlns:og="http://opengraphprotocol.org/schema/" lang="en">
 	<!-- machid: sNW5tN3Z2SWdXaDRqNGxuNEF5MFBxM1BxWXd0VGo0Rkg3UXNTTTNCUGRDWjR0WGpHR3R1YzFR -->
 	<head>
+	<script>
+         var yt = yt || {};yt.timing = yt.timing || {};yt.timing.tick = function(label, opt_time) {var timer = yt.timing['timer'] || {};if(opt_time) {timer[label] = opt_time;}else {timer[label] = new Date().getTime();}yt.timing['timer'] = timer;};yt.timing.info = function(label, value) {var info_args = yt.timing['info_args'] || {};info_args[label] = value;yt.timing['info_args'] = info_args;};yt.timing.info('e', "907722,906062,910102,927104,922401,920704,912806,927201,913546,913556,925109,919003,920201,912706,900816");yt.timing.wff = true;yt.timing.info('an', "");if (document.webkitVisibilityState == 'prerender') {document.addEventListener('webkitvisibilitychange', function() {yt.timing.tick('start');}, false);}yt.timing.tick('start');yt.timing.info('li','0');try {yt.timing['srt'] = window.gtbExternal && window.gtbExternal.pageT() ||window.external && window.external.pageT;} catch(e) {}if (window.chrome && window.chrome.csi) {yt.timing['srt'] = Math.floor(window.chrome.csi().pageT);}if (window.msPerformance && window.msPerformance.timing) {yt.timing['srt'] = window.msPerformance.timing.responseStart - window.msPerformance.timing.navigationStart;}    
+      </script>
+      <script>var yt = yt || {};yt.preload = {};yt.preload.counter_ = 0;yt.preload.start = function(src) {var img = new Image();var counter = ++yt.preload.counter_;yt.preload[counter] = img;img.onload = img.onerror = function () {delete yt.preload[counter];};img.src = src;img = null;};yt.preload.start("\/\/o-o---preferred---sn-o097zne7---v18---lscache1.c.youtube.com\/crossdomain.xml");yt.preload.start("\/\/o-o---preferred---sn-o097zne7---v18---lscache1.c.youtube.com\/generate_204?ip=207.241.237.166\u0026upn=sWh0pzcodo0\u0026sparams=algorithm%2Cburst%2Ccp%2Cfactor%2Cgcr%2Cid%2Cip%2Cipbits%2Citag%2Csource%2Cupn%2Cexpire\u0026fexp=907722%2C906062%2C910102%2C927104%2C922401%2C920704%2C912806%2C927201%2C913546%2C913556%2C925109%2C919003%2C920201%2C912706%2C900816\u0026mt=1349916311\u0026key=yt1\u0026algorithm=throttle-factor\u0026burst=40\u0026ipbits=8\u0026itag=34\u0026sver=3\u0026signature=C397DCB00566E0FBB1551675B6108A4158C34557.CB3777882F05D65158C043C258FF8D4EBA90FA50\u0026mv=m\u0026source=youtube\u0026ms=au\u0026gcr=us\u0026expire=1349937946\u0026factor=1.25\u0026cp=U0hTTllOVV9JUENOM19RSFlKOmVLUWdkTXRmS0dX\u0026id=a078394896111c0d");</script>
         <title><?php echo $__server->page_embeds->page_title; ?></title>
 		<meta property="og:title" content="<?php echo $__server->page_embeds->page_title; ?>" />
 		<meta property="og:url" content="<?php echo $__server->page_embeds->page_url; ?>" />
@@ -117,6 +127,7 @@
 			var yt = yt || {};yt.timing = yt.timing || {};yt.timing.tick = function(label, opt_time) {var timer = yt.timing['timer'] || {};if(opt_time) {timer[label] = opt_time;}else {timer[label] = new Date().getTime();}yt.timing['timer'] = timer;};yt.timing.info = function(label, value) {var info_args = yt.timing['info_args'] || {};info_args[label] = value;yt.timing['info_args'] = info_args;};yt.timing.info('e', "904821,919006,922401,920704,912806,913419,913546,913556,919349,919351,925109,919003,920201,912706");if (document.webkitVisibilityState == 'prerender') {document.addEventListener('webkitvisibilitychange', function() {yt.timing.tick('start');}, false);}yt.timing.tick('start');yt.timing.info('li','0');try {yt.timing['srt'] = window.gtbExternal && window.gtbExternal.pageT() ||window.external && window.external.pageT;} catch(e) {}if (window.chrome && window.chrome.csi) {yt.timing['srt'] = Math.floor(window.chrome.csi().pageT);}if (window.msPerformance && window.msPerformance.timing) {yt.timing['srt'] = window.msPerformance.timing.responseStart - window.msPerformance.timing.navigationStart;}    
 		</script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="/yt/jsbin/plupload.full.min.js"></script>
 		<link id="www-core-css" rel="stylesheet" href="/yt/cssbin/www-core-vfluMRDnk.css">
 		<script src="/s/js/alert.js"></script>
 		<link rel="stylesheet" href="/yt/cssbin/www-guide-vflx0V5Tq.css">
@@ -126,11 +137,43 @@
 		<style>
 			#content-container {
 				background-color: <?php echo $_user['primary_color'];  ?>;
-				background-image: url(/dynamic/banners/<?php echo $_user['2009_bg']; ?>);
+				background-image: url(/dynamic/banners/<?php echo $_user['2012_bg']; ?>);
 				background-repeat: repeat;
-				background-position: center top;
+				<?php
+					switch($_user['2012_bgoption']) {
+						case "stretch":
+						echo "background-size: cover;";
+						break;
+						case "solid":
+						echo "";
+						break;
+						case "norepeat":
+						echo "background-repeat: no-repeat !important;";
+						break;
+						case "repeatxy":
+						echo "background-repeat: repeat;";
+						break;
+						case "repeaty":
+						echo "background-repeat: repeat-y;";
+						break;
+						case "repeatx":
+						echo "background-repeat: repeat-x;";
+						break;
+					}
+				?>
 			}
    		</style>
+		   <script>
+         var gYouTubePlayerReady = false;
+         if (!window['onYouTubePlayerReady']) {
+           window['onYouTubePlayerReady'] = function() {
+             gYouTubePlayerReady = true;
+           };
+         }
+      </script>
+      <script>
+         if (window.yt.timing) {yt.timing.tick("ct");}    
+      </script>
 	</head>
 	<body id="" class="date-20120614 en_US ltr   ytg-old-clearfix " dir="ltr">
 		<form name="logoutForm" method="POST" action="/logout">
@@ -192,7 +235,7 @@
 											<a href="/user/<?php echo htmlspecialchars($_user['username']); ?>">
 											<span class="profile-thumb">
 											<span class="centering-wrap">
-											<img src="/dynamic/pfp/<?php echo htmlspecialchars($_user['pfp']); ?>" title="<?php echo htmlspecialchars($_user['username']); ?>" alt="<?php echo htmlspecialchars($_user['username']); ?>">
+											<img id="photo-update" src="/dynamic/pfp/<?php echo htmlspecialchars($_user['pfp']); ?>" title="<?php echo htmlspecialchars($_user['username']); ?>" alt="<?php echo htmlspecialchars($_user['username']); ?>">
 											</span>
 											</span>
 											</a>
@@ -276,275 +319,7 @@
 							</div>
                             <?php if($_user['featured'] != "None") { $video = $__video_h->fetch_video_rid($_user['featured']); } else { $_user['featured'] = false; } ?>
 							<div id="branded-page-body">
-								<div class="channel-tab-content channel-layout-two-column selected blogger-template">
-									<div class="tab-content-body">
-										<div class="primary-pane">
-                                            <?php if($_user['featured'] != false && $__video_h->video_exists($_user['featured'])) { ?>
-											<div class="channels-featured-video channel-module yt-uix-c3-module-container has-visible-edge">
-												<div class="module-view featured-video-view-module">
-													<div class="channels-video-player " data-swf-config="{&quot;assets&quot;: {&quot;html&quot;: &quot;\/html5_player_template&quot;, &quot;css&quot;: &quot;http:\/\/s.ytimg.com\/yt\/cssbin\/www-player-vfllhw7HB.css&quot;, &quot;js&quot;: &quot;http:\/\/s.ytimg.com\/yt\/jsbin\/html5player-vflzTrRqK.js&quot;}, &quot;url&quot;: &quot;http:\/\/s.ytimg.com\/yt\/swfbin\/watch_as3-vflbPspVE.swf&quot;, &quot;min_version&quot;: &quot;8.0.0&quot;, &quot;args&quot;: {&quot;ttsurl&quot;: &quot;http:\/\/www.youtube.com\/api\/timedtext?sparams=asr_langs%2Ccaps%2Cv%2Cexpire\u0026asr_langs=en%2Cko%2Cja%2Ces\u0026v=/watch?v=<?php echo $video['rid']; ?>\u0026caps=asr\u0026expire=1339746882\u0026key=yttt1\u0026signature=A1B858FF427B45672676C7403417ED1F4091A806.C347A6021C0F843E46F2056AEBA38FC93A0A47B8\u0026hl=en_US&quot;, &quot;el&quot;: &quot;profilepage&quot;, &quot;fexp&quot;: &quot;904001,907342,904824,910206,908620,907217,907335,921602,919306,922600,919316,920704,912804,913542,919324,912706&quot;, &quot;url_encoded_fmt_stream_map&quot;: &quot;url=http%3A%2F%2Fo-o.preferred.nuq04s10.v1.lscache4.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dcp%252Cid%252Cip%252Cipbits%252Citag%252Cratebypass%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26ms%3Dau%26itag%3D44%26ip%3D207.0.0.0%26signature%3D9B9B5ECF02F2F66BDCCB0ACED26D3406F9F83241.1B2CC833461E3D2C4D081B7DFBC65B0948C61FB9%26sver%3D3%26mt%3D1339721111%26ratebypass%3Dyes%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=large\u0026fallback_host=tc.v1.cache4.c.youtube.com\u0026type=video%2Fwebm%3B+codecs%3D%22vp8.0%2C+vorbis%22\u0026itag=44,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v14.lscache1.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dalgorithm%252Cburst%252Ccp%252Cfactor%252Cid%252Cip%252Cipbits%252Citag%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26mt%3D1339721111%26ms%3Dau%26algorithm%3Dthrottle-factor%26itag%3D35%26ip%3D207.0.0.0%26burst%3D40%26sver%3D3%26signature%3DB702D7CA72653169BDC2C945B5A35F4A23A3FEBF.ACC660CDAB11901FF8D3DA8D384D61F0AB0F0125%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26factor%3D1.25%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=large\u0026fallback_host=tc.v14.cache1.c.youtube.com\u0026type=video%2Fx-flv\u0026itag=35,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v24.lscache3.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dcp%252Cid%252Cip%252Cipbits%252Citag%252Cratebypass%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26ms%3Dau%26itag%3D43%26ip%3D207.0.0.0%26signature%3D9FABDD8C013AA137B87DF2D154D1B90E6827A2A3.880FECDEC066236D85FCF223CF472B62B8F9B3A4%26sver%3D3%26mt%3D1339721111%26ratebypass%3Dyes%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=medium\u0026fallback_host=tc.v24.cache3.c.youtube.com\u0026type=video%2Fwebm%3B+codecs%3D%22vp8.0%2C+vorbis%22\u0026itag=43,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v3.lscache7.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dalgorithm%252Cburst%252Ccp%252Cfactor%252Cid%252Cip%252Cipbits%252Citag%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26mt%3D1339721111%26ms%3Dau%26algorithm%3Dthrottle-factor%26itag%3D34%26ip%3D207.0.0.0%26burst%3D40%26sver%3D3%26signature%3D1BA326B784DAA9F62FD789CBB5C2FABFCD5D351C.C4618E3AB2AB08C61C6A982A36F405DA886B5D5A%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26factor%3D1.25%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=medium\u0026fallback_host=tc.v3.cache7.c.youtube.com\u0026type=video%2Fx-flv\u0026itag=34,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v14.lscache1.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dcp%252Cid%252Cip%252Cipbits%252Citag%252Cratebypass%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26ms%3Dau%26itag%3D18%26ip%3D207.0.0.0%26signature%3D8806EA8FAE16557A2F9732068442133EA0A0760F.D91694A47E6B0BF627965CDA46010F36105A28FE%26sver%3D3%26mt%3D1339721111%26ratebypass%3Dyes%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=medium\u0026fallback_host=tc.v14.cache1.c.youtube.com\u0026type=video%2Fmp4%3B+codecs%3D%22avc1.42001E%2C+mp4a.40.2%22\u0026itag=18,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v4.lscache1.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dalgorithm%252Cburst%252Ccp%252Cfactor%252Cid%252Cip%252Cipbits%252Citag%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26mt%3D1339721111%26ms%3Dau%26algorithm%3Dthrottle-factor%26itag%3D5%26ip%3D207.0.0.0%26burst%3D40%26sver%3D3%26signature%3D011CB6739AB60ED79D032DE2F62EB016D8A8E462.C2C0ABE42F26DBA18F2BC6E0D074EB99A95C0DF0%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26factor%3D1.25%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=small\u0026fallback_host=tc.v4.cache1.c.youtube.com\u0026type=video%2Fx-flv\u0026itag=5,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v12.lscache3.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dalgorithm%252Cburst%252Ccp%252Cfactor%252Cid%252Cip%252Cipbits%252Citag%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26mt%3D1339721111%26ms%3Dau%26algorithm%3Dthrottle-factor%26itag%3D36%26ip%3D207.0.0.0%26burst%3D40%26sver%3D3%26signature%3D988FDD37CBA8DB74C1148EE17921D8549434297C.A2C1796F2BA0427C9FE370BFB6B3B09BA1D81B07%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26factor%3D1.25%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=small\u0026fallback_host=tc.v12.cache3.c.youtube.com\u0026type=video%2F3gpp\u0026itag=36&quot;, &quot;allow_embed&quot;: 1, &quot;vq&quot;: &quot;auto&quot;, &quot;account_playback_token&quot;: &quot;&quot;, &quot;allow_ratings&quot;: 1, &quot;keywords&quot;: &quot;Rehearsal,Dance,justin,bieber,believe,as,long,you,love,me,rodney,jerkins,pattie,mallette,jeremy,dad,mom,scooter,braun,island,def,jam,usher,rbmg,making,of,the,album,webisode,june,19th,19,new,amazing,song,big,sean,hit,record,<?php echo htmlspecialchars($_user['username']); ?>,always,still,studio,singing,kuk,harrell,producer,sing,boy,guy,man,smash,single,nick,demoura,dancers,sweat,beliebers,hard,work,tour,band&quot;, &quot;cc3_module&quot;: &quot;http:\/\/s.ytimg.com\/yt\/swfbin\/subtitles3_module-vflu_Qeod.swf&quot;, &quot;track_embed&quot;: 0, &quot;is_purchased&quot;: false, &quot;ps&quot;: &quot;default&quot;, &quot;fmt_list&quot;: &quot;44\/854x480\/99\/0\/0,35\/854x480\/9\/0\/115,43\/640x360\/99\/0\/0,34\/640x360\/9\/0\/115,18\/640x360\/9\/0\/115,5\/320x240\/7\/0\/0,36\/320x240\/99\/0\/0&quot;, &quot;author&quot;: &quot;<?php echo htmlspecialchars($_user['username']); ?>&quot;, &quot;muted&quot;: &quot;0&quot;, &quot;cc_module&quot;: &quot;http:\/\/s.ytimg.com\/yt\/swfbin\/subtitle_module-vflq8KnSi.swf&quot;, &quot;length_seconds&quot;: 82, &quot;feature&quot;: &quot;g-logo-xit&quot;, &quot;enablejsapi&quot;: 1, &quot;rel&quot;: 0, &quot;plid&quot;: &quot;AATCeEL9eg3Ls9t-&quot;, &quot;cc_font&quot;: &quot;Arial Unicode MS, arial, verdana, _sans&quot;, &quot;ftoken&quot;: &quot;&quot;, &quot;sdetail&quot;: &quot;f:g-logo-xit,p:\/&quot;, &quot;status&quot;: &quot;ok&quot;, &quot;cc_asr&quot;: 1, &quot;watermark&quot;: &quot;,http:\/\/s.ytimg.com\/yt\/img\/watermark\/youtube_watermark-vflHX6b6E.png,http:\/\/s.ytimg.com\/yt\/img\/watermark\/youtube_hd_watermark-vflAzLcD6.png&quot;, &quot;sourceid&quot;: &quot;y&quot;, &quot;timestamp&quot;: 1339721682, &quot;has_cc&quot;: true, &quot;view_count&quot;: 2600, &quot;quality_cap&quot;: &quot;highres&quot;, &quot;hl&quot;: &quot;en_US&quot;, &quot;tmi&quot;: &quot;1&quot;, &quot;no_get_video_log&quot;: &quot;1&quot;, &quot;eurl&quot;: &quot;http:\/\/www.youtube.com\/user\/<?php echo htmlspecialchars($_user['username']); ?>&quot;, &quot;iurl&quot;: &quot;http:\/\/i3.ytimg.com\/vi\//watch?v=<?php echo $video['rid']; ?>\/hqdefault.jpg&quot;, &quot;endscreen_module&quot;: &quot;http:\/\/s.ytimg.com\/yt\/swfbin\/endscreen-vflJBKwqC.swf&quot;, &quot;referrer&quot;: &quot;http:\/\/www.youtube.com\/&quot;, &quot;avg_rating&quot;: 4.97805486284, &quot;video_id&quot;: &quot;/watch?v=<?php echo $video['rid']; ?>&quot;, &quot;sendtmp&quot;: &quot;1&quot;, &quot;sk&quot;: &quot;bwv_lGOGF4u1g0p7puy7ERICN8NZ5cVFC&quot;, &quot;is_video_preview&quot;: false, &quot;token&quot;: &quot;vjVQa1PpcFMSYb-unvOiIgSL8pW9tObJUMfrEc1mxfE=&quot;, &quot;thumbnail_url&quot;: &quot;http:\/\/i3.ytimg.com\/vi\//watch?v=<?php echo $video['rid']; ?>\/default.jpg&quot;, &quot;iurlsd&quot;: &quot;http:\/\/i3.ytimg.com\/vi\//watch?v=<?php echo $video['rid']; ?>\/sddefault.jpg&quot;, &quot;autoplay&quot;: &quot;1&quot;}, &quot;url_v9as2&quot;: &quot;http:\/\/s.ytimg.com\/yt\/swfbin\/cps-vflhvG6F4.swf&quot;, &quot;params&quot;: {&quot;allowscriptaccess&quot;: &quot;always&quot;, &quot;allowfullscreen&quot;: &quot;true&quot;, &quot;bgcolor&quot;: &quot;#000000&quot;}, &quot;attrs&quot;: {&quot;width&quot;: &quot;640&quot;, &quot;id&quot;: &quot;movie_player&quot;, &quot;height&quot;: &quot;390&quot;}, &quot;url_v8&quot;: &quot;http:\/\/s.ytimg.com\/yt\/swfbin\/cps-vflhvG6F4.swf&quot;, &quot;html5&quot;: false}" data-video-id="/watch?v=<?php echo $video['rid']; ?>">
-													</div>
-													<div class="channels-featured-video-details yt-tile-visible clearfix">
-														<h3 class="title">
-															<a href="/watch?v=<?php echo $video['rid']; ?>">
-															<?php echo htmlspecialchars($video['title']); ?>
-															</a>
-															<div class="view-count-and-actions">
-																<div class="view-count">
-																	<span class="count">
-																	<?php echo $__video_h->fetch_video_views($video['rid']); ?>
-																	</span>
-																	views
-																</div>
-															</div>
-														</h3>
-														<p class="channels-featured-video-metadata">
-															<span>by <?php echo htmlspecialchars($_user['username']); ?></span>
-															<span class="created-date"><?php echo $__time_h->time_elapsed_string($video['publish']); ?></span>
-														</p>
-													</div>
-												</div>
-											</div>
-                                            <?php } ?>
-											<div class="single-playlist channel-module yt-uix-c3-module-container">
-												<div class="module-view single-playlist-view-module">
-													<div class="blogger-playall">
-                                                        <!--
-                                                            <a class="yt-playall-link yt-playall-link-default " href="/watch?v=<?php echo $video['rid']; ?>&amp;list=UUIwFjwMjI0y7PDBVEO9-bkQ&amp;feature=plcp">
-                                                            <img class="small-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
-                                                            Play all
-                                                            </a>
-                                                        -->
-													</div>
-													<div class="playlist-info">
-														<h2>Uploaded videos</h2>
-														<div class="yt-horizontal-rule "><span class="first"></span><span class="second"></span><span class="third"></span></div>
-														<?php if($_user['videos'] == 0) { ?>
-															<h4>This user has not uploaded a video yet.</h4>
-														<?php } ?>
-													</div>
-													<ul class="gh-single-playlist">
-                                                        <?php 
-                                                            $stmt = $__db->prepare("SELECT * FROM videos WHERE author = :username ORDER BY id DESC LIMIT 20");
-                                                            $stmt->bindParam(":username", $_user['username']);
-                                                            $stmt->execute();
-                                                            while($video = $stmt->fetch(PDO::FETCH_ASSOC)) { 
-                                                        ?>
-														<li class="blogger-video">
-															<div class="video yt-tile-visible">
-																<a href="/watch?v=<?php echo $video['rid']; ?>">
-																<span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-288 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" alt="Thumbnail" onerror="this.onerror=null;this.src='/dynamic/thumbs/default.jpg';" width="288"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $__time_h->timestamp($video['duration']); ?></span>
-																<button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="/watch?v=<?php echo $video['rid']; ?>" role="button"><span class="yt-uix-button-content">  <span class="addto-label">
-																Watch Later
-																</span>
-																<span class="addto-label-error" style="display: none;">
-																Error
-																</span>
-																<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif">
-																</span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
-																</span>
-																<span class="video-item-content">
-																<span class="video-overview">
-																<span class="title video-title" title="<?php echo htmlspecialchars($video['title']); ?>"><?php echo htmlspecialchars($video['title']); ?></span>
-																</span>
-																<span class="video-details">
-																<span class="yt-user-name video-owner" dir="ltr"><?php echo htmlspecialchars($_user['username']); ?></span>
-																<span class="video-view-count">
-																<?php echo $__video_h->fetch_video_views($video['rid']); ?> views
-																</span>
-																<span class="video-time-published"><?php echo $__time_h->time_elapsed_string($video['publish']); ?></span>
-																<span class="video-item-description"><?php echo $__video_h->shorten_description($video['description'], 100); ?></span>
-																</span>
-																</span>
-																</a>
-															</div>
-														</li>
-                                                        <?php } ?>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="secondary-pane">
-											<div id="watch-longform-ad" style="display:none;">
-												<div id="watch-longform-text">
-													Advertisement
-												</div>
-												<div id="watch-longform-ad-placeholder"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" width="300" height="60"></div>
-												<div id="instream_google_companion_ad_div"></div>
-											</div>
-											<div id="watch-channel-brand-div" class="companion-ads has-visible-edge channel-module yt-uix-c3-module-container hid">
-												<div id="ad300x250"></div>
-												<div id="google_companion_ad_div"></div>
-												<div class="ad-label-text">
-													Advertisement
-												</div>
-											</div>
-											<div class="user-profile channel-module yt-uix-c3-module-container ">
-												<div class="module-view profile-view-module" data-owner-external-id="IwFjwMjI0y7PDBVEO9-bkQ">
-													<h2>About <?php echo htmlspecialchars($_user['username']); ?></h2>
-													<div class="section first">
-														<div class="user-profile-item profile-description">
-															<p><?php echo $__video_h->shorten_description($_user['bio'], 5000); ?></p>
-														</div>
-														<div class="user-profile-item">
-														</div>
-														<div class="user-profile-item">
-                                                            <!--
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="http://smarturl.it/boyfriend?IQid=youtube" rel="me nofollow" target="_blank" title="Get &quot;Boyfriend&quot; on iTunes" class="yt-uix-redirect-link">
-																<img src="//s2.googleusercontent.com/s2/favicons?domain=smarturl.it&amp;feature=youtube_channel" class="favicon" alt="">
-																<span class="link-text">
-																Get "Boyfriend" on iTunes
-																</span>
-																</a>
-															</div>
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="http://bieberfever.com/" rel="me nofollow" target="_blank" title="Bieber Fever" class="yt-uix-redirect-link">
-																<img src="//s2.googleusercontent.com/s2/favicons?domain=bieberfever.com&amp;feature=youtube_channel" class="favicon" alt="">
-																<span class="link-text">
-																Bieber Fever
-																</span>
-																</a>
-															</div>
-                                                            -->
-														</div>
-														<hr class="yt-horizontal-rule ">
-													</div>
-													<?php if(!empty($_user['website'])) { ?>
-														<div class="user-profile-item">
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="<?php echo addhttp(htmlspecialchars($_user['website'])); ?>" rel="me nofollow" target="_blank" title="<?php echo htmlspecialchars($_user['website']); ?>" class="yt-uix-redirect-link">
-																<img src="/yt/imgbin/custom_site.png" class="favicon" alt="">
-																<span class="link-text">
-																<?php echo htmlspecialchars($_user['website']); ?>
-																</span>
-																</a>
-															</div>
-														</div>
-														<div class="user-profile-item">
-															<!--
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="http://smarturl.it/boyfriend?IQid=youtube" rel="me nofollow" target="_blank" title="Get &quot;Boyfriend&quot; on iTunes" class="yt-uix-redirect-link">
-																<img src="//s2.googleusercontent.com/s2/favicons?domain=smarturl.it&amp;feature=youtube_channel" class="favicon" alt="">
-																<span class="link-text">
-																Get "Boyfriend" on iTunes
-																</span>
-																</a>
-															</div>
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="http://bieberfever.com/" rel="me nofollow" target="_blank" title="Bieber Fever" class="yt-uix-redirect-link">
-																<img src="//s2.googleusercontent.com/s2/favicons?domain=bieberfever.com&amp;feature=youtube_channel" class="favicon" alt="">
-																<span class="link-text">
-																Bieber Fever
-																</span>
-																</a>
-															</div>
-															-->
-														</div>
-														<hr class="yt-horizontal-rule ">
-														<?php } ?>
-													<div class="section created-by-section">
-														<div class="user-profile-item">
-															by <span class="yt-user-name " dir="ltr"><?php echo htmlspecialchars($_user['username']); ?></span>
-														</div>
-														<div class="user-profile-item ">
-															<h5>Latest Activity</h5>
-															<span class="value"><?php echo date("M d, Y", strtotime($_user['lastlogin'])); ?></span>
-														</div>
-														<div class="user-profile-item ">
-															<h5>Date Joined</h5>
-															<span class="value"><?php echo date("M d, Y", strtotime($_user['created'])); ?></span>
-														</div>
-														<div class="user-profile-item ">
-															<h5>Country</h5>
-															<span class="value"><?php echo htmlspecialchars($_user['country']); ?></span>
-														</div>
-														<?php if($_user['genre'] != "none") { ?>
-															<div class="user-profile-item ">
-																<h5>Channel Genre</h5>
-																<span class="value"><?php echo htmlspecialchars($_user['genre']); ?></span>
-															</div>
-														<?php } ?>
-													</div>
-													<hr class="yt-horizontal-rule ">
-												</div>
-											</div>
-											<div class="channel-module other-channels yt-uix-c3-module-container other-channels-compact">
-												<?php $_user['featured_channels'] = explode(",", $_user['featured_channels']); ?>
-												<?php if(count($_user['featured_channels']) != 0) { ?>
-												<div class="module-view other-channels-view">
-													<h2>Featured Channels</h2>
-													<ul class="channel-summary-list ">
-														<?php 
-															foreach($_user['featured_channels'] as $user) {
-																if($__user_h->user_exists($user)) {
-														?>
-															<li class="yt-tile-visible yt-uix-tile">
-																<div class="channel-summary clearfix channel-summary-compact">
-																	<div class="channel-summary-thumb">
-																		<span class="video-thumb ux-thumb yt-thumb-square-46 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Thumbnail" onerror="this.onerror=null;this.src='/dynamic/thumbs/default.jpg';" data-thumb="/dynamic/pfp/<?php echo $__user_h->fetch_pfp($user); ?>" width="46"><span class="vertical-align"></span></span></span></span>
-																	</div>
-																	<div class="channel-summary-info">
-																		<h3 class="channel-summary-title">
-																			<a href="/user/<?php echo htmlspecialchars($user); ?>" class="yt-uix-tile-link"><?php echo htmlspecialchars($user); ?></a>
-																		</h3>
-																		<span class="subscriber-count">
-																		<strong><?php echo $__user_h->fetch_subs_count($user); ?></strong>
-																		subscribers
-																		</span>
-																	</div>
-																</div>
-															</li>
-														<?php } } ?>
-													</ul>
-												</div>
-												<?php } ?>
-											</div>
-
-											<?php 
-												$stmt = $__db->prepare("SELECT * FROM playlists WHERE author = :search ORDER BY id DESC LIMIT 10");
-												$stmt->bindParam(":search", $_user['username']);
-												$stmt->execute();
-
-												if($stmt->rowCount() != 0) {
-											?>
-												<div class="playlists-narrow channel-module yt-uix-c3-module-container">
-													<div class="module-view gh-featured">
-														<h2>Featured Playlists</h2>     
-														<?php
-														while($playlist = $stmt->fetch(PDO::FETCH_ASSOC)) { 
-															$playlist['videos'] = json_decode($playlist['videos']);
-														?> 
-															<div class="playlist yt-tile-visible yt-uix-tile">
-																<a href="/view_playlist?v=<?php echo $playlist['rid']; ?>">
-																<span class="playlist-thumb-strip playlist-thumb-strip-252"><span class="videos videos-4 horizontal-cutoff"><span class="clip"><span class="centering-offset"><span class="centering">
-																	<span class="ie7-vertical-align-hack">&nbsp;</span>
-																	<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" data-thumb="" alt="" class="thumb"></span></span></span>
-																	<span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;
-
-																	</span><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="" class="thumb"></span></span></span>
-																	<span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span>
-																	<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" data-thumb="" alt="" class="thumb"></span></span></span></span><span class="resting-overlay"><img src="//s.ytimg.com/yt/img/channels/play-icon-resting-vflXxuFB8.png" class="play-button" alt="Play all">  <span class="video-count-box">
-																<?php echo count($playlist['videos']); ?> videos
-																</span>
-																</span><span class="hover-overlay"><span class="play-all-container"><strong><img src="//s.ytimg.com/yt/img/channels/mini-play-all-vflZu1SBs.png" alt="">Play all</strong></span></span></span>
-																</a>
-																<h3>
-																	<a href="/view_playlist?v=<?php echo $playlist['rid']; ?>" title="See all videos in playlist." class="yt-uix-tile-link">
-																		<?php echo htmlspecialchars($playlist['title']); ?>
-																	</a>
-																</h3>
-																<span class="playlist-author-attribution">
-																by <?php echo htmlspecialchars($_user['username']); ?>
-																</span>
-															</div>
-														<?php }  ?>
-													</div>
-												</div>
-											<?php } ?>
-										</div>
-									</div>
-								</div>
+								<?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/channel_" . $_user['layout'] . ".php"); ?>
 							</div>
 						</div>
 					</div>
@@ -690,129 +465,184 @@
 			</div>
 		</div>
 		<!-- end page -->
+<script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script id="www-core-js" src="//s.ytimg.com/yt/jsbin/www-core-vfl-1JTp7.js" data-loaded="true"></script>
 		<script>
 			yt.setConfig({
-			'XSRF_TOKEN': 'HxVja_B7VM4N8Luf5v0rMCobR658MTMzOTgwODA4MkAxMzM5NzIxNjgy',
+			'XSRF_TOKEN': 'sWZ0733z73lb8fEYAYSd84MaNV98MTM0OTEzMDExNUAxMzQ5MDQzNzE1',
 			'XSRF_FIELD_NAME': 'session_token'
 			});
 			yt.pubsub.subscribe('init', yt.www.xsrf.populateSessionToken);
 			
-			yt.setConfig('XSRF_REDIRECT_TOKEN', 'DsikobgaHVx4FiaLsFlCk4-dGCt8MTMzOTgwODA4MkAxMzM5NzIxNjgy');
+			yt.setConfig('XSRF_REDIRECT_TOKEN', '08fYRr2a9pjbx2VYZhoZtyl-4lh8MTM0OTEzMDExNUAxMzQ5MDQzNzE1');
 			
-			yt.setConfig('LOGGED_IN', false);
-			yt.setConfig('SESSION_INDEX', null);
+			yt.setConfig({
+			'EVENT_ID': "CJuY27ur3rICFaL4OgodEHRznw==",
+			'CURRENT_URL': "\/\/www.youtube.com\/watch?v=<?php echo htmlspecialchars($_video['rid']); ?>\u0026feature=g-logo-xit",
+			'LOGGED_IN': false,
+			'SESSION_INDEX': null,
 			
-			yt.setConfig('FEEDBACK_LOCALE_LANGUAGE', "en");
-			yt.setConfig('FEEDBACK_LOCALE_EXTRAS', {"experiments": "904001,907342,904824,910206,908620,907217,907335,921602,919306,922600,919316,920704,912804,913542,919324,912706", "accept_language": null});
+			'WATCH_CONTEXT_CLIENTSIDE': false,
+			
+			'FEEDBACK_LOCALE_LANGUAGE': "en",
+			'FEEDBACK_LOCALE_EXTRAS': {"logged_in": false, "experiments": "906717,901803,907354,904448,901424,922401,920704,912806,913419,913546,913556,919349,919351,925109,919003,912706,900816", "guide_subs": "NA", "accept_language": null}    });
 		</script>
 		<script>
 			if (window.yt.timing) {yt.timing.tick("js_head");}    
 		</script>
-		<script src="//s.ytimg.com/yt/jsbin/www-channels3-vflCdEY9I.js" data-loaded="true"></script>
 		<script>
-			yt.setConfig('CHANNEL_ID', "IwFjwMjI0y7PDBVEO9-bkQ");
-			yt.setAjaxToken('channel_ajax', "");
+			yt.setAjaxToken('subscription_ajax', "");
+			yt.pubsub.subscribe('init', yt.www.subscriptions.SubscriptionButton.init);
+			
+		</script>
+		<script>
+			yt.setConfig({
+			  'VIDEO_ID': "<?php echo htmlspecialchars($_video['rid']); ?>"    });
+			yt.setAjaxToken('watch_actions_ajax', "");
+			
+			if (window['gYouTubePlayerReady']) {
+			  yt.registerGlobal('gYouTubePlayerReady');
+			}
+		</script>
+		<script>
+    yt = yt || {};
+      yt.playerConfig = {"assets": {"css_actions": "\/\/s.ytimg.com\/yt\/cssbin\/www-player-actions-vflWsl9n_.css", "html": "\/html5_player_template", "css": "\/\/s.ytimg.com\/yt\/cssbin\/www-player-vflE5bu0u.css", "js": "\/\/s.ytimg.com\/yt\/jsbin\/html5player-vfl1S0-AB.js"}, "url": "\/\/s.ytimg.com\/yt\/swfbin\/watch_as3-vfloWhEvq.swf", "min_version": "8.0.0", "args": {"fexp": "907722,906062,910102,927104,922401,920704,912806,927201,913546,913556,925109,919003,920201,912706,900816", "ptk": "youtube_multi", "enablecsi": "1", "allow_embed": 1, "rvs": "", "vq": "auto", "account_playback_token": "", "autohide": "2", "csi_page_type": "watch5", "keywords": "<?php echo htmlspecialchars($_video['tags']); ?>", "cr": "US", "iv3_module": "\/\/s.ytimg.com\/yt\/swfbin\/iv3_module-vflGCS_pr.swf", "fmt_list": "43\/320x240\/99\/0\/0,34\/320x240\/9\/0\/115,18\/320x240\/9\/0\/115,5\/320x240\/7\/0\/0,36\/320x240\/99\/0\/0,17\/176x144\/99\/0\/0", "title": "<?php echo htmlspecialchars($_video['title']); ?>", "length_seconds": <?php echo $_video['duration']; ?>, "enablejsapi": 1, "advideo": "1", "tk": "o3_r7m6s_HAaFxeywi14S3qFcY4uSrEiWfZ8KVUoyEB_gj1rlrELuQ==", "iv_load_policy": 1, "iv_module": "\/\/s.ytimg.com\/yt\/swfbin\/iv_module-vflBJ5PLc.swf", "sdetail": "p:bit.ly\/dwMq4b", "url_encoded_fmt_stream_map": "", "watermark": ",\/\/s.ytimg.com\/yt\/img\/watermark\/youtube_watermark-vflHX6b6E.png,\/\/s.ytimg.com\/yt\/img\/watermark\/youtube_hd_watermark-vflAzLcD6.png", "sourceid": "r", "timestamp": 1349916364, "storyboard_spec": "", "plid": "AATLveVba5g8mPZ8", "showpopout": 1, "hl": "en_US", "tmi": "1", "iv_logging_level": 4, "st_module": "\/\/s.ytimg.com\/yt\/swfbin\/st_module-vflCXoloO.swf", "no_get_video_log": "1", "iv_close_button": 0, "endscreen_module": "\/\/s.ytimg.com\/yt\/swfbin\/endscreen-vflK6XzTZ.swf", "iv_read_url": "\/\/www.youtube.com\/annotations_iv\/read2?sparams=expire%2Cvideo_id\u0026expire=1349959800\u0026key=a1\u0026signature=815C68436F1E8F95A9283A421D758B7A6452EFD9.5029A9CC9CFCF79F0B17A60238447CA0FE7CA991\u0026video_id=oHg5SJYRHA0\u0026feat=CS", "iv_queue_log_level": 0, "referrer": "\/\/bit.ly\/dwMq4b", "video_id": "<?php echo htmlspecialchars($_video['rid']); ?>", "sw": "1.0", "sk": "4md16KjsgYmUvVHOsiBQxSFIkPbju0d8C", "pltype": "contentugc", "t": "vjVQa1PpcFN8E8yJ1Q1BJFTy1GYmGAMgRZUyNC4FMBY=", "loudness": -23.6900005341}, "url_v9as2": "\/\/s.ytimg.com\/yt\/swfbin\/cps-vfl2Ur0rq.swf", "params": {"allowscriptaccess": "always", "allowfullscreen": "true", "bgcolor": "#000000"}, "attrs": {"id": "movie_player"}, "url_v8": "\/\/s.ytimg.com\/yt\/swfbin\/cps-vfl2Ur0rq.swf", "html5": true};
+      yt.setConfig({
+    'EMBED_HTML_TEMPLATE': "\u003ciframe width=\"__width__\" height=\"__height__\" src=\"__url__\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e",
+    'EMBED_HTML_URL': "\/\/www.youtube.com\/embed\/__videoid__"
+  });
+    yt.setMsg('FLASH_UPGRADE', "\u003cdiv class=\"yt-alert yt-alert-default yt-alert-error  yt-alert-player\"\u003e  \u003cdiv class=\"yt-alert-icon\"\u003e\n    \u003cimg s\u0072c=\"\/\/s.ytimg.com\/yt\/img\/pixel-vfl3z5WfW.gif\" class=\"icon master-sprite\" alt=\"Alert icon\"\u003e\n  \u003c\/div\u003e\n\u003cdiv class=\"yt-alert-buttons\"\u003e\u003c\/div\u003e\u003cdiv class=\"yt-alert-content\" role=\"alert\"\u003e    \u003cspan class=\"yt-alert-vertical-trick\"\u003e\u003c\/span\u003e\n    \u003cdiv class=\"yt-alert-message\"\u003e\n            You need to upgrade your Adobe Flash Player to watch this video. \u003cbr\u003e \u003ca href=\"\/\/get.adobe.com\/flashplayer\/\"\u003eDownload it from Adobe.\u003c\/a\u003e\n    \u003c\/div\u003e\n\u003c\/div\u003e\u003c\/div\u003e");
+  yt.setMsg('PLAYER_FALLBACK', "\u003cdiv class=\"yt-alert yt-alert-default yt-alert-error  yt-alert-player\"\u003e  \u003cdiv class=\"yt-alert-icon\"\u003e\n    \u003cimg s\u0072c=\"\/\/s.ytimg.com\/yt\/img\/pixel-vfl3z5WfW.gif\" class=\"icon master-sprite\" alt=\"Alert icon\"\u003e\n  \u003c\/div\u003e\n\u003cdiv class=\"yt-alert-buttons\"\u003e\u003c\/div\u003e\u003cdiv class=\"yt-alert-content\" role=\"alert\"\u003e    \u003cspan class=\"yt-alert-vertical-trick\"\u003e\u003c\/span\u003e\n    \u003cdiv class=\"yt-alert-message\"\u003e\n            The Adobe Flash Player or an HTML5 supported browser is required for video playback. \u003cbr\u003e \u003ca href=\"\/\/get.adobe.com\/flashplayer\/\"\u003eGet the latest Flash Player\u003c\/a\u003e \u003cbr\u003e \u003ca href=\"\/html5\"\u003eLearn more about upgrading to an HTML5 browser\u003c\/a\u003e\n    \u003c\/div\u003e\n\u003c\/div\u003e\u003c\/div\u003e");
+  yt.setMsg('QUICKTIME_FALLBACK', "\u003cdiv class=\"yt-alert yt-alert-default yt-alert-error  yt-alert-player\"\u003e  \u003cdiv class=\"yt-alert-icon\"\u003e\n    \u003cimg s\u0072c=\"\/\/s.ytimg.com\/yt\/img\/pixel-vfl3z5WfW.gif\" class=\"icon master-sprite\" alt=\"Alert icon\"\u003e\n  \u003c\/div\u003e\n\u003cdiv class=\"yt-alert-buttons\"\u003e\u003c\/div\u003e\u003cdiv class=\"yt-alert-content\" role=\"alert\"\u003e    \u003cspan class=\"yt-alert-vertical-trick\"\u003e\u003c\/span\u003e\n    \u003cdiv class=\"yt-alert-message\"\u003e\n            The Adobe Flash Player or QuickTime is required for video playback. \u003cbr\u003e \u003ca href=\"\/\/get.adobe.com\/flashplayer\/\"\u003eGet the latest Flash Player\u003c\/a\u003e \u003cbr\u003e \u003ca href=\"\/\/www.apple.com\/quicktime\/download\/\"\u003eGet the latest version of QuickTime\u003c\/a\u003e\n    \u003c\/div\u003e\n\u003c\/div\u003e\u003c\/div\u003e");
+
+
+    (function() {
+      var forceUpdate = yt.www.watch.player.updateConfig(yt.playerConfig);
+      var youTubePlayer = yt.player.update('watch-player', yt.playerConfig,
+          forceUpdate, gYouTubePlayerReady);
+      yt.setConfig({'PLAYER_REFERENCE': youTubePlayer});
+    })();
+  </script>
+		<script>
+			yt.setConfig({
+			  'SUBSCRIBE_AXC': "",
+			
+			  'IS_OWNER_VIEWING': null,
+			  'IS_WIDESCREEN': false,
+			  'PREFER_LOW_QUALITY': false,
+			  'WIDE_PLAYER_STYLES': ["watch-wide-mode"],
+			  'COMMENT_SHARE_URL': "\/\/www.youtube.com\/comment?lc=_COMMENT_ID_",
+			  'ALLOW_EMBED': true,
+			  'ALLOW_RATINGS': true,
+			
+			  'LIST_AUTO_PLAY_ON': false,
+			  'LIST_AUTO_PLAY_VALUE': 1,
+			  'SHUFFLE_VALUE': 0,
+			  'SHUFFLE_ENABLED': false,
+			  'YPC_CAN_RATE_VIDEO': true,
+			  'YPC_SHOW_VPPA_CONFIRM_RATING': false,
+			
+			
+			
+			
+			
+			
+			
+			
+			  'PLAYBACK_ID': "AATK8rd3IxlBnwIO",
+			  'PLAY_ALL_MAX': 480    });
 			
 			yt.setMsg({
+			  'LOADING': "Loading...",
+			  'WATCH_ERROR_MESSAGE': "This feature is not available right now. Please try again later."    });
+			
+			
+			
+			  yt.setMsg({
 			'UNBLOCK_USER': "Are you sure you want to unblock this user?",
 			'BLOCK_USER': "Are you sure you want to block this user?"
 			});
 			yt.setConfig('BLOCK_USER_AJAX_XSRF', '');
 			
 			
+			  yt.setConfig({
+			'COMMENT_SHARE_URL': "\/\/www.youtube.com\/comment?lc=_COMMENT_ID_",
+			'COMMENTS_SIGNIN_URL': "",
+			'COMMENTS_THRESHHOLD': -5,
+			'COMMENTS_PAGE_SIZE': 10,
+			'COMMENTS_COUNT': 41353,
+			'COMMENTS_YPC_CAN_POST_OR_REACT_TO_COMMENT': true,
+			'COMMENT_VOTE_XSRF' : '',
+			'COMMENT_ACTIONS_XSRF' : '',
+			'COMMENT_SOURCE': "w",
+			'ENABLE_LIVE_COMMENTS': true  });
+			
+			yt.setAjaxToken('link_ajax', "");
+			yt.setAjaxToken('comment_servlet', "");
+			yt.setAjaxToken('comment_voting', "");
+			
 			yt.setMsg({
-			'GENERIC_EDITOR_ERROR': "An error occurred. Please try again later."
-			});
-			yt.pubsub.subscribe('init', yt.www.channels3.channel.init);
-			
-		</script>
-		<script>
-			yt.setAjaxToken('subscription_ajax', "");
-			  yt.pubsub.subscribe('init', yt.www.subscriptions.SubscriptionButton.init);
-		</script>
-		<script src="//s.ytimg.com/yt/jsbin/www-watch-livestreaming-vfliBd-IQ.js" data-loaded="true"></script>
-		<script>
-			yt.setMsg('FLASH_UPGRADE', "\u003cdiv class=\"yt-alert yt-alert-default yt-alert-error  yt-alert-player\"\u003e\u003cdiv class=\"yt-alert-icon\"\u003e\u003cimg s\u0072c=\"\/\/s.ytimg.com\/yt\/img\/pixel-vfl3z5WfW.gif\" class=\"icon master-sprite\" alt=\"Alert icon\"\u003e\u003c\/div\u003e\u003cdiv class=\"yt-alert-buttons\"\u003e\u003c\/div\u003e\u003cdiv class=\"yt-alert-content\" role=\"alert\"\u003e    \u003cspan class=\"yt-alert-vertical-trick\"\u003e\u003c\/span\u003e\n    \u003cdiv class=\"yt-alert-message\"\u003e\n            You need to upgrade your Adobe Flash Player to watch this video. \u003cbr\u003e \u003ca href=\"http:\/\/get.adobe.com\/flashplayer\/\"\u003eDownload it from Adobe.\u003c\/a\u003e\n    \u003c\/div\u003e\n\u003c\/div\u003e\u003c\/div\u003e");
-			yt.setConfig({
-			'PLAYER_CONFIG': {"assets": {"html": "\/html5_player_template", "css": "http:\/\/s.ytimg.com\/yt\/cssbin\/www-player-vfllhw7HB.css", "js": "http:\/\/s.ytimg.com\/yt\/jsbin\/html5player-vflzTrRqK.js"}, "url": "http:\/\/s.ytimg.com\/yt\/swfbin\/watch_as3-vflbPspVE.swf", "min_version": "8.0.0", "args": {"ttsurl": "http:\/\/www.youtube.com\/api\/timedtext?sparams=asr_langs%2Ccaps%2Cv%2Cexpire\u0026asr_langs=en%2Cko%2Cja%2Ces\u0026v=/watch?v=<?php echo $video['rid']; ?>\u0026caps=asr\u0026expire=1339746882\u0026key=yttt1\u0026signature=A1B858FF427B45672676C7403417ED1F4091A806.C347A6021C0F843E46F2056AEBA38FC93A0A47B8\u0026hl=en_US", "el": "profilepage", "fexp": "904001,907342,904824,910206,908620,907217,907335,921602,919306,922600,919316,920704,912804,913542,919324,912706", "url_encoded_fmt_stream_map": "url=http%3A%2F%2Fo-o.preferred.nuq04s10.v1.lscache4.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dcp%252Cid%252Cip%252Cipbits%252Citag%252Cratebypass%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26ms%3Dau%26itag%3D44%26ip%3D207.0.0.0%26signature%3D9B9B5ECF02F2F66BDCCB0ACED26D3406F9F83241.1B2CC833461E3D2C4D081B7DFBC65B0948C61FB9%26sver%3D3%26mt%3D1339721111%26ratebypass%3Dyes%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=large\u0026fallback_host=tc.v1.cache4.c.youtube.com\u0026type=video%2Fwebm%3B+codecs%3D%22vp8.0%2C+vorbis%22\u0026itag=44,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v14.lscache1.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dalgorithm%252Cburst%252Ccp%252Cfactor%252Cid%252Cip%252Cipbits%252Citag%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26mt%3D1339721111%26ms%3Dau%26algorithm%3Dthrottle-factor%26itag%3D35%26ip%3D207.0.0.0%26burst%3D40%26sver%3D3%26signature%3DB702D7CA72653169BDC2C945B5A35F4A23A3FEBF.ACC660CDAB11901FF8D3DA8D384D61F0AB0F0125%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26factor%3D1.25%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=large\u0026fallback_host=tc.v14.cache1.c.youtube.com\u0026type=video%2Fx-flv\u0026itag=35,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v24.lscache3.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dcp%252Cid%252Cip%252Cipbits%252Citag%252Cratebypass%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26ms%3Dau%26itag%3D43%26ip%3D207.0.0.0%26signature%3D9FABDD8C013AA137B87DF2D154D1B90E6827A2A3.880FECDEC066236D85FCF223CF472B62B8F9B3A4%26sver%3D3%26mt%3D1339721111%26ratebypass%3Dyes%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=medium\u0026fallback_host=tc.v24.cache3.c.youtube.com\u0026type=video%2Fwebm%3B+codecs%3D%22vp8.0%2C+vorbis%22\u0026itag=43,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v3.lscache7.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dalgorithm%252Cburst%252Ccp%252Cfactor%252Cid%252Cip%252Cipbits%252Citag%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26mt%3D1339721111%26ms%3Dau%26algorithm%3Dthrottle-factor%26itag%3D34%26ip%3D207.0.0.0%26burst%3D40%26sver%3D3%26signature%3D1BA326B784DAA9F62FD789CBB5C2FABFCD5D351C.C4618E3AB2AB08C61C6A982A36F405DA886B5D5A%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26factor%3D1.25%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=medium\u0026fallback_host=tc.v3.cache7.c.youtube.com\u0026type=video%2Fx-flv\u0026itag=34,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v14.lscache1.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dcp%252Cid%252Cip%252Cipbits%252Citag%252Cratebypass%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26ms%3Dau%26itag%3D18%26ip%3D207.0.0.0%26signature%3D8806EA8FAE16557A2F9732068442133EA0A0760F.D91694A47E6B0BF627965CDA46010F36105A28FE%26sver%3D3%26mt%3D1339721111%26ratebypass%3Dyes%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=medium\u0026fallback_host=tc.v14.cache1.c.youtube.com\u0026type=video%2Fmp4%3B+codecs%3D%22avc1.42001E%2C+mp4a.40.2%22\u0026itag=18,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v4.lscache1.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dalgorithm%252Cburst%252Ccp%252Cfactor%252Cid%252Cip%252Cipbits%252Citag%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26mt%3D1339721111%26ms%3Dau%26algorithm%3Dthrottle-factor%26itag%3D5%26ip%3D207.0.0.0%26burst%3D40%26sver%3D3%26signature%3D011CB6739AB60ED79D032DE2F62EB016D8A8E462.C2C0ABE42F26DBA18F2BC6E0D074EB99A95C0DF0%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26factor%3D1.25%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=small\u0026fallback_host=tc.v4.cache1.c.youtube.com\u0026type=video%2Fx-flv\u0026itag=5,url=http%3A%2F%2Fo-o.preferred.nuq04s10.v12.lscache3.c.youtube.com%2Fvideoplayback%3Fupn%3D_7WL7XeDtjs%26sparams%3Dalgorithm%252Cburst%252Ccp%252Cfactor%252Cid%252Cip%252Cipbits%252Citag%252Csource%252Cupn%252Cexpire%26fexp%3D904001%252C907342%252C904824%252C910206%252C908620%252C907217%252C907335%252C921602%252C919306%252C922600%252C919316%252C920704%252C912804%252C913542%252C919324%252C912706%26mt%3D1339721111%26ms%3Dau%26algorithm%3Dthrottle-factor%26itag%3D36%26ip%3D207.0.0.0%26burst%3D40%26sver%3D3%26signature%3D988FDD37CBA8DB74C1148EE17921D8549434297C.A2C1796F2BA0427C9FE370BFB6B3B09BA1D81B07%26source%3Dyoutube%26expire%3D1339743583%26key%3Dyt1%26ipbits%3D8%26factor%3D1.25%26cp%3DU0hSTldPUV9NTUNOMl9PSVVGOmdTcVlPRFNNTEdM%26id%3D56ffd0bfee85d71f\u0026quality=small\u0026fallback_host=tc.v12.cache3.c.youtube.com\u0026type=video%2F3gpp\u0026itag=36", "allow_embed": 1, "vq": "auto", "account_playback_token": "", "allow_ratings": 1, "keywords": "Rehearsal,Dance,justin,bieber,believe,as,long,you,love,me,rodney,jerkins,pattie,mallette,jeremy,dad,mom,scooter,braun,island,def,jam,usher,rbmg,making,of,the,album,webisode,june,19th,19,new,amazing,song,big,sean,hit,record,<?php echo htmlspecialchars($_user['username']); ?>,always,still,studio,singing,kuk,harrell,producer,sing,boy,guy,man,smash,single,nick,demoura,dancers,sweat,beliebers,hard,work,tour,band", "cc3_module": "http:\/\/s.ytimg.com\/yt\/swfbin\/subtitles3_module-vflu_Qeod.swf", "track_embed": 0, "is_purchased": false, "ps": "default", "fmt_list": "44\/854x480\/99\/0\/0,35\/854x480\/9\/0\/115,43\/640x360\/99\/0\/0,34\/640x360\/9\/0\/115,18\/640x360\/9\/0\/115,5\/320x240\/7\/0\/0,36\/320x240\/99\/0\/0", "author": "<?php echo htmlspecialchars($_user['username']); ?>", "muted": "0", "cc_module": "http:\/\/s.ytimg.com\/yt\/swfbin\/subtitle_module-vflq8KnSi.swf", "length_seconds": 82, "feature": "g-logo-xit", "enablejsapi": 1, "rel": 0, "plid": "AATCeEL9eg3Ls9t-", "cc_font": "Arial Unicode MS, arial, verdana, _sans", "ftoken": "", "sdetail": "f:g-logo-xit,p:\/", "status": "ok", "cc_asr": 1, "watermark": ",http:\/\/s.ytimg.com\/yt\/img\/watermark\/youtube_watermark-vflHX6b6E.png,http:\/\/s.ytimg.com\/yt\/img\/watermark\/youtube_hd_watermark-vflAzLcD6.png", "sourceid": "y", "timestamp": 1339721682, "has_cc": true, "view_count": 2600, "quality_cap": "highres", "hl": "en_US", "tmi": "1", "no_get_video_log": "1", "eurl": "http:\/\/www.youtube.com\/user\/<?php echo htmlspecialchars($_user['username']); ?>", "iurl": "http:\/\/i3.ytimg.com\/vi\//watch?v=<?php echo $video['rid']; ?>\/hqdefault.jpg", "endscreen_module": "http:\/\/s.ytimg.com\/yt\/swfbin\/endscreen-vflJBKwqC.swf", "referrer": "http:\/\/www.youtube.com\/", "avg_rating": 4.97805486284, "video_id": "/watch?v=<?php echo $video['rid']; ?>", "sendtmp": "1", "sk": "bwv_lGOGF4u1g0p7puy7ERICN8NZ5cVFC", "is_video_preview": false, "token": "vjVQa1PpcFMSYb-unvOiIgSL8pW9tObJUMfrEc1mxfE=", "thumbnail_url": "http:\/\/i3.ytimg.com\/vi\//watch?v=<?php echo $video['rid']; ?>\/default.jpg", "iurlsd": "http:\/\/i3.ytimg.com\/vi\//watch?v=<?php echo $video['rid']; ?>\/sddefault.jpg", "autoplay": "1"}, "url_v9as2": "http:\/\/s.ytimg.com\/yt\/swfbin\/cps-vflhvG6F4.swf", "params": {"allowscriptaccess": "always", "allowfullscreen": "true", "bgcolor": "#000000"}, "attrs": {"width": "640", "id": "movie_player", "height": "390"}, "url_v8": "http:\/\/s.ytimg.com\/yt\/swfbin\/cps-vflhvG6F4.swf", "html5": false}
+			'COMMENT_OK': "OK",
+			'COMMENT_BLOCKED': "You have been blocked by the owner of this video.",
+			'COMMENT_CAPTCHAFAIL': "The response to the letters on the image was not correct, please try again.",
+			'COMMENT_PENDING': "Comment Pending Approval!",
+			'COMMENT_ERROR_EMAIL': "Error, account unverified (see email)",
+			'COMMENT_ERROR': "Error, try again",
+			'COMMENT_OWNER_LINKING': "Comments can't contain links, please put the link in your video description and refer to it in the comment."
 			});
 			
-		</script>
-		<script>
+			yt.pubsub.subscribe('init', yt.www.comments.init);
+			
+			  yt.setConfig({
+			'ENABLE_LIVE_COMMENTS': true,
+			'COMMENTS_VIDEO_ID': "<?php echo htmlspecialchars($_video['rid']); ?>",
+			'COMMENTS_LATEST_TIMESTAMP': 1349043702,
+			'COMMENTS_POLLING_INTERVAL': 15000,
+			'COMMENTS_FORCE_SCROLLING': false,
+			'COMMENTS_PAGE_SIZE': 10  });
+			
+			yt.setMsg({
+			'LC_COUNT_NEW_COMMENTS': "\u003ca href=\"#\" onclick=\"yt.www.watch.livecomments.showNewComments(); return false;\"\u003eShow $count new comments.\u003c\/a\u003e"
+			});
+			
 			yt.pubsub.subscribe('init', function() {
-			  yt.setAjaxToken('watch_actions_ajax', "");
-			});
-			yt.setMsg({
-			    'CHANNELS3_FEATURED_PLAYER_GENERIC_ERROR': "This feature is not available right now. Please try again later."
-			})
-			  yt.pubsub.subscribe('init', function () {
-			    yt.www.livestreaming.ConcurrentViewers(30000)
+			  yt.net.scriptloader.load("\/\/s.ytimg.com\/yt\/jsbin\/www-livecomments-vflCp_BeU.js", function() {
+			    yt.www.watch.livecomments.init();
 			  });
-		</script>
-		<script>
-			yt.pubsub.subscribe('init', yt.www.channels3.channel.initBloggerLayout);
-		</script>
-		<script>
-			var channel_customization_toggled = false;
-
-			function open_channel_customization() {
-				console.log("fuck");
-				if(channel_customization_toggled == false) {
-					console.log("fuck1");
-					$("#masthead-customization").fadeIn(300);
-					channel_customization_toggled = true;
-				} else {
-					console.log("fuck2");
-					$("#masthead-customization").fadeOut(300);
-					channel_customization_toggled = false;	
-				}
-			}
-		</script>
-		<div id="ad_creative_1" class="ad-div " style="z-index: 1">
-			<iframe id="ad_creative_iframe_1" scrolling="no" style="z-index: 1" src="//ad-g.doubleclick.net/adi/com.ytbc/<?php echo htmlspecialchars($_user['username']); ?>;sz=1x1;kpu=<?php echo htmlspecialchars($_user['username']); ?>;tile=1;plat=pc;dc_dedup=1;kcr=us;kga=-1;kgg=-1;klg=en;kmyd=ad_creative_1;kt=K;ord=211420892612853?" pu2kj6459="" width="1" height="1" frameborder="0"></iframe>
-			<div style="font-size: 10px; padding-top: 3px;" class="alignC grayText">
-				<a href="/t/ads_preferences">
-				Advertisement
-				</a>
-			</div>
-			<script>
-				(function() {
-				  var addTimestamp = (Math.floor(Math.random() * 1000) == 0);
-				  if (addTimestamp) {
-				    var kts = new Date().getTime();
-				    var iframeSrc = "//ad-g.doubleclick.net/adi/com.ytbc/<?php echo htmlspecialchars($_user['username']); ?>;sz=1x1;kpu=<?php echo htmlspecialchars($_user['username']); ?>;tile=1;plat=pc;dc_dedup=1;kcr=us;kga=-1;kgg=-1;klg=en;kmyd=ad_creative_1;kt=K;kts=" + kts + ";ord=211420892612853?";
-				  } else {
-				    var iframeSrc = "//ad-g.doubleclick.net/adi/com.ytbc/<?php echo htmlspecialchars($_user['username']); ?>;sz=1x1;kpu=<?php echo htmlspecialchars($_user['username']); ?>;tile=1;plat=pc;dc_dedup=1;kcr=us;kga=-1;kgg=-1;klg=en;kmyd=ad_creative_1;kt=K;ord=211420892612853?";
-				  }
-				  var adIframe = document.getElementById("ad_creative_iframe_1");
-				  adIframe.src = iframeSrc;
-				})();
-			</script>
-		</div>
-		<script src="//www.googletagservices.com/tag/js/gpt.js"></script>
-		<script>
-			(function() {
-			  if (!window.googletag) {
-			    return;
-			  }
-			  var gutSlot = googletag.defineSlot("/4061/com.youtube/default", [[300, 250], [300, 60]], 'yt-gut-content');
-			  gutSlot.set('ad_type', 'flash');
-			  gutSlot.addService(googletag.companionAds());
-			  googletag.enableServices();
+			});
 			
-			  yt.setConfig('gut_slot', gutSlot);
-			  yt.setConfig('yt_gut_invideo_size', gutSlot.getSizes()[0]);
-			  yt.setConfig('yt_gut_instream_size', gutSlot.getSizes()[1]);
-			})();
+			
+			
+			  yt.setConfig('ENABLE_AUTO_LARGE', true);
+			  yt.www.watch.watch5.updatePlayerSize();
+			  yt.pubsub.subscribe('init', function() {
+			    yt.events.listen(window, 'resize',
+			        yt.www.watch.watch5.handleResize);
+			  });
+			
+			yt.pubsub.subscribe('init', yt.www.watch.activity.init);
+			yt.pubsub.subscribe('init', yt.www.watch.player.init);
+			yt.pubsub.subscribe('init', yt.www.watch.actions.init);
+			yt.pubsub.subscribe('init', yt.www.watch.shortcuts.init);
+			
+			
+			yt.pubsub.subscribe('init', function() {
+			  var description = _gel('watch-description');
+			  if (!_hasclass(description, 'yt-uix-expander-collapsed')) {
+			    yt.www.watch.watch5.handleToggleDescription(description);
+			  }
+			});
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		</script>
-		<script>
-			if (window.yt.timing) {yt.timing.tick("js_page");}    
-		</script>
-		<script>
-			yt.setConfig('TIMING_ACTION', "channels3");    
-		</script>
-		<script>yt.www.thumbnaildelayload.init(0);</script>
 		<script>
 			var subscribed = <?php echo($_user['subscribed'] ? 'true' : 'false') ?>;
 			var loggedIn = <?php echo(isset($_SESSION['siteusername']) ? 'true' : 'false') ?>;
@@ -855,6 +685,103 @@
 			}
 		</script>
 		<script>
+			yt.setConfig('PYV_REQUEST', true);
+			yt.setConfig('PYV_AFS', false);
+		</script>
+		<script>
+			yt.www.ads.pyv.loadPyvIframe("\n  \u003cscript\u003e\n    var google_max_num_ads = '1';\n    var google_ad_output = 'js';\n    var google_ad_type = 'text';\n    var google_only_pyv_ads = true;\n    var google_video_doc_id = \"yt_<?php echo htmlspecialchars($_video['rid']); ?>\";\n      var google_ad_request_done = parent.yt.www.ads.pyv.pyvWatchAfcWithPpvCallback;\n    var google_ad_client = 'ca-pub-6219811747049371';\n    var google_ad_block = '3';\n      var google_ad_host = \"ca-host-pub-6813290291914109\";\n      var google_ad_host_tier_id = \"464885\";\n      var google_page_url = \"\\\/\\\/www.youtube.com\\\/video\\\/<?php echo htmlspecialchars($_video['rid']); ?>\";\n      var google_ad_channel = \"PyvWatchInRelated+PyvYTWatch+PyvWatchNoAdX+pw+non_lpw+afv_user_funker530+afv_user_id_<?php echo htmlspecialchars($_video['author']); ?>+yt_mpvid_AATK8rd3hYr5XSL9+yt_cid_676+ytexp_906717.901803.907354.904448.901424.922401.920704.912806.913419.913546.913556.919349.919351.925109.919003.912706.900816\";\n      var google_language = \"en\";\n      var google_eids = ['56702372'];\n      var google_yt_pt = \"AD1B29l_Eb6GvswrtaJp3Xbg-8Cen9ZYRkIWEEZsAd6dGBgqPd1L2hDoHNZ3vsezXxxrRKglcrLrvmR_xDdeypbUNSFkZJs63DRNWYRvVQ\";\n  \u003c\/script\u003e\n\n  \u003cscript s\u0072c=\"\/\/pagead2.googlesyndication.com\/pagead\/show_ads.js\"\u003e\u003c\/script\u003e\n");
+		</script>
+		<script>
+			window['google_language'] = "en";
+			
+			
+			window['google_ad_type'] = 'image';
+			window['google_ad_width'] = '300';
+			window['google_ad_block'] = '2';
+			window['google_ad_client'] = "ca-pub-6219811747049371";
+			window['google_ad_host'] = "ca-host-pub-6813290291914109";
+			window['google_ad_host_tier_id'] = "464885";
+			window['google_ad_channel'] = "6031455484+6031455482+0854550288+afv_user_funker530+afv_user_id_<?php echo htmlspecialchars($_video['author']); ?>+yt_mpvid_AATK8rd3hYr5XSL9+yt_cid_676+ytexp_906717.901803.907354.904448.901424.922401.920704.912806.913419.913546.913556.919349.919351.925109.919003.912706.900816+Vertical_397+Vertical_881+ytps_default+ytel_detailpage";
+			window['google_video_doc_id'] = "yt_<?php echo htmlspecialchars($_video['rid']); ?>";
+			window['google_color_border'] = 'FFFFFF';
+			window['google_color_bg'] = 'FFFFFF';
+			window['google_color_link'] = '0033CC';
+			window['google_color_text'] = '444444';
+			window['google_color_url'] = '0033CC';
+			window['google_language'] = "en";
+			window['google_alternate_ad_url'] = "\/\/www.youtube.com\/ad_frame?id=watch-channel-brand-div";
+			window['google_yt_pt'] = "AD1B29l_Eb6GvswrtaJp3Xbg-8Cen9ZYRkIWEEZsAd6dGBgqPd1L2hDoHNZ3vsezXxxrRKglcrLrvmR_xDdeypbUNSFkZJs63DRNWYRvVQ";
+			window['google_eids'] = ['56702371'];
+			window['google_page_url'] = "\/\/www.youtube.com\/video\/<?php echo htmlspecialchars($_video['rid']); ?>";
+		</script>
+		<script>
+			yt.pubsub.subscribe('init', function() {
+			  var scriptEl = document.createElement('script');
+			  scriptEl.src = "\/\/pagead2.googlesyndication.com\/pagead\/show_companion_ad.js";
+			  var headEl = document.getElementsByTagName('head')[0];
+			  headEl.appendChild(scriptEl);
+			});
+		</script>
+		<script>
+			function afcAdCall() {
+			  var channels = "6031455484+6031455482+0854550288+afv_user_funker530+afv_user_id_<?php echo htmlspecialchars($_video['author']); ?>+yt_mpvid_AATK8rd3hYr5XSL9+yt_cid_676+ytexp_906717.901803.907354.904448.901424.922401.920704.912806.913419.913546.913556.919349.919351.925109.919003.912706.900816+Vertical_397+Vertical_881+ytps_default+ytel_detailpage";
+			  channels = channels.replace('0854550288', '0854550287');
+			  channels = channels.replace('afv_brand_mpu', '0854550287');
+			  channels = channels + '+afc_on_page';
+			  window['google_ad_format'] = '300x250_as';
+			  window['google_ad_height'] = '250';
+			  window['google_page_url'] = "\/\/www.youtube.com\/video\/<?php echo htmlspecialchars($_video['rid']); ?>";
+			    window['google_yt_pt'] = "AD1B29l_Eb6GvswrtaJp3Xbg-8Cen9ZYRkIWEEZsAd6dGBgqPd1L2hDoHNZ3vsezXxxrRKglcrLrvmR_xDdeypbUNSFkZJs63DRNWYRvVQ";
+			
+			
+			  var afcOptions = {
+			    'ad_type': 'image',
+			    'format': '300x250_as',
+			    'ad_block': '2',
+			    'ad_client': "ca-pub-6219811747049371",
+			    'ad_host': "ca-host-pub-6813290291914109",
+			    'ad_host_tier_id': "464885",
+			    'ad_channel': channels,
+			    'video_doc_id': "yt_<?php echo htmlspecialchars($_video['rid']); ?>",
+			    'color_border': 'FFFFFF',
+			    'color_bg': 'FFFFFF',
+			    'color_link': '0033CC',
+			    'color_text': '444444',
+			    'color_url': '0033CC',
+			    'language': "en",
+			    'alternate_ad_url': "\/\/www.youtube.com\/ad_frame?id=watch-channel-brand-div"
+			  };
+			  var afcCallback = function() {
+			    if (window.google && google.ads && google.ads.Ad) {
+			      yt.www.watch.ads.handleShowAfvCompanionAdDiv(false);
+			      var ad = new google.ads.Ad("ca-pub-6219811747049371", 'google_companion_ad_div', afcOptions);
+			    } else {
+			      yt.setTimeout(afcCallback, 200);
+			    }
+			  };
+			  afcCallback();
+			}
+		</script>
+		<script>
+			yt.pubsub.subscribe('init', function() {
+			  var scriptEl = document.createElement('script');
+			  scriptEl.src = "\/\/www.google.com\/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22ads%22%2C%22version%22%3A%221%22%2C%22callback%22%3A%22(function()%7B%7D)%22%2C%22packages%22%3A%5B%22content%22%5D%7D%5D%7D";
+			  var headEl = document.getElementsByTagName('head')[0];
+			  headEl.appendChild(scriptEl);
+			});
+		</script>
+		<script src="//www.googletagservices.com/tag/js/gpt.js"></script>
+		<script>
+			yt.www.watch.ads.createGutSlot("\/4061\/ytpwatch\/main_676");
+		</script>
+		<script>
+			if (window.yt.timing) {yt.timing.tick("js_page");}    
+		</script>
+		<script>
+			yt.setConfig('TIMING_ACTION', "watch5ad");    
+		</script>
+		<script>yt.pubsub.subscribe('init', function() {yt.www.thumbnaildelayload.init(0);});</script>
+		<script>
 			yt.setMsg({
 			  'LIST_CLEARED': "List cleared",
 			  'PLAYLIST_VIDEO_DELETED': "Video deleted.",
@@ -880,14 +807,12 @@
 			
 			
 			yt.setConfig({
-			  'DRAGDROP_BINARY_URL': "\/\/s.ytimg.com\/yt\/jsbin\/www-dragdrop-vflM9ls_8.js",
-			  'PLAYLIST_BAR_PLAYING_INDEX': -1,
-			  'LIST_COPY_ON_EDIT_ENABLED': false  });
+			  'DRAGDROP_BINARY_URL': "\/\/s.ytimg.com\/yt\/jsbin\/www-dragdrop-vflWKaUyg.js",
+			  'PLAYLIST_BAR_PLAYING_INDEX': -1  });
 			
-			  yt.setAjaxToken('addto_ajax_logged_out', "FFGgxx_wEgpAnRrnvI2vI_uxiJd8MEAxMzM5NzIxNjgy");
+			  yt.setAjaxToken('addto_ajax_logged_out', "KTlts1bRmBPkwoVCGIRuG79_hSF8MTM0OTEzMDExNUAxMzQ5MDQzNzE1");
 			
-			  yt.pubsub.subscribe('init', yt.www.lists.init);
-			
+			  yt.www.lists.init();
 			
 			
 			
@@ -895,29 +820,11 @@
 			
 			
 			
-			    yt.pubsub.subscribe('init', function() {
-			      yt.net.scriptloader.load("\/\/s.ytimg.com\/yt\/jsbin\/www-searchbox-vflVGQHuy.js", function() {
-			        
-			    if (_gel('masthead-search')) {
-			      yt.setTimeout(function() {
-			        searchbox.yt.install(_gel('masthead-search'),
-			            _gel('masthead-search')["search_query"],
-			            "en",
-			            "us",
-			            false,
-			            '',
-			            '',
-			            null,
-			            null,
-			            "Suggestion dismissed",
-			            "Dismiss",
-			            -1,
-			            {});
-			      }, 100);
-			    }
 			
-			      });
-			    });
+			
+			  yt.setConfig({'SBOX_JS_URL': "\/\/s.ytimg.com\/yt\/jsbin\/www-searchbox-vflsHyn9f.js",'SBOX_SETTINGS': {"CLOSE_ICON_URL": "\/\/s.ytimg.com\/yt\/img\/icons\/close-vflrEJzIW.png", "SHOW_CHIP": false, "PSUGGEST_TOKEN": null, "REQUEST_DOMAIN": "us", "EXPERIMENT_ID": -1, "SESSION_INDEX": null, "HAS_ON_SCREEN_KEYBOARD": false, "CHIP_PARAMETERS": {}, "REQUEST_LANGUAGE": "en"},'SBOX_LABELS': {"SUGGESTION_DISMISS_LABEL": "Dismiss", "SUGGESTION_DISMISSED_LABEL": "Suggestion dismissed"}});
+			
+			
 			
 			
 			
@@ -927,8 +834,6 @@
 			  'ADDTO_WATCH_LATER_ADDED': "Added",
 			  'ADDTO_WATCH_LATER_ERROR': "Error"
 			});
-			
-			yt.pubsub.subscribe('init', yt.www.lists.addtowatchlater.init);
 		</script>
 		<script>
 			if (window.yt.timing) {yt.timing.tick("js_foot");}    

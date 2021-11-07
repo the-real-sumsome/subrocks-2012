@@ -7,6 +7,12 @@
 <?php $__user_h = new user_helper($__db); ?>
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
+<?php
+	$__server->page_embeds->page_title = "SubRocks - Edit Video";
+	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
+	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
+	$__server->page_embeds->page_url = "https://subrock.rocks/";
+?>
 <?php if(!isset($_SESSION['siteusername'])) { header("Location: /sign_in"); } ?>
 <?php $_video = $__video_h->fetch_video_rid($_GET['id']); ?>
 <!DOCTYPE html>
@@ -158,10 +164,10 @@
                                     <form action="/d/edit_video?v=<?php echo $_video['rid']; ?>" method="POST" enctype="multipart/form-data" id="edit_video_dom">
                                     <div class="www-upload-left">
                                         <div class="upload-stage-2">
-                                            <b>Title</b> <br><input id="video-title" value="<?php echo htmlspecialchars($_video['title']); ?>" placeholder="Video Title" class="upload-input" type="text" name="title"><br><br>
+                                            <b>Title</b> <br><input class="yt-uix-form-input-text" style="width:100%;margin-top:5px;" id="video-title" value="<?php echo htmlspecialchars($_video['title']); ?>" placeholder="Video Title" class="upload-input" type="text" name="title"><br><br>
                                             <b>Description</b> <br>
-                                            <textarea name="description" class="upload-input" placeholder="Video Description"><?php echo htmlspecialchars($_video['description']); ?></textarea><br><br>
-                                            <b>Tags</b> <br><input placeholder="Seperate with commas" value="<?php echo htmlspecialchars($_video['tags']); ?>" class="upload-input" type="text" name="tags"><br><br>
+                                            <textarea name="description"  class="yt-uix-form-input-text" style="resize:none;width:100%;margin-top:5px;" placeholder="Video Description"><?php echo htmlspecialchars($_video['description']); ?></textarea><br><br>
+                                            <b>Tags</b> <br><input  class="yt-uix-form-input-text" style="width:100%;margin-top:5px;" placeholder="Seperate with commas" value="<?php echo htmlspecialchars($_video['tags']); ?>" class="upload-input" type="text" name="tags"><br><br>
                                             <b>Custom Thumbnail</b> <br><input class="upload-input" id="thumbnail" type="file" name="thumbnail"><br><br>
                                             <br><br>
                                             <input type="submit" value="Apply Changes" class="yt-uix-button yt-uix-button-default">
@@ -176,7 +182,7 @@
                                             <?php } ?>
                                         </select><br><br>
                                         <b>Privacy</b> <br><br>
-                                        <input class="yt-uix-form-input-radio" type="radio" style="vertical-align: top;"> 
+                                        <input class="yt-uix-form-input-radio" name="privacy" value="n" type="radio" style="vertical-align: top;"> 
                                         <span style="display: inline-block;">
                                             <b>Public</b><br>
                                             <span class="small-text">
@@ -184,14 +190,14 @@
                                                 recommended
                                             </span>
                                         </span><br><br>
-                                        <input class="yt-uix-form-input-radio" type="radio" style="vertical-align: top;"> 
+                                        <input class="yt-uix-form-input-radio" name="privacy" value="u" type="radio" style="vertical-align: top;"> 
                                         <span style="display: inline-block;">
                                             <b>Unlisted</b><br>
                                             <span class="small-text">
                                                 anyone with the link can view
                                             </span>
                                         </span><br><br>
-                                        <input class="yt-uix-form-input-radio" type="radio" style="vertical-align: top;"> 
+                                        <input class="yt-uix-form-input-radio" name="privacy" value="v" type="radio" style="vertical-align: top;"> 
                                         <span style="display: inline-block;">
                                             <b>Private</b><br>
                                             <span class="small-text">
@@ -206,8 +212,6 @@
                                                 licenses don't exist on here
                                             </span>
                                         </span><br>
-
-                                        <input name="privacy" type="text" style="visibility: hidden;">
                                         <input id="video-file" type="file" name="video_file" style="visibility: hidden;">
                                     </div>
                                     </form>
@@ -383,6 +387,7 @@
 			<!-- end pagebottom -->
 		</div>
 		<!-- end page -->
+<script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
 		<script>yt.www.thumbnaildelayload.init(0);</script>
 		<script>
 			yt.setMsg({
