@@ -133,6 +133,25 @@
 										</div>
 									</div><br>
 								<?php } ?>
+								<?php if($__user_h->if_admin(@$_SESSION['siteusername']) && @$_SESSION['siteusername'] != $_video['author']) { ?>
+								<div id="watch-owner-container">
+										<div id="masthead-subnav" class="yt-nav yt-nav-dark ">
+											<ul class="yt-nav-aside">
+												<li>
+													<a href="/admin/" class="yt-uix-button yt-uix-sessionlink yt-uix-button-subnav  yt-uix-button-dark" data-sessionlink="ei=CMCA1_3robMCFSrJRAodqnnxKQ%3D%3D"><span class="yt-uix-button-content">Admin Panel</span></a>
+												</li>
+											</ul>
+											<ul>
+												<li>
+													<a href="/get/delete_user_admin?v=<?php echo htmlspecialchars($_video['author']); ?>" class="yt-uix-button yt-uix-sessionlink yt-uix-button-subnav yt-uix-button-dark" data-sessionlink="ei=CMCA1_3robMCFSrJRAodqnnxKQ%3D%3D"><span class="yt-uix-button-content">Ban User</span></a>
+												</li>
+												<li>
+													<a href="/get/delete_video_admin?v=<?php echo $_video['rid']; ?>" class="yt-uix-button yt-uix-sessionlink yt-uix-button-subnav  yt-uix-button-dark" data-sessionlink="ei=CMCA1_3robMCFSrJRAodqnnxKQ%3D%3D"><span class="yt-uix-button-content">Delete Video</span></a>
+												</li>
+											</ul>
+										</div>
+									</div><br>
+								<?php } ?>
 								<h1 id="watch-headline-title">
 									<span id="eow-title" class="long-title " dir="ltr" title="<?php echo htmlspecialchars($_video['title']); ?>">
 									<?php echo htmlspecialchars($_video['title']); ?>

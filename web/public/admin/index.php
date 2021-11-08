@@ -233,25 +233,38 @@
                             <?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/sidebar_admin.php"); ?>
 							<div id="browse-main-column" style="float: right;margin: 0px 0 0 14px;" class="ytg-4col">
 								<div class="browse-collection  has-box-ad">
-                                    <div class="box-gray">
-                                        <h3>Statistics</h3>
-                                        <ul class="disc">
-											<?php 
-												$stmt = $__db->prepare("SELECT id FROM videos");
-												$stmt->execute();
-												$videos = $stmt->rowCount();
+									<div class="box-gray" style="width: 95%;margin-bottom: 8px;">
+										<h3>Statistics</h3>
+										<?php 
+											$stmt = $__db->prepare("SELECT id FROM videos");
+											$stmt->execute();
+											$videos = $stmt->rowCount();
 
-												$stmt = $__db->prepare("SELECT id FROM users");
-												$stmt->execute();
-												$users = $stmt->rowCount();
-											?>
-											<li>Videos uploaded: <b><?php echo $videos; ?></b></li>
-											<li>
-												Users registered: <b><?php echo $users; ?></b>
-											</li>
-                                        </ul><br>
-										<div style="width: 200px;">
+											$stmt = $__db->prepare("SELECT id FROM users");
+											$stmt->execute();
+											$users = $stmt->rowCount();
+
+											$stmt = $__db->prepare("SELECT id FROM comments");
+											$stmt->execute();
+											$comments = $stmt->rowCount();
+
+											$stmt = $__db->prepare("SELECT id FROM views");
+											$stmt->execute();
+											$views = $stmt->rowCount();
+
+											$stmt = $__db->prepare("SELECT id FROM pms");
+											$stmt->execute();
+											$pms = $stmt->rowCount();
+
+											$stmt = $__db->prepare("SELECT id FROM playlists");
+											$stmt->execute();
+											$playlists = $stmt->rowCount();
+										?>
+										<div style="width: 200px;display:inline-block;">
 											<?php $server = get_server_array_stats(); ?>
+											Videos uploaded: <b style="float:right;"><?php echo $videos; ?></b><br>
+											Users registered: <b style="float:right;"><?php echo $users; ?></b><br><br>
+
 											CPU User Usage: 
 												<b style="float:right;color:<?php echo adjustBrightness("#FF0000", $server['user']); ?>">
 													<?php echo $server['user']; ?>%</b><br>
@@ -262,9 +275,16 @@
 												<b style="float:right;color:<?php echo adjustBrightness("#FF0000", $server['idle']); ?>">
 													<?php echo $server['idle']; ?>%</b><br>
 											RAM Usage: <b style="float:right;"><?php echo round(get_server_memory_usage(), 3)	; ?> megabytes</b>
-										</div><br>
-                                        <button href="/admin/stats" type="button" class=" yt-uix-button yt-uix-button-default" onclick=";window.location.href=this.getAttribute('href');return false;" role="button"><span class="yt-uix-button-content">See more statistics </span></button>
-                                    </div>
+										</div>
+										<div style="width: 200px;display:inline-block;margin-right:20px;vertical-align: top;margin-left: 22px;">
+											<?php $server = get_server_array_stats(); ?>
+											Comments on site: <b style="float:right;"><?php echo $comments; ?></b><br>
+											Private messages: <b style="float:right;"><?php echo $pms; ?></b><br>
+											Playlists on site: <b style="float:right;"><?php echo $playlists; ?></b><br>
+											Video views: <b style="float:right;"><?php echo $views; ?></b><br><br>
+										</div><br><br>
+										<button href="/admin/stats" type="button" class=" yt-uix-button yt-uix-button-default" onclick=";window.location.href=this.getAttribute('href');return false;" role="button"><span class="yt-uix-button-content">See more statistics </span></button>
+									</div>
 								</div>
 							</div>
 						</div>
