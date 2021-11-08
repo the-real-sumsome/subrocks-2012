@@ -133,26 +133,6 @@
 										</div>
 									</div><br>
 								<?php } ?>
-
-								<?php if($__user_h->if_admin(@$_SESSION['siteusername'])) { ?>
-									<div id="watch-owner-container">
-										<div id="masthead-subnav" class="yt-nav yt-nav-dark ">
-											<ul class="yt-nav-aside">
-												<li>
-													<a href="/admin/" class="yt-uix-button yt-uix-sessionlink yt-uix-button-subnav  yt-uix-button-dark" data-sessionlink="ei=CMCA1_3robMCFSrJRAodqnnxKQ%3D%3D"><span class="yt-uix-button-content">Admin Panel</span></a>
-												</li>
-											</ul>
-											<ul>
-												<li>
-													<a href="/get/delete_user_admin?v=<?php echo htmlspecialchars($_video['author']); ?>" class="yt-uix-button yt-uix-sessionlink yt-uix-button-subnav yt-uix-button-dark" data-sessionlink="ei=CMCA1_3robMCFSrJRAodqnnxKQ%3D%3D"><span class="yt-uix-button-content">Ban User</span></a>
-												</li>
-												<li>
-													<a href="/get/delete_video_admin?v=<?php echo $_video['rid']; ?>" class="yt-uix-button yt-uix-sessionlink yt-uix-button-subnav  yt-uix-button-dark" data-sessionlink="ei=CMCA1_3robMCFSrJRAodqnnxKQ%3D%3D"><span class="yt-uix-button-content">Delete Video</span></a>
-												</li>
-											</ul>
-										</div>
-									</div><br>
-								<?php } ?>
 								<h1 id="watch-headline-title">
 									<span id="eow-title" class="long-title " dir="ltr" title="<?php echo htmlspecialchars($_video['title']); ?>">
 									<?php echo htmlspecialchars($_video['title']); ?>
@@ -796,8 +776,8 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 																		<span class="yt-uix-button-group">
 																			<button type="button" 
 																					class="start comment-action yt-uix-button yt-uix-button-default" 
-																					onclick=";$('#reply_to_<?php echo $comment['id']; ?>').show();return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply </span></button>
-																			<button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
+																					onclick=";$('#reply_to_<?php echo $comment['id']; ?>').show();return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply</span>
+																			</button><button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
 																				<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
 																				<div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
 																					<ul>
@@ -832,13 +812,13 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 															</div>
 														</li>
 														<?php 
-															$stmt2 = $__db->prepare("SELECT * FROM comment_reply WHERE toid = :rid ORDER BY id");
+															$stmt2 = $__db->prepare("SELECT * FROM comment_reply WHERE toid = :rid ORDER BY id DESC");
 															$stmt2->bindParam(":rid", $comment['id']);
 															$stmt2->execute();
 
 															while($reply = $stmt2->fetch(PDO::FETCH_ASSOC)) { 
 														?>
-															<li class="comment yt-tile-default " style="padding-left: 30px;" data-author-viewing="" data-author-id="-uD01K8FQTeOSS5sniRFzQ" data-id="<?php echo $reply['id']; ?>" data-score="0">
+															<li class="comment yt-tile-default " style="margin-left: 30px;" data-author-viewing="" data-author-id="-uD01K8FQTeOSS5sniRFzQ" data-id="<?php echo $reply['id']; ?>" data-score="0">
 																<div class="comment-body">
 																	<div class="content-container">
 																		<div class="content">
@@ -860,8 +840,8 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 																			<span class="yt-uix-button-group">
 																				<button type="button" 
 																						class="start comment-action yt-uix-button yt-uix-button-default" 
-																						onclick=";$('#reply_to_<?php echo $comment['id']; ?>').show();return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply </span></button>
-																				<button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
+																						onclick=";$('#reply_to_<?php echo $comment['id']; ?>').show();return false;" data-action="reply" role="button"><span class="yt-uix-button-content">Reply</span>
+																				</button><button type="button" class="end flip yt-uix-button yt-uix-button-default yt-uix-button-empty" onclick=";return false;" data-button-has-sibling-menu="true" role="button" aria-pressed="false" aria-expanded="false" aria-haspopup="true" aria-activedescendant="">
 																					<img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
 																					<div class=" yt-uix-button-menu yt-uix-button-menu-default" style="display: none;">
 																						<ul>
