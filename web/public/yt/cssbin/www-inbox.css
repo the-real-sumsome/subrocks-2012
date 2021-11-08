@@ -1,0 +1,443 @@
+a:focus, h3:focus, span.yt-admin-h3:focus {
+    outline: 1px #4496e4 solid;
+}
+.groupnamecont {
+    color: #333;
+    margin: 1px 0px 1px 0px;
+    padding: 4px 0px 4px;
+    cursor: hand;
+    cursor: pointer;
+}
+#videoslist:nth-child(even) {
+    background-color: #fff !important;
+}
+#videoslist {
+    background-color: #eee;
+}
+#videoslist:hover {
+    background-color: #f3f3f3 !important;   
+}
+.message_title {
+    vertical-align: top;
+    padding: .7em 0 .4em 0;
+}
+.m_nohighlight {
+    background-color: #fff;
+}
+.m_highlight {
+    background-color: #f3f3f3;
+}
+.addressbook {
+    margin: 0px 5px 0px 8px;
+    text-decoration: none;
+}
+.groupname {
+    margin: 0px 5px 0px 8px;
+    position: relative;
+}
+.groupname-c {
+    margin: 0px 5px 0px 14px;
+    position: relative;
+}
+.groupnamecont.selected {
+    background-image: url(/img/sel-bck-omar.png);
+    background-repeat: repeat-x;
+}
+.linesplit {
+    border-bottom: 1px solid #ccc;
+    width: 80%;
+    float: center;
+    margin: 5px 5px 5px 24px;
+}
+.name {
+    margin: 5px 5px 5px 12px;
+    color: #333;
+}
+.message_row td {
+    color: #666;
+}
+.message h3, .message .yt-admin-h3 {
+    display: block;
+    font-weight: normal;
+}
+.message-display .yt-uix-form-input-checkbox {
+    -moz-appearance: checkbox;
+    -webkit-appearance: checkbox;
+    filter: alpha(opacity=100);
+    opacity: 1;
+    position: static;
+}
+.message-display .yt-uix-form-input-checkbox-element {
+    display: none;
+}
+.message-display .unread h3, .message-display .unread .yt-admin-h3 {
+    font-weight: bold;
+}
+.message-display .unread, .message-display .unread .subject, .message-display .unread .msg-date {
+    color: #333;
+}
+.message-display .unread, .message-display .unread a {
+    font-weight: bold;
+}
+.open .msg-date .cell {
+    font-weight: normal;
+}
+.folder_unread {
+    font-weight: 800;
+}
+.sorterbar th {
+    vertical-align: middle;
+    padding: 3px 5px 0;
+    margin: 0;
+    height: 24px;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid rgba(255, 255, 255, .25);
+    border-right: 1px solid rgba(100, 100, 100, .25);
+    border-top: 1px solid #ccc;
+    text-align: left;
+    color: #666;
+    background-color: #eee;
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#fffdfdfd, EndColorStr=#ffe0e0e0);
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .5) 20%, rgba(150, 150, 150, .1) 100%);
+    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, .5) 20%, rgba(150, 150, 150, .1) 100%);
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, .5) 20%, rgba(150, 150, 150, .1) 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgba(255, 255, 255, .5)), color-stop(100%, rgba(150, 150, 150, .1)));
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, .5) 20%, rgba(150, 150, 150, .1) 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, .5) 20%, rgba(150, 150, 150, .1) 100%);
+}
+.buttonbar {
+    color: #333;
+    border-bottom: none;
+    border-top: 1px solid #fff;
+    padding: 6px 10px;
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#fffdfdfd, EndColorStr=#ffe0e0e0);
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, .8) 20%, rgba(200, 200, 200, .2) 100%);
+    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, .8) 20%, rgba(200, 200, 200, .2) 100%);
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, .8) 20%, rgba(200, 200, 200, .2) 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(20%, rgba(255, 255, 255, .8)), color-stop(100%, rgba(200, 200, 200, .2)));
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, .8) 20%, rgba(200, 200, 200, .2) 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, .8) 20%, rgba(200, 200, 200, .2) 100%);
+}
+.unread_count {
+    font-weight: normal;
+}
+.message td {
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+}
+#folderlinks {
+    margin-left: 1px;
+}
+#message_reading {
+    overflow: hidden;
+}
+.message-display .sorterbar .date {
+    border-right: none;
+}
+table.message-display {
+    border-collapse: separate;
+}
+.message-display td {
+    margin: 0;
+    padding: 4px;
+    border-bottom: 0;
+}
+.message-display th.col-select {
+    border-left: 0;
+    border-right: 0;
+}
+.message-display th.from {
+    padding-bottom: 3px;
+    border-left: 0;
+}
+.message-display th.from, .message-display td.from {
+    width: 170px;
+}
+.message-display td.from {
+    padding: 4px;
+}
+.message-display th.date, .message-display td.date {
+    width: 90px;
+}
+.message-display a {
+    display: block;
+    color: #333;
+    font-weight: normal;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    *zoom: 1;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+.message-display .checkbox {
+    padding: 3px;
+}
+.message.closed td {
+    vertical-align: top;
+}
+.message h3, .message .yt-admin-h3 {
+    margin: 0;
+    font-size: 12px;
+    width: 375px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.message h3:hover, span.yt-admin-h3:hover {
+    text-decoration: underline;
+}
+.cell {
+    margin-top: 6px;
+    margin-bottom: 7px;
+}
+.message.closed .cell {
+    height: 15px;
+}
+.message.open td {
+    color: #000;
+    background-color: #fff;
+    border: 1px dotted #999;
+    border-left: none;
+    border-right: none;
+    overflow: hidden;
+    zoom: 1;
+}
+.message.closed .subject div, .message.closed .user-thumb-large {
+    display: none;
+}
+.msg-date .cell {
+    text-align: right;
+    margin-right: 7px;
+}
+.message-display .cmd-links {
+    color: gray;
+    font-size: 11px;
+    float: right;
+}
+.message-display .cmd-link {
+    text-align: right;
+}
+.message-display .cmd-link a {
+    text-decoration: none;
+}
+.message-display .cmd-link a:hover {
+    text-decoration: underline;
+}
+.error_box {
+    padding: .4em 4em;
+    text-align: center;
+    margin: 4px 5px;
+    color: #333;
+}
+.compose_block {
+    display: inline-block;
+    width: 510px;
+}
+.composeform {
+    padding: 1em;
+}
+.reply_header {
+    float: left;
+    text-align: left;
+    color: #333;
+    width: 100px;
+    vertical-align: top;
+    padding-top: .75em;
+}
+.reply_body {
+    padding-top: .75em;
+    color: #666;
+}
+.compose_header {
+    float: left;
+    width: 100px;
+    padding-top: 1.25em;
+    vertical-align: top;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    font-weight: bold;
+}
+.compose_body {
+    text-align: left;
+    padding: 0;
+    padding-top: 1em;
+    color: #666;
+}
+.compose_body div {
+    padding-top: .25em;
+}
+.compose_input {
+    width: 90%;
+    font-family: arial, sans-serif;
+    font-size: 10pt;
+}
+.empty_folder {
+    font-size: 1.5em;
+    text-align: center;
+    color: #666;
+    font-weight: bold;
+    margin: 1em;
+}
+.reply_bottom {
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+#reply-profilepic-td {
+    padding: 1em 1em 0;
+}
+#reply_from {
+    padding-top: .25em;
+}
+.message-to {
+    padding: 1em 0 .25em 0;
+    clear: both;
+}
+.title_and_pagination td {
+    border-bottom: 1px solid #999;
+    padding: 10px 0;
+}
+.message .checkbox, .message .checkbox {
+    width: 30px;
+    text-align: center;
+}
+#message-select-header {
+    text-align: center;
+}
+.message .from {
+    width: 130px;
+}
+.message .subject {
+    width: 389px;
+}
+.message .date {
+    width: 110px;
+}
+.message, .message .subject div, .message-display, .message-display .message, .message .video-details {
+    overflow: hidden;
+    zoom: 1;
+}
+.message .body {
+    width: 375px;
+    margin: 10px 0;
+}
+.message .buttons, .message .ux-thumb-wrap {
+    float: left;
+}
+.message .ux-thumb-wrap {
+    margin-right: 10px;
+}
+.message .buttons {
+    width: 100%;
+    margin: 10px 0;
+}
+.pointer {
+    cursor: pointer;
+}
+#reply-profilepic-div .user-thumb-large {
+    display: block;
+}
+.user-thumb-large .profilepic a {
+    text-align: center;
+}
+.page-numbers, .page-previous, .page-next {
+    margin: 2px 5px 0px 5px;
+}
+.page-numbers {
+    font-weight: bold;
+}
+.vert-bar {
+    width: 7px;
+    background-color: #ccc;
+    border-style: solid;
+    border-color: #999;
+    border-width: 0px 1px 1px 1px;
+}
+#compose-cell {
+    padding: 0;
+    -moz-box-shadow: inset 0 1px 1px #fff;
+    -ms-box-shadow: inset 0 1px 1px #fff;
+    -webkit-box-shadow: inset 0 1px 1px #fff;
+    box-shadow: inset 0 1px 1px #fff;
+}
+.compose_body input, .compose_body textarea {
+    width: 380px;
+}
+.compose_body select {
+    width: 400px;
+}
+#inbox_compose_button {
+    height: 40px;
+    width: 100%
+}
+#inbox_compose {
+    padding: 10px;
+}
+.hook-arrow {
+    float: left;
+    margin: 7px 5px 0px 12px;
+}
+#pagination {
+    text-align: right;
+}
+#pagination, .pagination-td {
+    padding-right: 5px;
+}
+.videoIconWrapperOuter {
+    margin-top: 15px;
+    margin-right: 6px;
+    margin-bottom: 10px;
+    float: left;
+    vertical-align: top;
+}
+.blue-button {
+    padding-right: .75em;
+}
+.vtitle-wrapper {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.all-comments-wrapper {
+    margin-top: 15px;
+}
+#yt-admin-content h2, #yt-admin-content .yt-admin-h2 {
+    padding-top: 21px;
+}
+#yt-admin-sidebar h2, #yt-admin-sidebar .yt-admin-h2 {
+    border-bottom: 1px solid #ccc;
+    padding: 12px 18px 13px;
+    -moz-box-shadow: 0 1px #fff;
+    -ms-box-shadow: 0 1px #fff;
+    -webkit-box-shadow: 0 1px #fff;
+    box-shadow: 0 1px #fff;
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, .08) 0, transparent 83px);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, .08) 0, transparent 83px);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, .08) 0, transparent 83px);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(0, 0, 0, .08)), color-stop(83px, transparent));
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .08) 0, transparent 83px);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .08) 0, transparent 83px);
+}
+#folder_title {
+    border-bottom: 1px solid #ccc;
+}
+#inbox_error_box .yt-alert-icon .icon {
+    position: relative;
+    margin-top: 0!important;
+    top: 0;
+}
+#friends-promo {
+    font-weight: normal;
+}
+#friends-promo h3, #friends-promo .yt-admin-h3 {
+    font-size: 18px;
+}
+#friends-promo p {
+    padding: 5px 0 5px;
+}
+#friends-promo a {
+    color: #000;
+    text-decoration: none;
+}
+#friends-promo a:hover {
+    color: #1c62b9;
+    text-decoration: underline;
+}
