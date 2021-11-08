@@ -134,7 +134,7 @@
 									</div><br>
 								<?php } ?>
 								<?php if($__user_h->if_admin(@$_SESSION['siteusername']) && @$_SESSION['siteusername'] != $_video['author']) { ?>
-								<div id="watch-owner-container">
+									<div id="watch-owner-container">
 										<div id="masthead-subnav" class="yt-nav yt-nav-dark ">
 											<ul class="yt-nav-aside">
 												<li>
@@ -151,6 +151,25 @@
 											</ul>
 										</div>
 									</div><br>
+
+									<?php $_user = $__user_h->fetch_user_username($_video['author']); ?>
+									<?php
+										$stmt = $__db->prepare("SELECT ip, username FROM users WHERE ip = :ip");
+										$stmt->bindParam(":ip", $_user['ip']);
+										$stmt->execute();
+										$alts = $stmt->rowCount();
+
+										if($alts != 0) { echo "<span style='font-size:11px;color:grey;'>Alts will pop up below here...</span><br>"; }
+
+										while($username = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+											if($username['username'] != $_video['author'] && $username['ip'] != "0.0.0.0")
+												echo "
+												  <a style='font-size:10px;' href='/user/" .  htmlspecialchars($username['username']) . "'>" . 
+													htmlspecialchars($username['username']) 
+												. "</a><br>";
+										}
+									?>
+									<hr>
 								<?php } ?>
 								<h1 id="watch-headline-title">
 									<span id="eow-title" class="long-title " dir="ltr" title="<?php echo htmlspecialchars($_video['title']); ?>">
