@@ -5697,7 +5697,7 @@ padding-right:0
 height:80px;
 width:26px
 }
-#watch-more-from-user .yt-uix-slider-prev, .yt-uix-slider-next {
+#watch-more-from-user .yt-uix-slider-prev, #watch-more-from-user .yt-uix-slider-next {
 	margin-top: 55px;
 }
 #watch-channel-discoverbox .yt-uix-slider-prev-arrow {
