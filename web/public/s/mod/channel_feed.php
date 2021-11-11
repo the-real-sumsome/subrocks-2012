@@ -47,6 +47,7 @@
                                                                         $stmt->bindParam(":comment_username", $_user['username']);
 																		$stmt->bindParam(":videos_username", $_user['username']);
                                                                         $stmt->execute();
+																		if($stmt->rowCount() == 0) { echo "<br><span style='color:grey;font-size:11px;'>This user has not done anything yet.</span>"; }
                                                                         while($content = $stmt->fetch(PDO::FETCH_ASSOC)) { 
 																			if((int)$content['id']) {
 																				$content = $__video_h->fetch_comment_id($content['id']);

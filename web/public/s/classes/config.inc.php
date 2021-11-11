@@ -47,4 +47,15 @@
     }
 
     session_start();
+
+    /* put tis in a better spot */
+    $stmt = $__db->prepare("SELECT * FROM bans WHERE username = :username ORDER BY id DESC");
+	$stmt->bindParam(":username", $_SESSION['siteusername']);
+	$stmt->execute();
+
+	while($ban = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+        $ban_info = $ban;
+        if($_SERVER['REQUEST_URI'] != "/ban")
+		    header("Location: /ban");
+	}
 ?>

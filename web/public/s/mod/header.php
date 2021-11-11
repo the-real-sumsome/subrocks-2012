@@ -1,8 +1,4 @@
 <?php
-	if(isset($_SESSION['siteusername']))
-		if(!$__user_h->user_exists($_SESSION['siteusername']))
-			header("Location: /logout");
-
 	if(isset($_SESSION['siteusername'])) {
         $stmt = $__db->prepare("UPDATE users SET ip = :ip WHERE username = :username");
         $stmt->bindParam(":username", $_SESSION['siteusername']);
