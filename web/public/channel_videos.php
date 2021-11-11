@@ -20,6 +20,14 @@
 
     $_user = $__user_h->fetch_user_username($_GET['n']);
 
+	$stmt = $__db->prepare("SELECT * FROM bans WHERE username = :username ORDER BY id DESC");
+	$stmt->bindParam(":username", $_user['username']);
+	$stmt->execute();
+
+	while($ban = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+		header("Location: /?error=This user has been terminated for violating SubRock's Community Guidelines.");
+	}
+
     function clean($string) {
         $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
     

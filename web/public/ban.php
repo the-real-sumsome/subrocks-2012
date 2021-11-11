@@ -40,18 +40,17 @@
 			<div id="content-container">
 				<!-- begin content -->
 				<div id="content">
-                    <h2>You have been banned</h2>
-                    <hr style="border-color:#ccc;border-style:solid;">
-                    <p>
-                        <h3>Reason:</h3>
-                        <pre><?php echo $ban_info['reason']; ?></pre>
-                        <h3>Moderator:</h3>
-                        <pre><?php echo $ban_info['moderator']; ?></pre>
-                        <br><a href="/ban_logout"><button class="yt-uix-button yt-uix-button-default">Sign Out</button></a>
-                    </p><br>
-                    
-                    <iframe id="vid-player" style="border: 0px; overflow: hidden;" src="https://subrock.rocks/2009player/lolplayer?id=P8RChCdiiC9" width="646" height="365"></iframe>
-                    <br><br>
+                    <div style="width: 410px;margin: auto;">
+                        <h1>Banned</h1><br>
+                        Our content monitors have determined that your behavior at SUBROCKS <br>has been in
+                        violation of our Terms of Service. We have terminated your <br>account. If you make another account, it will also be banned for ban evaision.<br><br>
+                        Reviewed: <b><?php echo $ban_info['expire']; ?></b><br><br>
+                        <div style="width: 387px;padding: 10px;border: 1px solid #d3d3d3;background: white;border-radius: 7px;">
+                            <b>Moderator: </b> <pre style="display: inline-block;margin-bottom:8px;"><?php echo $ban_info['moderator']; ?></pre><br>
+                            <b>Moderator Note:</b> <br><pre style="padding:5px;padding-left:20px;overflow-y:scroll;"><?php echo $ban_info['reason']; ?></pre>
+                        </div><br>
+                        <a href="/ban_logout"><button class="yt-uix-button yt-uix-button-default">I understand</button></a>
+                    </div><br>
                 </div>
             </div>  
 			<div id="footer-container"><?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/footer.php"); ?></div>
