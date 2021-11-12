@@ -20,7 +20,7 @@ else
 
 if (isset($_POST['submit']))
 {
-    header("Location: " . $_SERVER['DOCUMENT_ROOT']. $next);
+    header("Location: /" . $next);
 }
 ?>
 
@@ -54,19 +54,12 @@ if (isset($_POST['submit']))
   <!-- begin pagemiddle -->
   <div id="content-container">
     <div id="baseDiv" class="date-20120606 video-info ">
-      <div id="alerts">    <div class="yt-alert yt-alert-default yt-alert-info  "><div class="yt-alert-icon"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon"></div><div class="yt-alert-buttons">  <button type="button" class="close yt-uix-close yt-uix-button yt-uix-button-close" onclick="yt.net.cookies.set('hideOldBrowserBox', 'true', 604800);;return false;" data-close-parent-class="yt-alert" role="button"><span class="yt-uix-button-content">Close </span></button>
-</div><div class="yt-alert-content">    <span class="yt-alert-vertical-trick"></span>
-    <div class="yt-alert-message" style="visibility: hidden;">
-            You are using Microsoft Internet Explorer 7 web browser.  SubRocks is ending support for Internet Explorer 7 soon, <a href="/">update your browser now</a>.
-
-    </div>
-</div></div>
 </div>
       
   <p class="largeText">Sorry for the interruption. We have been receiving a large volume of requests from your network. To continue with your SubRocks experience, please enter the verification code below.</p>
 
 <form method="post" action="/das_captcha?next=<?php echo $next;?>">
-<script type="text/javascript" src="/s/captcha.js"></script>
+<script type="text/javascript" src="/s/js/captcha.js"></script>
 <noscript>
 You need JavaScript to pass the captcha!
 </noscript>
@@ -97,7 +90,7 @@ You need JavaScript to pass the captcha!
     <div id="footer-main">
       <ul id="footer-links-primary">
           <li><a href="//support.google.com/youtube/?hl=en-US&amp;p=">Help</a></li>
-        <li><a href="/t/about_youtube">About</a></li>
+        <li><a href="/t/about_subrocks">About</a></li>
         <li><a href="/t/press">Press &amp; Blogs</a></li>
         <li><a href="/t/copyright_center">Copyright</a></li>
         <li><a href="/creators">Creators &amp; Partners</a></li>
