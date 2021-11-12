@@ -3,229 +3,50 @@
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/time_manip.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_helper.php"); ?>
 <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/video_helper.php"); ?>
-<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/s/classes/user_update.php"); ?>
 <?php $__video_h = new video_helper($__db); ?>
 <?php $__user_h = new user_helper($__db); ?>
-<?php $__user_u = new user_update($__db); ?>
 <?php $__db_h = new db_helper(); ?>
 <?php $__time_h = new time_helper(); ?>
-<?php if(!isset($_SESSION['siteusername'])) { header("Location: /sign_in"); } ?>
-<?php if(!$__user_h->if_admin($_SESSION['siteusername'])) { header("Location: /"); } ?>
 <?php
-	$__server->page_embeds->page_title = "SubRocks - Ban User";
+	$__server->page_embeds->page_title = "SubRocks - Replace me";
 	$__server->page_embeds->page_description = "SubRocks is a site dedicated to bring back the 2012 layout of YouTube.";
 	$__server->page_embeds->page_image = "/yt/imgbin/full-size-logo.png";
 	$__server->page_embeds->page_url = "https://subrock.rocks/";
 ?>
 <!DOCTYPE html>
-<html dir="ltr">
+<html>
 	<head>
 		<title><?php echo $__server->page_embeds->page_title; ?></title>
 		<meta property="og:title" content="<?php echo $__server->page_embeds->page_title; ?>" />
 		<meta property="og:url" content="<?php echo $__server->page_embeds->page_url; ?>" />
 		<meta property="og:description" content="<?php echo $__server->page_embeds->page_description; ?>" />
 		<meta property="og:image" content="<?php echo $__server->page_embeds->page_image; ?>" />
-		<script>
-			var yt = yt || {};yt.timing = yt.timing || {};yt.timing.tick = function(label, opt_time) {var timer = yt.timing['timer'] || {};if(opt_time) {timer[label] = opt_time;}else {timer[label] = new Date().getTime();}yt.timing['timer'] = timer;};yt.timing.info = function(label, value) {var info_args = yt.timing['info_args'] || {};info_args[label] = value;yt.timing['info_args'] = info_args;};yt.timing.info('e', "904821,919006,922401,920704,912806,913419,913546,913556,919349,919351,925109,919003,920201,912706");if (document.webkitVisibilityState == 'prerender') {document.addEventListener('webkitvisibilitychange', function() {yt.timing.tick('start');}, false);}yt.timing.tick('start');yt.timing.info('li','0');try {yt.timing['srt'] = window.gtbExternal && window.gtbExternal.pageT() ||window.external && window.external.pageT;} catch(e) {}if (window.chrome && window.chrome.csi) {yt.timing['srt'] = Math.floor(window.chrome.csi().pageT);}if (window.msPerformance && window.msPerformance.timing) {yt.timing['srt'] = window.msPerformance.timing.responseStart - window.msPerformance.timing.navigationStart;}    
-		</script>
-		<link id="www-core-css" rel="stylesheet" href="/yt/cssbin/www-core-vfluMRDnk.css">
-		<link rel="stylesheet" href="/yt/cssbin/www-guide-vflx0V5Tq.css">
-		<link rel="stylesheet" href="/yt/cssbin/www-videos-nav-vflYGt27y.css">
-        <link rel="stylesheet" href="/yt/cssbin/www-extra.css">
-		<script src="//s.ytimg.com/yt/jsbin/www-browse-vflu1nggJ.js" data-loaded="true"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script>
-			if (window.yt.timing) {yt.timing.tick("ct");}    
-		</script>
-        <style>
-            .master-myaccount-top {
-                border-bottom: 1px solid #CACACA;
-            }
-
-            .www-home-left a {
-                padding-bottom: 3px;
-                padding-top: 4px;
-                font-weight: 700;
-                text-align: left;
-                color: black;
-                padding-left: 2px;
-                width: 193px;
-                display: inline-block;
-            }
-
-            .www-home-left {
-                width: 200px;
-                border-right: 1px solid #aaa;
-            }
-
-            .www-home-right {
-                width: 754px;
-                padding: 5px;
-            }
-
-            .www-home-left a:hover {
-                background-color: rgb(239, 239, 239);
-                background: -moz-linear-gradient(0deg,rgb(192,192,192,1)0%,rgb(239,239,239,1)115%);
-                background: -webkit-linear-gradient(0deg,rgb(192,192,192,1)0%,rgb(239,239,239,1)115%);
-                background: linear-gradient(0deg,rgb(192,192,192)0%, rgb(239,239,239)115%);
-                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="c0c0c0",endColorstr="#efefef",GradientType=1);
-            }
-
-            a[href="/inbox/send"] {
-                margin: 0px !important;
-                padding: 0px !important;
-                position: relative;
-                top: 0px !important;
-            }
-
-            #search-button {
-                margin: 0px;
-                margin-bottom: 7px;
-                margin-top: 4px;
-            }
-
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            td, th {
-                text-align: left;
-                padding: 3px;
-            }
-
-            th {
-                border: 1px solid #dddddd;
-                background: rgb(215,215,215);
-                background: -moz-linear-gradient(0deg, rgba(215,215,215,1) 0%, rgba(255,255,255,1) 100%);
-                background: -webkit-linear-gradient(0deg, rgba(215,215,215,1) 0%, rgba(255,255,255,1) 100%);
-                background: linear-gradient(0deg, rgba(215,215,215,1) 0%, rgba(255,255,255,1) 100%);
-                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d7d7d7",endColorstr="#ffffff",GradientType=1); 
-                height: 14px;
-                font-weight: lighter;
-            }
-
-            tr:nth-child(even) {
-                background-color: #f9f9f9;
-            }
-
-            .video-manager-info {
-                width: 462px;
-            }
-
-            .video-filter-options a {
-                margin-left: 5px;
-                margin-right: 5px;
-            }
-
-            .selected {
-                font-weight: bold;
-                color: black;
-            }
-        </style>
+        <script>
+            var yt = yt || {};yt.timing = yt.timing || {};yt.timing.tick = function(label, opt_time) {var timer = yt.timing['timer'] || {};if(opt_time) {timer[label] = opt_time;}else {timer[label] = new Date().getTime();}yt.timing['timer'] = timer;};yt.timing.info = function(label, value) {var info_args = yt.timing['info_args'] || {};info_args[label] = value;yt.timing['info_args'] = info_args;};yt.timing.info('e', "904821,919006,922401,920704,912806,913419,913546,913556,919349,919351,925109,919003,920201,912706");if (document.webkitVisibilityState == 'prerender') {document.addEventListener('webkitvisibilitychange', function() {yt.timing.tick('start');}, false);}yt.timing.tick('start');yt.timing.info('li','0');try {yt.timing['srt'] = window.gtbExternal && window.gtbExternal.pageT() ||window.external && window.external.pageT;} catch(e) {}if (window.chrome && window.chrome.csi) {yt.timing['srt'] = Math.floor(window.chrome.csi().pageT);}if (window.msPerformance && window.msPerformance.timing) {yt.timing['srt'] = window.msPerformance.timing.responseStart - window.msPerformance.timing.navigationStart;}    
+        </script>
+        <link id="www-core-css" rel="stylesheet" href="/yt/cssbin/www-core-vfluMRDnk.css">
+        <link rel="stylesheet" href="/yt/cssbin/www-guide-vflx0V5Tq.css">
+        <script>
+            if (window.yt.timing) {yt.timing.tick("ct");}    
+        </script>
 	</head>
 	<body id="" class="date-20120930 en_US ltr   ytg-old-clearfix guide-feed-v2 " dir="ltr">
 		<form name="logoutForm" method="POST" action="/logout">
 			<input type="hidden" name="action_logout" value="1">
 		</form>
 		<!-- begin page -->
-		<div id="page" class="browse-base">
-			<!-- begin pagetop -->
+		<div id="page" class="">
 			<div id="masthead-container"><?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/header.php"); ?></div>
-			<!-- end pagetop -->
-			<!-- begin pagemiddle -->
 			<div id="content-container">
-				<div id="baseDiv" class="date-20120930 video-info   browse-base browse-videos">
-					<div id="alerts"></div>
-					<div id="masthead-subnav" class="yt-nav yt-nav-dark ">
-						<ul>
-                            <a href="/my_videos">
-							<li>
-								<span class="yt-nav-item">
-								My Channel
-								</span>
-							</li>
-                            </a>
-                            <a href="/inbox/">
-                            <li>
-								<span class="yt-nav-item">
-								Inbox
-								</span>
-							</li>
-                            </a>
-							<a href="/admin/">
-                            <li class=" selected">
-								<span class="yt-nav-item">
-								Admin
-								</span>
-							</li>
-                            </a>
-						</ul>
-					</div>
-					<div class="browse-container ytg-wide ytg-box no-stage browse-bg-gradient">
-						<div class="ytg-fl browse-content">
-                            <?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/sidebar_admin.php"); ?>
-							<div id="browse-main-column" style="float: right;margin: 0px 0 0 14px;" class="ytg-4col">
-								<div class="browse-collection  has-box-ad">
-									<h2>Admin Panel</h2>
-									<hr>
-									<form method="POST" action="/d/admin?action=ban_users">
-										<br>
-										<b>Remove User(s) from Database</b><br>
-										<span style="font-size:11px;color:grey;">
-											<b>THIS IS A RISKY OPERATION</b> <br>
-											You can remove multiple users by using commas. This is CaSe SeNSiTiVe. Here's an example: <br>
-											<pre>bhief,goom,ItsJustAPlayer</pre>
-										</span><br>
-										<input class="yt-uix-form-input-text" name="users" placeholder="Type usernames here">
-										<input type="submit" value="Banhammer" class="yt-uix-button yt-uix-button-default">
-									</form>
-									<hr>
-									<form method="POST" action="/d/admin?action=actually_just_ban_ip">
-										<br>
-										<b>IP Ban User from Website</b><br>
-										<span style="font-size:11px;color:grey;">
-											<b>USE THIS OPERATION FIRST IF YOU ARE GOING TO USE THE REMOVE FROM USER OPERATION</b><br>
-											This is CaSe SeNSiTiVe and you cannot IP ban multiple users within one POST request.
-											<br>Here's an example: 
-											<pre>bhief</pre>
-										</span><br>
-										<input class="yt-uix-form-input-text" name="users" placeholder="Type username here">
-										<input type="submit" value="IP Banhammer" class="yt-uix-button yt-uix-button-default">
-									</form>
-									<hr>
-									<form method="POST" action="/d/admin?action=actually_just_ban">
-										<br>
-										<b>Ban User</b><br>
-										<span style="font-size:11px;color:grey;">
-											This is CaSe SeNSiTiVe and you cannot ban multiple users within one POST request.<br> Here's an example: 
-											<pre>bhief</pre>
-										</span><br>
-										<input class="yt-uix-form-input-text" name="users" style="margin-bottom:5px;" placeholder="Type username here"><br>
-										<textarea class="yt-uix-form-input-text" name="ban_reason" style="margin-bottom:5px;" placeholder="Type ban reason"></textarea><br>
-										<input type="submit" value="Banhammer" class="yt-uix-button yt-uix-button-default">
-									</form>
-									<hr>
-									<form method="POST" action="/d/admin?action=delete_videos">
-										<br>
-										<b>Delete Video(s)</b><br>
-										<span style="font-size:11px;color:grey;">
-											You can delete multiple videos. Just seperate by commas. <br>
-											<pre>3FSQ_-baRlR,WxdV792Mi-q,i5mWA15Cg7K</pre>
-										</span><br>
-										<input class="yt-uix-form-input-text" name="videos" placeholder="Type videos here">
-										<input type="submit" value="Delete Video" class="yt-uix-button yt-uix-button-default">
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-			<!-- end pagemiddle -->
-			<!-- begin pagebottom -->
+				<!-- begin content -->
+				<div id="content">
+                    <h1>You have been IP Banned</h1>
+                    <p>
+                        You may not continue to view SubRocks.
+                    </p><br>
+                    <br><br>
+                </div>
+            </div>  
 			<div id="footer-container"><?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/footer.php"); ?></div>
 			<div id="playlist-bar" class="hid passive editable" data-video-url="/watch?v=&amp;feature=BFql&amp;playnext=1&amp;list=QL" data-list-id="" data-list-type="QL">
 				<div id="playlist-bar-bar-container">
@@ -250,7 +71,7 @@
 							<div id="playlist-bar-tray-content" class="yt-uix-slider-slide">
 								<ol class="video-list"></ol>
 								<ol id="playlist-bar-help">
-									<li class="empty playlist-bar-help-message">Your queue is empty. Add videos to your queue using this button: <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="addto-button-help"><br> or <a href="https://accounts.google.com/ServiceLogin?passive=true&amp;continue=http%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26feature%3Dplaylist%26nomobiletemp%3D1%26hl%3Den_US%26next%3D%252Fvideos%253Ffeature%253Dmh&amp;uilel=3&amp;hl=en_US&amp;service=youtube">sign in</a> to load a different list.</li>
+									<li class="empty playlist-bar-help-message">Your queue is empty. Add videos to your queue using this button: <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="addto-button-help"><br> or <a href="/sign_in">sign in</a> to load a different list.</li>
 								</ol>
 							</div>
 							<div class="yt-uix-slider-shade-left"></div>
@@ -261,11 +82,11 @@
 					<div id="playlist-bar-lists" class="dark-lolz"></div>
 					<div id="playlist-bar-loading"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Loading..."><span id="playlist-bar-loading-message">Loading...</span><span id="playlist-bar-saving-message" class="hid">Saving...</span></div>
 					<div id="playlist-bar-template" style="display: none;" data-video-thumb-url="//i4.ytimg.com/vi/__video_encrypted_id__/default.jpg">
-						<!--<li class="playlist-bar-item yt-uix-slider-slide-unit __classes__" data-video-id="__video_encrypted_id__"><a href="__video_url__" title="__video_title__" class="yt-uix-sessionlink" data-sessionlink="ei=CPjwu5ji3bICFS4RIQod9j-M-A%3D%3D&amp;feature=BFa"><span class="video-thumb ux-thumb yt-thumb-default-106 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="__video_title__" data-thumb-manual="true" data-thumb="__video_thumb_url__" width="106" ><span class="vertical-align"></span></span></span></span><span class="screen"></span><span class="count"><strong>__list_position__</strong></span><span class="play"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif"></span><span class="yt-uix-button yt-uix-button-default delete"><img class="yt-uix-button-icon-playlist-bar-delete" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Delete"></span><span class="now-playing">Now playing</span><span dir="ltr" class="title"><span>__video_title__  <span class="uploader">by __video_display_name__</span>
+						<!--<li class="playlist-bar-item yt-uix-slider-slide-unit __classes__" data-video-id="__video_encrypted_id__"><a href="__video_url__" title="__video_title__" class="yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=BFa"><span class="video-thumb ux-thumb yt-thumb-default-106 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="__video_title__" data-thumb-manual="true" data-thumb="__video_thumb_url__" width="106" ><span class="vertical-align"></span></span></span></span><span class="screen"></span><span class="count"><strong>__list_position__</strong></span><span class="play"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif"></span><span class="yt-uix-button yt-uix-button-default delete"><img class="yt-uix-button-icon-playlist-bar-delete" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Delete"></span><span class="now-playing">Now playing</span><span dir="ltr" class="title"><span>__video_title__  <span class="uploader">by __video_display_name__</span>
 							</span></span><span class="dragger"></span></a></li>-->
 					</div>
 					<div id="playlist-bar-next-up-template" style="display: none;">
-						<!--<div class="playlist-bar-next-thumb"><span class="video-thumb ux-thumb yt-thumb-default-74 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="//i4.ytimg.com/vi/__video_encrypted_id__/default.jpg" alt="Thumbnail" width="74" ><span class="vertical-align"></span></span></span></span></div>-->
+						<!--<div class="playlist-bar-next-thumb"><span class="video-thumb ux-thumb yt-thumb-default-74 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="//i4.ytimg.com/vi/__video_encrypted_id__/default.jpg" alt="Thumbnail" onerror="this.onerror=null;this.src='/dynamic/thumbs/default.jpg';" width="74" ><span class="vertical-align"></span></span></span></span></div>-->
 					</div>
 				</div>
 				<div id="playlist-bar-options-menu" class="hid">
@@ -283,12 +104,12 @@
 				</div>
 			</div>
 			<div id="shared-addto-watch-later-login" class="hid">
-				<a href="https://accounts.google.com/ServiceLogin?passive=true&amp;continue=http%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26feature%3Dplaylist%26nomobiletemp%3D1%26hl%3Den_US%26next%3D%252Fvideos%253Ffeature%253Dmh&amp;uilel=3&amp;hl=en_US&amp;service=youtube" class="sign-in-link">Sign in</a> to add this to a playlist
+				<a href="/sign_in" class="sign-in-link">Sign in</a> to add this to a playlist
 			</div>
 			<div id="shared-addto-menu" style="display: none;" class="hid sign-in">
 				<div class="addto-menu">
 					<div id="addto-list-panel" class="menu-panel active-panel">
-						<span class="yt-uix-button-menu-item yt-uix-tooltip sign-in" data-possible-tooltip="" data-tooltip-show-delay="750"><a href="https://accounts.google.com/ServiceLogin?passive=true&amp;continue=http%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26feature%3Dplaylist%26nomobiletemp%3D1%26hl%3Den_US%26next%3D%252Fvideos%253Ffeature%253Dmh&amp;uilel=3&amp;hl=en_US&amp;service=youtube" class="sign-in-link">Sign in</a> to add this to a playlist
+						<span class="yt-uix-button-menu-item yt-uix-tooltip sign-in" data-possible-tooltip="" data-tooltip-show-delay="750"><a href="/sign_in" class="sign-in-link">Sign in</a> to add this to a playlist
 						</span>
 					</div>
 					<div id="addto-list-saved-panel" class="menu-panel">
@@ -359,12 +180,62 @@
 					</div>
 				</div>
 			</div>
-			<!-- end pagebottom -->
 		</div>
 		<!-- end page -->
 <script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
-        <script id="www-core-js" src="/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
-		<script>yt.www.thumbnaildelayload.init(0);</script>
+		<script id="www-core-js" src="//s.ytimg.com/yt/jsbin/www-core-vfl1pq97W.js" data-loaded="true"></script>
+		<script>
+			yt.setConfig({
+			'XSRF_TOKEN': 'iz8jtUnR4Eomusl012h4goGYKHl8MTM0OTE0MDU3NEAxMzQ5MDU0MTc0',
+			'XSRF_FIELD_NAME': 'session_token'
+			});
+			yt.pubsub.subscribe('init', yt.www.xsrf.populateSessionToken);
+			
+			yt.setConfig('XSRF_REDIRECT_TOKEN', 'DKwX8BwPtPQ3NCknEYmL0VtXh6x8MTM0OTE0MDU3NEAxMzQ5MDU0MTc0');
+			
+			yt.setConfig({
+			'EVENT_ID': "CNLr3rbS3rICFSwSIQodSW397Q==",
+			'CURRENT_URL': "http:\/\/www.youtube.com\/",
+			'LOGGED_IN': false,
+			'SESSION_INDEX': null,
+			
+			'WATCH_CONTEXT_CLIENTSIDE': false,
+			
+			'FEEDBACK_LOCALE_LANGUAGE': "en",
+			'FEEDBACK_LOCALE_EXTRAS': {"logged_in": false, "experiments": "904821,919006,922401,920704,912806,913419,913546,913556,919349,919351,925109,919003,920201,912706", "guide_subs": "NA", "accept_language": null}    });
+		</script>
+		<script>
+			if (window.yt.timing) {yt.timing.tick("js_head");}    
+		</script>
+		<script>
+			_gel('masthead-search-term').focus();
+			yt.setConfig('GUIDE_VERSION', 1);
+		</script>
+		<script>
+			yt.setMsg('FLASH_UPGRADE', "\u003cdiv class=\"yt-alert yt-alert-default yt-alert-error  yt-alert-player\"\u003e  \u003cdiv class=\"yt-alert-icon\"\u003e\n    \u003cimg s\u0072c=\"\/\/s.ytimg.com\/yt\/img\/pixel-vfl3z5WfW.gif\" class=\"icon master-sprite\" alt=\"Alert icon\"\u003e\n  \u003c\/div\u003e\n\u003cdiv class=\"yt-alert-buttons\"\u003e\u003c\/div\u003e\u003cdiv class=\"yt-alert-content\" role=\"alert\"\u003e    \u003cspan class=\"yt-alert-vertical-trick\"\u003e\u003c\/span\u003e\n    \u003cdiv class=\"yt-alert-message\"\u003e\n            You need to upgrade your Adobe Flash Player to watch this video. \u003cbr\u003e \u003ca href=\"http:\/\/get.adobe.com\/flashplayer\/\"\u003eDownload it from Adobe.\u003c\/a\u003e\n    \u003c\/div\u003e\n\u003c\/div\u003e\u003c\/div\u003e");
+			yt.setConfig({
+			'PLAYER_CONFIG': {"url": "\/\/s.ytimg.com\/yt\/swf\/masthead_child-vflRMMO6_.swf", "min_version": "8.0.0", "args": {"enablejsapi": 1}, "url_v9as2": "", "params": {"bgcolor": "#FFFFFF", "allowfullscreen": "false", "allowscriptaccess": "always"}, "attrs": {"width": "1", "id": "masthead_child", "height": "1"}, "url_v8": "", "html5": false}
+			});
+			
+			yt.flash.embed("masthead_child_div", yt.getConfig('PLAYER_CONFIG'));
+		</script>
+		<script src="//s.ytimg.com/yt/jsbin/www-guide-vflO6qP5Q.js" data-loaded="true"></script>
+		<script>
+			window.masthead = new yt.www.ads.MastheadAd(
+			    "OC52H-osudk",
+			    true);
+			
+			yt.www.guide.init();
+			
+			
+		</script>
+		<script>
+			if (window.yt.timing) {yt.timing.tick("js_page");}    
+		</script>
+		<script>
+			yt.setConfig('TIMING_ACTION', "glo");    
+		</script>
+		<script>yt.www.thumbnaildelayload.init(300);</script>
 		<script>
 			yt.setMsg({
 			  'LIST_CLEARED': "List cleared",
@@ -394,30 +265,21 @@
 			  'DRAGDROP_BINARY_URL': "\/\/s.ytimg.com\/yt\/jsbin\/www-dragdrop-vflWKaUyg.js",
 			  'PLAYLIST_BAR_PLAYING_INDEX': -1  });
 			
-			  yt.setAjaxToken('addto_ajax_logged_out', "rmWO31ZGdmAjKQm23MH57ZskA6Z8MTM0OTExMDQ0NkAxMzQ5MDI0MDQ2");
+			  yt.setAjaxToken('addto_ajax_logged_out', "fp0KWJkOgzvoH_zrQWDO1rTnfkx8MTM0OTE0MDU3NEAxMzQ5MDU0MTc0");
 			
 			  yt.pubsub.subscribe('init', yt.www.lists.init);
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
+			    yt.events.listen(_gel('masthead-search-term'), 'focus', yt.www.home.ads.workaroundReset);
 			  yt.setConfig({'SBOX_JS_URL': "\/\/s.ytimg.com\/yt\/jsbin\/www-searchbox-vflsHyn9f.js",'SBOX_SETTINGS': {"CLOSE_ICON_URL": "\/\/s.ytimg.com\/yt\/img\/icons\/close-vflrEJzIW.png", "SHOW_CHIP": false, "PSUGGEST_TOKEN": null, "REQUEST_DOMAIN": "us", "EXPERIMENT_ID": -1, "SESSION_INDEX": null, "HAS_ON_SCREEN_KEYBOARD": false, "CHIP_PARAMETERS": {}, "REQUEST_LANGUAGE": "en"},'SBOX_LABELS': {"SUGGESTION_DISMISS_LABEL": "Dismiss", "SUGGESTION_DISMISSED_LABEL": "Suggestion dismissed"}});
-			
-			
-			
-			
-			
 		</script>
 		<script>
 			yt.setMsg({
 			  'ADDTO_WATCH_LATER_ADDED': "Added",
 			  'ADDTO_WATCH_LATER_ERROR': "Error"
 			});
+		</script>
+		<script>
+			if (window.yt.timing) {yt.timing.tick("js_foot");}    
 		</script>
 	</body>
 </html>

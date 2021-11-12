@@ -143,15 +143,6 @@
             header("Location: /admin/bans");
         }
     } else if($request->action == "actually_just_ban") {
-        /*
-        foreach($request->users as $user) {
-            $stmt = $__db->prepare("UPDATE videos SET visibility = :visibility WHERE author = :username");
-            $stmt->bindParam(":username", $user);
-            $stmt->bindParam(":visibility", "v");
-            $stmt->execute();
-        }
-        */
-
         $stmt = $__db->prepare("INSERT INTO bans (username, reason, expire, moderator) VALUES (:username, :reason, now(), :moderator)");
         $stmt->execute(array(
             ':username'  => $_POST['users'],
@@ -159,8 +150,17 @@
             ':reason'    => $request->reason,
         ));
 
-        /* `expire` column is unused for now */
+        header("Location: /admin/bans");
+    } else if($request->action == "actually_just_ban_ip") {
+        $_user = $__user_h->fetch_user_username($_POST['users']);
 
+        $stmt = $__db->prepare("INSERT INTO bans (username, reason, expire, moderator) VALUES (:username, :reason, now(), :moderator)");
+        $stmt->execute(array(
+            ':username'  => $_user['ip'],
+            ':moderator' => $_SESSION['siteusername'],
+            ':reason'    => "",
+        ));
+        
         header("Location: /admin/bans");
     }
 
