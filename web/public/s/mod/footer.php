@@ -10,16 +10,15 @@
     </div>
     <div id="footer-main">
         <ul id="footer-links-primary">
-            <li><a href="/t/about_youtube">About</a></li>
+            <li><a href="/t/about_subrocks">About</a></li>
             <li><a href="/t/copyright_center">Copyright</a></li>
-            <li><a href="/creators">Partners</a></li>
-            <li><a href="/t/advertising_overview">Advertising</a></li>
-            <li><a href="/dev">Developers</a></li>
+            <li><a href="/t/community_guidelines">Guidelines</a></li>
+            <li><a href="/t/partners">Partners</a></li>
         </ul>
         <ul id="footer-links-secondary">
             <li><a href="/t/terms">Terms</a></li>
-            <li><a href="//support.google.com/youtube/bin/request.py?contact_type=abuse&amp;hl=en-US">Safety</a></li>
-            <li><a href="/api_qa">API</a></li>
+            <li><a href="https://discord.gg/3QZRUp6Abr">Discord</a></li>
+            <!-- TODO: ADD DEV PAGE FOR DOCUMENTATION OF API -->
         </ul>
         <ul class="pickers yt-uix-button-group" data-button-toggle-group="optional">
             <li>
