@@ -214,7 +214,6 @@
 		<div class="clear"></div>
 	</div>
 <?php } ?>
-</div>
 <div id="alerts">
 	<?php if(isset($error['status'])) { ?>
 		<div id="masthead_child_div"><div class="yt-alert yt-alert-default yt-alert-error  yt-alert-player">  <div class="yt-alert-icon">
