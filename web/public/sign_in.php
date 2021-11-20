@@ -62,7 +62,7 @@
 								
 								<input class="yt-uix-form-input-text" type="password" name="password" placeholder="Password" style="margin-top: 9px;">
 
-								<input class="yt-uix-button yt-uix-button-primary yt-uix-button-size-default" type="submit" value="Login" style=margin-top: 7px;">
+								<input class="yt-uix-button yt-uix-button-primary yt-uix-button-size-default" type="submit" value="Login" style="margin-top: 7px;">
 							</form>
 						</div>
 					</div>
