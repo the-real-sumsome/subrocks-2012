@@ -54,28 +54,33 @@
 			<div id="content-container">
 				<!-- begin content -->
 				<div id="content">
-                    <h3>Sign up for SubRocks</h3>
-                    <hr><br>
+                    <h2>Sign up to SubRocks</h2>
+                    <br>
 					<div class="www-left">
 						<b>Join the rockiest video-sharing community!</b><br>
 						Sign up now to get full access with your SubRocks account: <br><br>
 						<ul>
-							<li>&bull; &nbsp; Comment, rate, and make video responses to your favorite videos</li>
-							<li>&bull; &nbsp; Upload and share your videos with millions of other users</li>
-							<li>&bull; &nbsp; Save your favorite videos to watch and share later</li>
-							<li>&bull; &nbsp; Enter your videos into contests for fame and prizes</li>
-						</ul><br><br>
+							<li>• &nbsp; Comment, rate, and make video responses to your favorite videos</li>
+							<li>• &nbsp; Upload and share your videos with millions of other users</li>
+							<li>• &nbsp; Save your favorite videos to watch and share later</li>
+							<li>• &nbsp; Enter your videos into contests for fame and prizes</li>
+						</ul><br><a href="/sign_in">Already have an account?</a>
+
 					</div>
 					<div class="www-right">
 						<div class="sign-in-div">
 							<form method="POST" action="/d/signup">
-								<b>Username</b><br>
-								<span class="small-text">Your username must be less than 20 characters and contain no special characters</span><br>
-								<input class="yt-uix-form-input-text" type="text" name="username" placeholder="Username"><br><br>
-								<b>Password</b><br>
-								<span class="small-text">Your password must contain special characters. <br>Passwords are hashed with bcrypt.</span><br>
+								
+								
+								<input class="yt-uix-form-input-text" type="text" name="username" placeholder="Username"><br>
+<span class="small-text" style="
+">Your username must be less than 20 characters and <br> contain no special characters.</span><br><br>
+								
+								
 								<div>
 								<input class="yt-uix-form-input-text" type="password" id="password" name="password" placeholder="Password">
+    <div class="progress "><div class="progress-bar bg-danger" style="min-width: 1px; width: 1%;"><span class="password-verdict" style="white-space: nowrap;"></span></div></div>
+<span class="small-text">Your password must contain special characters. </span>
 								<script>
 									$('#password').pwstrength({
 										ui: { showVerdictsInsideProgressBar: true }
@@ -83,12 +88,14 @@
 								</script>
 								</div><br>
 								<script>$('#password').strength_meter();</script>
-                                <b>E-Mail</b><br>
-								<span class="small-text">Your email must be a valid email or you will not be able to comment, and upload!</span><br>
-								<input class="yt-uix-form-input-text" type="email" name="email" placeholder="E-Mail"><br><br>
+                                
+								
 
-								<input class="yt-uix-button yt-uix-button-default" type="submit" value="Sign Up">
-							</form>
+								<input class="yt-uix-form-input-text" type="email" name="email" placeholder="E-Mail">
+<br><span class="small-text">Your email must be a valid email or you will not be able <br> to comment, and upload!</span><br><br>
+
+								<input class="yt-uix-button yt-uix-button-primary yt-uix-button-size-default" type="submit" value="Sign Up">
+							<input name="session_token" type="hidden" value="iz8jtUnR4Eomusl012h4goGYKHl8MTM0OTE0MDU3NEAxMzQ5MDU0MTc0"></form>
 						</div>
 					</div>
                 </div>
