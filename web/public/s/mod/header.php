@@ -25,22 +25,19 @@
 		</span></button></span></div>
 	</div>
 	<?php } else { ?>
-	<div id="yt-masthead-user" style="position: relative;top: 4px;">
-		<span id="yt-masthead-user-displayname" dir="ltr" class="yt-valign-container" onclick="yt.www.masthead.toggleExpandedMasthead();">
-		<?php echo htmlspecialchars($_SESSION['siteusername']); ?>
-		</span>
-		<?php if($__user_h->fetch_unread_pms($_SESSION['siteusername']) != 0) { ?>
-		<a style="border-radius:2px;font-weight:bold;border:1px solid #CE4D34;position:relative;top:1px;color: white;text-decoration: none;background-color: #E26148;padding: 7px;padding-left: 10px;margin-right: 12px;display: inline;" href="/inbox/">
-		<?php echo $__user_h->fetch_unread_pms($_SESSION['siteusername']); ?> 
-		</a>
-		<?php } else { ?>
-		<a style="border-radius:2px;font-weight:bold;border:1px solid #D5D5D5;position:relative;top:1px;color: #939393;text-decoration: none;background-color: #DADADA;padding: 7px;padding-left: 10px;margin-right: 12px;display: inline;" href="/inbox/">
-		<?php echo $__user_h->fetch_unread_pms($_SESSION['siteusername']); ?> 
-		</a>
-		<?php } ?>
-		<img onclick="yt.www.masthead.toggleExpandedMasthead();;return false;" alt="Thumbnail" src="/dynamic/pfp/<?php echo $__user_h->fetch_pfp($_SESSION['siteusername']); ?>" style="width:31px;height:31px;vertical-align:middle;border-radius:2px;">
-		<span id="yt-masthead-dropdown" onclick="yt.www.masthead.toggleExpandedMasthead();" class=""></span>
-	</div>
+		<div id="masthead-user-bar-container">
+			<div id="masthead-user-bar">
+				<div id="masthead-user">
+					<span id="masthead-gaia-user-expander" class="masthead-user-menu-expander masthead-expander" onclick="yt.www.masthead.toggleExpandedMasthead()"><span id="masthead-gaia-user-wrapper" class="yt-rounded" tabindex="0"><?php echo htmlspecialchars($_SESSION['siteusername']); ?></span></span>
+							<?php if($__user_h->fetch_unread_pms($_SESSION['siteusername']) != 0) { ?>
+							<button type="button" onclick=";window.location.href=this.getAttribute('href');return false;" href="/inbox/" class="sb-button sb-notif-on yt-uix-button" id="sb-button-notify" role="button"><span class="yt-uix-button-content"><?php echo $__user_h->fetch_unread_pms($_SESSION['siteusername']); ?></span></button>
+					<?php } else { ?>
+							<button type="button" onclick=";window.location.href=this.getAttribute('href');return false;" href="/inbox/" class="sb-button sb-notif-off yt-uix-button" id="sb-button-notify" role="button"><span class="yt-uix-button-content"><?php echo $__user_h->fetch_unread_pms($_SESSION['siteusername']); ?></span></button>
+					<?php } ?>
+							<span id="masthead-gaia-photo-expander" class="masthead-user-menu-expander masthead-expander" onclick="yt.www.masthead.toggleExpandedMasthead()"><span id="masthead-gaia-photo-wrapper" class="yt-rounded"><span id="masthead-gaia-user-image"><span class="clip"><span class="clip-center"><img src="/dynamic/pfp/<?php echo $__user_h->fetch_pfp($_SESSION['siteusername']); ?>" alt=""><span class="vertical-center"></span></span></span></span><span class="masthead-expander-arrow"></span></span></span>
+				</div>
+			</div>
+		</div>
 	<?php } ?>
 	<div id="masthead-search-bar-container">
 		<div id="masthead-search-bar">
