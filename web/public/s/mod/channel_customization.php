@@ -336,7 +336,15 @@
                             <div id="backgroundimage" method="post" action="/d/channel_update" enctype="multipart/form-data">
                                 <input type="file" name="backgroundbgset" id="background-upload">
                                 <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
-                            </div>
+                            </div><br>
+                            <?php if($__user_h->if_partner($_user['username'])) { ?>
+                                <h2>Watch Page Subscribe Button</h2>
+                                <span style="font-size: 11px;color:grey;" class="grey-text">Choose Image (Max file size: 10MB)</span><br>
+                                <div id="watchsub" method="post" action="/d/channel_update?n=watchsub" enctype="multipart/form-data">
+                                    <input type="file" name="watchsubset" id="watch-upload">
+                                    <!--<button class="yt-uix-button yt-uix-button-default" id="av-uplod">Select File</button>-->
+                                </div>
+                            <?php } ?>
                             
                             <input class="yt-uix-button yt-uix-button-default" style="position: absolute;top: -89px;right: -412px;" type="submit" value="Done Editing"><br><br>
                     </td>

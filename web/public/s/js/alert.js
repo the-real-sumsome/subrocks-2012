@@ -6,7 +6,7 @@ function addAlert(id, text) {
     $(".alerts-2012").append(
         `
         <div id="alerts" class="content-alignment" style="margin-top:3px;">
-            <div class="yt-alert yt-alert-default yt-alert-info hid " id="alert__` + id + `" style="display: block;">
+            <div class="yt-alert yt-alert-default yt-alert-info hid" id="alert__` + id + `" style="display: block;">
                 <div class="yt-alert-icon">
                     <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
                 </div>
@@ -21,4 +21,6 @@ function addAlert(id, text) {
         </div>
         `
     );
+
+    return "Alert created " + id + text;
 }

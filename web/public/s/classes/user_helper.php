@@ -52,6 +52,14 @@ class user_helper {
         return $stmt->rowCount() === 1;
     }    
 
+    function if_partner($user) {
+        $stmt = $this->__db->prepare("SELECT partner FROM users WHERE username = :user AND partner = 'y'");
+        $stmt->bindParam(":user", $user);;
+        $stmt->execute();
+
+        return $stmt->rowCount() === 1;
+    }    
+    
     function if_cooldown($user) {
         $stmt = $this->__db->prepare("SELECT * FROM users WHERE username = :username AND cooldown_comment >= NOW() - INTERVAL 1 MINUTE");
         $stmt->bindParam(":username", $user);

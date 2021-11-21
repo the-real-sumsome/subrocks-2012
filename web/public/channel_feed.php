@@ -261,6 +261,9 @@
 												<?php } else { ?>
 
 												<?php } ?>
+												<?php if($__user_h->if_partner($_user['username'])) { ?>
+													<img style="width: 29px;vertical-align: middle;margin-left: 10px;" title="This user is a SubRocks partner" src="/yt/imgbin/RenderedImage.png">
+												<?php } ?>
 											</div>
 											<div class="upper-right-section">
 												<div class="header-stats">

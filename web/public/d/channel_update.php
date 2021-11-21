@@ -85,6 +85,43 @@
                     }
                 }
             }
+        } else if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_FILES['watchsubset']) {
+            echo "asdas";
+            if(!empty($_FILES["watchsubset"]["name"])) {
+                echo "asdas";
+
+                $target_dir = "../dynamic/banners/";
+                $imageFileType = strtolower(pathinfo($_FILES["watchsubset"]["name"], PATHINFO_EXTENSION));
+                $target_name = md5_file($_FILES["watchsubset"]["tmp_name"]) . "." . $imageFileType;
+    
+                $target_file = $target_dir . $target_name;
+    
+                $uploadOk = true;
+                $movedFile = false;
+    
+                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                    && $imageFileType != "gif" ) {
+                    $fileerror = 'unsupported file type. must be jpg, png, jpeg, or gif';
+                    $uploadOk = false;
+                    goto skip;
+                }
+    
+                if($uploadOk) { 
+                    if (file_exists($target_file)) {
+                        $movedFile = true;
+                    } else {
+                        $movedFile = move_uploaded_file($_FILES["watchsubset"]["tmp_name"], $target_file);
+                    }
+                }
+    
+                if ($uploadOk) {
+                    if ($movedFile) {
+                        $__user_u->update_row($_SESSION['siteusername'], "watch_banner", $target_name);
+                    } else {
+                        $fileerror = 'fatal error';
+                    }
+                }
+            }
         } else if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_POST['bannerset']) {
             if(!empty($_FILES["file"]["name"])) {
                 $target_dir = "../dynamic/banners/";
@@ -251,7 +288,7 @@
     ];
 
     echo json_encode($response);
-    print_r($_POST);
+    // print_r($_POST);
 
     //echo "<script>
     //window.location = '/channel_2?n=" . htmlspecialchars($_SESSION['siteusername']) . "';

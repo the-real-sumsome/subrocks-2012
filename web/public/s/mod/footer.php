@@ -1,4 +1,3 @@
-
 <!-- begin footer -->
 <div id="footer">
     <div class="yt-horizontal-rule "><span class="first"></span><span class="second"></span><span class="third"></span></div>
@@ -18,6 +17,7 @@
         <ul id="footer-links-secondary">
             <li><a href="/t/terms">Terms</a></li>
             <li><a href="https://discord.gg/3QZRUp6Abr">Discord</a></li>
+            <li><a href="#">ver r1.01</a></li>
             <!-- TODO: ADD DEV PAGE FOR DOCUMENTATION OF API -->
         </ul>
         <ul class="pickers yt-uix-button-group" data-button-toggle-group="optional">

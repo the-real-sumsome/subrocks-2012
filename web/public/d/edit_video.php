@@ -46,7 +46,7 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'POST' && @$_FILES['thumbnail']) {
         if(!empty($_FILES["thumbnail"]["name"])) {
-            $target_dir = "dynamic/thumbs/";
+            $target_dir = "../dynamic/thumbs/";
             $imageFileType = strtolower(pathinfo($_FILES["thumbnail"]["name"], PATHINFO_EXTENSION));
             $target_name = md5_file($_FILES["thumbnail"]["tmp_name"]) . "." . $imageFileType;
     

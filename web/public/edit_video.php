@@ -182,7 +182,7 @@
                                             <?php } ?>
                                         </select><br><br>
                                         <b>Privacy</b> <br><br>
-                                        <input class="yt-uix-form-input-radio" name="privacy" value="n" type="radio" style="vertical-align: top;"> 
+                                        <input class="yt-uix-form-input-radio" name="privacy" checked value="n" type="radio" style="vertical-align: top;"> 
                                         <span style="display: inline-block;">
                                             <b>Public</b><br>
                                             <span class="small-text">

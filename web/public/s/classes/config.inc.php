@@ -69,4 +69,9 @@
         if($_SERVER['REQUEST_URI'] != "/ip_ban")
             header("Location: /ip_ban");
     }
+
+    /* NOT RUNNING UNDER CF CHECK */
+    if(!isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+        $_SERVER["HTTP_CF_CONNECTING_IP"] = $_SERVER['REMOTE_ADDR'];
+    }
 ?>

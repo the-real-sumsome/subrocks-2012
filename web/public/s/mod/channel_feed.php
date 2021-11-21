@@ -43,7 +43,7 @@
 																	  WHERE
 																		t2.author = :videos_username
 																	  ORDER BY 
-																		`date` DESC;");
+																		`date` DESC LIMIT 10;");
                                                                         $stmt->bindParam(":comment_username", $_user['username']);
 																		$stmt->bindParam(":videos_username", $_user['username']);
                                                                         $stmt->execute();

@@ -202,7 +202,7 @@
 									</ul>
 									<div class="guide-item-container">
 										<span class="guide-item guide-item-action guide-item-fake">
-										<a href="/videos?feature=hp">see all<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="see-more-arrow" alt=""></a>        </span>
+										<a href="#">see all<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="see-more-arrow" alt=""></a>        </span>
 									</div>
 								</div>
 							</div>

@@ -51,6 +51,10 @@
 			</form>
 		</div>
 	</div></div>
+	<div class="alerts-2012">
+	
+	</div>
+	
 <?php if(isset($_SESSION['siteusername'])) { ?>
 <div id="masthead-expanded" class="hid" style="display: none;">
 	<div id="masthead-expanded-container" class="with-sandbar">
@@ -258,6 +262,3 @@
 	<?php } ?>
 </div>
 <!-- end masthead -->
-<div class="alerts-2012">
-	
-</div>
