@@ -90,7 +90,7 @@
                                 <span style="display: inline-block;">
                                     <h4>Uploading high quality videos</h4>
                                     <span class="small-text">
-                                        SubRocks suports up to 480p with prstine bitrate.<br>
+                                        SubRocks suports up to 480p with pristine bitrate.<br>
                                         You can upload videos that are up to an hour long.
                                     </span>
                                 </span><br><br>
@@ -99,7 +99,7 @@
                                     <h4>Recording from webcam</h4>
                                     <span class="small-text">
                                         SubRocks <b>will</b> support recording from webcam.<br>
-                                        This featurem might be added. Only time will tell.
+                                        This feature might be added. Only time will tell.
                                     </span>
                                 </span><br><br>
                             </div>
