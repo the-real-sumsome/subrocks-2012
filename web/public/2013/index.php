@@ -129,7 +129,7 @@
 											</div>
 											<div class="lohp-vbox-list lohp-left-vbox-list">
 												<div>
-													<div class="lohp-shelf-cell-container lohp-category-shelf last-shelf-in-line" style="height: 355px;">
+													<div class="lohp-shelf-cell-container lohp-category-shelf last-shelf-in-line recent-videos">
 														<div class="lohp-category-shelf-item-list lohp-shelf-size-3">
 															<h2 class="branded-page-module-title">
 																<a class="spf-link yt-uix-sessionlink" href="/channel/HCxAJ-ON2kZuw?feature=g-logo" title="Entertainment" data-sessionlink="ved=CAoQzh4&amp;ei=7pFAUZzAG52shAGGr4DACw">
