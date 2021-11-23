@@ -73,13 +73,11 @@
 								
 								
 								<input class="yt-uix-form-input-text" type="text" name="username" placeholder="Username"><br>
-<span class="small-text" style="
-">Your username must be less than 20 characters and <br> contain no special characters.</span><br><br>
+<span class="small-text" style="">Your username must be less than 20 characters and <br> contain no special characters.</span><br><br>
 								
 								
 								<div>
 								<input class="yt-uix-form-input-text" type="password" id="password" name="password" placeholder="Password">
-    <div class="progress "><div class="progress-bar bg-danger" style="min-width: 1px; width: 1%;"><span class="password-verdict" style="white-space: nowrap;"></span></div></div>
 <span class="small-text">Your password must contain special characters. </span>
 								<script>
 									$('#password').pwstrength({
