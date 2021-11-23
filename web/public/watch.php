@@ -285,7 +285,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 											<button onclick=";return false;" title="Show video statistics" type="button" id="watch-insight-button" class="yt-uix-tooltip yt-uix-tooltip-reverse yt-uix-button yt-uix-button-default yt-uix-tooltip yt-uix-button-empty" data-button-action="yt.www.watch.actions.stats" role="button"><span class="yt-uix-button-icon-wrapper"><img class="yt-uix-button-icon yt-uix-button-icon-watch-insight" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Show video statistics"><span class="yt-valign-trick"></span></span></button>
 										</div>
 										<span id="watch-like-unlike" class="yt-uix-button-group " data-button-toggle-group="optional">
-											<button onclick=";like_video();return false;"
+											<button onclick=";window.location.href=this.getAttribute('href');return false;" href="/get/like_video?v=<?php echo $_video['rid']; ?>"
 											title="I like this" 
 											type="button" 
 											class="start <?php if($_video['liked']) { echo "liked "; } ?>yt-uix-tooltip-reverse  yt-uix-button yt-uix-button-default yt-uix-tooltip" 
@@ -297,7 +297,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 											</button>
 											
 											<button 
-											onclick=";like_video();return false;"
+											onclick=";window.location.href=this.getAttribute('href');return false;" href="/get/dislike_video?v=<?php echo $_video['rid']; ?>"
 											title="I dislike this" 
 											type="button" 
 											style="margin-left: -2px;"

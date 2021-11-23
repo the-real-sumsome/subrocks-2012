@@ -51,6 +51,13 @@
 
         $request->username = remove_emoji($request->username);
 
+        /* ALT DETECT */
+        $stmt = $__db->prepare("SELECT * FROM users WHERE ip = :ip");
+        $stmt->bindParam(":ip", $_SERVER["HTTP_CF_CONNECTING_IP"]);
+        $stmt->execute();
+
+        while($ip = $stmt->fetch(PDO::FETCH_ASSOC)) { $request->error->message = "You cannot make alt accounts."; $request->error->status = "";  }
+
         if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) 
             { $request->error->message = "Your email is invalid!"; $request->error->status = "";  }
         if(strlen($request->username) > 21) 

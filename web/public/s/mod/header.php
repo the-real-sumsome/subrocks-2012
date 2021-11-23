@@ -5,6 +5,10 @@
 		$stmt->bindParam(":ip",       $_SERVER["HTTP_CF_CONNECTING_IP"]);
         $stmt->execute();
 	}
+
+	if(isset($_SESSION['siteusername']) && !$__user_h->user_exists(@$_SESSION['siteusername'])) {
+		die("<a href='/logout'>Your user has been deleted. Logout</a>");
+	}
 ?>
 <!-- begin masthead -->
 <div id="masthead" class="" dir="ltr">
