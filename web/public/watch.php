@@ -148,6 +148,9 @@
 												<li>
 													<a href="/get/delete_video_admin?v=<?php echo $_video['rid']; ?>" class="yt-uix-button yt-uix-sessionlink yt-uix-button-subnav  yt-uix-button-dark" data-sessionlink="ei=CMCA1_3robMCFSrJRAodqnnxKQ%3D%3D"><span class="yt-uix-button-content">Delete Video</span></a>
 												</li>
+												<li>
+													<a href="/get/feature_video?v=<?php echo $_video['rid']; ?>" class="yt-uix-button yt-uix-sessionlink yt-uix-button-subnav  yt-uix-button-dark" data-sessionlink="ei=CMCA1_3robMCFSrJRAodqnnxKQ%3D%3D"><span class="yt-uix-button-content">Feature Video</span></a>
+												</li>
 											</ul>
 										</div>
 									</div><br>
@@ -245,6 +248,17 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 						<div id="watch-main-container">
 							<div id="watch-main">
 								<div id="watch-panel">
+									<?php if($_video['featured'] == "v") { ?>
+										<div id="masthead_child_div"><div class="yt-alert yt-alert-default yt-alert-warn">  <div class="yt-alert-icon">
+											<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
+										</div>
+										<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
+											<div class="yt-alert-message">
+												This video is featured. View more featured videos by SubRocks on the front page.
+											</div>
+										</div></div></div>
+									<?php }  ?>
+
 	  								<?php if($_video['visibility'] == "u") { ?>
 										<div id="masthead_child_div"><div class="yt-alert yt-alert-default yt-alert-warn">  <div class="yt-alert-icon">
 											<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
