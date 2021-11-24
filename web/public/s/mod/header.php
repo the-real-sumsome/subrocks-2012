@@ -55,7 +55,9 @@
 	<div class="alerts-2012">
 	
 	</div>
-	
+	<div id="ticker" class="ytg-base "><div id="ticker-inner"><div class="ytg-wide"><button onclick="yt.net.cookies.set('HideTicker', 1, 604800);" class="yt-uix-close" data-close-parent-id="ticker"><img alt="Close" src="https://s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif"></button><img class="ticker-icon" src="https://s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt=""><div class="ticker-content">
+		<b>New minor update: <pre style="display:inline-block;">1fe1fa4</pre></b> <pre style="display:inline-block;font-size:10px;margin-left:35px;">This is a part of the Communications update. The inbox has been updated with a cleaner look.</pre>
+	</div></div></div></div><br>
 <?php if(isset($_SESSION['siteusername'])) { ?>
 <div id="masthead-expanded" class="hid" style="display: none;">
 	<div id="masthead-expanded-container" class="with-sandbar">
