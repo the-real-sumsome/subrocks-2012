@@ -28,7 +28,7 @@ class user_helper {
 
     
     function fetch_unread_pms($user) {
-        $stmt = $this->__db->prepare("SELECT * FROM pms WHERE touser = :user AND readed = 'n'");
+        $stmt = $this->__db->prepare("SELECT * FROM pms WHERE touser = :user AND readed = 'y'");
         $stmt->bindParam(":user", $user);
         $stmt->execute();
     
