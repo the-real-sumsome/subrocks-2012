@@ -292,6 +292,11 @@
 													</a>
 												</li>
 												<li>
+													<a href="/user/<?php echo htmlspecialchars($_user['username']); ?>/discussion" class="gh-tab-101">
+													Discussion
+													</a>
+												</li>
+												<li>
 													<a href="/user/<?php echo htmlspecialchars($_user['username']); ?>/videos" class="gh-tab-101">
 													Videos
 													</a>

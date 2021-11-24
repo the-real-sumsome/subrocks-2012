@@ -181,6 +181,10 @@
 				<?php if(isset($_SESSION['siteusername']) && $_user['username'] == $_SESSION['siteusername']) { ?>
 					<div class="channel_customization"><?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/channel_customization.php"); ?></div>
 				<?php } ?> 
+				<?php
+					if(empty(trim($_user['bio'])))
+						$_user['bio'] = "This user has no description.";
+				?>
 				<div id="content">
 					<div class="subscription-menu-expandable subscription-menu-expandable-channels3 yt-rounded ytg-wide hid">
 						<div class="content" id="recommended-channels-list"></div>
@@ -276,7 +280,7 @@
 											</div>
 										</div>
 										<div class="channel-horizontal-menu clearfix">
-										<ul>
+											<ul>
 												<li>
 													<a href="/user/<?php echo htmlspecialchars($_user['username']); ?>/featured" class="gh-tab-100">
 													Featured
@@ -287,12 +291,12 @@
 													Feed
 													</a>
 												</li>
-												<li>
+												<li class="selected">
 													<a href="/user/<?php echo htmlspecialchars($_user['username']); ?>/discussion" class="gh-tab-101">
 													Discussion
 													</a>
 												</li>
-												<li class="selected">
+												<li>
 													<a href="/user/<?php echo htmlspecialchars($_user['username']); ?>/videos" class="gh-tab-101">
 													Videos
 													</a>
@@ -317,72 +321,7 @@
 							</div>
                             <?php if($_user['featured'] != "None") { $video = $__video_h->fetch_video_rid($_user['featured']); } else { $_user['featured'] = false; } ?>
 							<div id="branded-page-body">
-                                <div class="channel-tab-content channel-layout-full-width">
-                                    <div class="tab-content-body">
-                                        <div class="channel-filtered-page">
-                                            <div class="channel-filtered-page-head">
-                                                <h1 class="channel-section-heading">
-                                                    Uploads
-                                                    <span class="item-count">(<?php echo $__user_h->fetch_user_videos($_user['username']); ?>)</span>
-                                                </h1>
-                                                <div class="yt-horizontal-rule "><span class="first"></span><span class="second"></span><span class="third"></span></div>
-                                            </div>
-                                            <div class="left-pane">
-                                                <ul class="primary-filter-menu">
-                                                    <li>
-                                                        <a class="filter-option selected-filter" href="#">
-                                                        Uploads
-                                                        </a>
-                                                    </li>
-													<!--
-														<li>
-															<a class="filter-option " href="#">
-															Playlists
-															</a>
-														</li>
-													-->
-                                                </ul>
-                                            </div>
-                                            <div class="channel-filtered-content">
-                                                <ol class="channel-videos-list">
-													<?php
-														$stmt = $__db->prepare("SELECT * FROM videos WHERE author = :username ORDER BY id DESC");
-														$stmt->bindParam(":username", $_user['username']);
-														$stmt->execute();
-														while($video = $stmt->fetch(PDO::FETCH_ASSOC)) {	
-															$video['age'] = $__time_h->time_elapsed_string($video['publish']);		
-															$video['duration'] = $__time_h->timestamp($video['duration']);
-															$video['views'] = $__video_h->fetch_video_views($video['rid']);
-															$video['author'] = htmlspecialchars($video['author']);		
-															$video['title'] = htmlspecialchars($video['title']);
-															$video['description'] = $__video_h->shorten_description($video['description'], 50);
-													?>
-                                                    <li class="yt-c3-grid-item">
-                                                        <a href="/watch?v=<?php echo htmlspecialchars($video['rid']); ?>" class="ux-thumb-wrap yt-uix-sessionlink yt-uix-contextlink contains-addto " data-sessionlink="feature=plcp&amp;context=C4e80d7cVDvjVQa1PpcFPHxNkhfeSQg8_nJHnhVurQf82C2OenNiw%3D"><span class="video-thumb ux-thumb yt-thumb-default-234 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" alt="Thumbnail" onerror="this.onerror=null;this.src='/dynamic/thumbs/default.jpg';" width="234"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $video['duration']; ?></span>
-                                                        <button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="yBlvNSfqAj0" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
-                                                        </span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
-                                                        </a>
-                                                        <h3 class="yt-c3-grid-item-title">
-                                                            <a href="/watch?v=<?php echo htmlspecialchars($video['rid']); ?>" class="yt-uix-sessionlink yt-uix-contextlink" data-sessionlink="context=C4e80d7cVDvjVQa1PpcFPHxNkhfeSQg8_nJHnhVurQf82C2OenNiw%3D" title="<?php echo htmlspecialchars($video['title']); ?>" dir="ltr">
-                                                            <?php echo htmlspecialchars($video['title']); ?>
-                                                            </a>
-                                                        </h3>
-                                                        <span class="yt-c3-grid-item-viewcount">
-                                                        <?php echo $__video_h->fetch_video_views($video['rid']); ?> views
-                                                        </span>
-                                                        <span class="yt-c3-grid-item-created">
-                                                        <?php echo $__time_h->time_elapsed_string($video['publish']); ?>
-                                                        </span>
-                                                    </li>
-													<?php } ?>
-                                                </ol>
-                                                <div class="yt-uix-pager" role="navigation">
-                                                    <a href="/user/RayWilliamJohnson/videos?sort=dd&amp;view=0&amp;page=1" class="yt-uix-button yt-uix-sessionlink yt-uix-pager-page-num yt-uix-pager-button yt-uix-button-toggled yt-uix-button-default" data-page="1" aria-label="Go to page 1" data-sessionlink=""><span class="yt-uix-button-content">1</span></a>&nbsp;
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+								<div class="channel-tab-content channel-layout-two-column selected blogger-template"><?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/channel_discussion.php"); ?></div>
 							</div>
 						</div>
 					</div>

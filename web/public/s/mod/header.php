@@ -55,6 +55,47 @@
 	<div class="alerts-2012">
 	
 	</div>
+	<?php if(isset($error['status'])) { ?>
+		<div id="masthead_child_div" style="width: 970px;margin: auto;"><div class="yt-alert yt-alert-default yt-alert-error  yt-alert-player">  <div class="yt-alert-icon">
+			<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
+		</div>
+		<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
+			<div class="yt-alert-message">
+				<?php echo $error['message']; ?>
+			</div>
+		</div></div></div>
+	<?php } ?>
+	<?php if(isset($_GET['error'])) { ?>
+		<div id="masthead_child_div" style="width: 970px;margin: auto;"><div class="yt-alert yt-alert-default yt-alert-error ">  <div class="yt-alert-icon">
+			<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
+		</div>
+		<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
+			<div class="yt-alert-message">
+				<?php echo htmlspecialchars($_GET['error']); ?>
+			</div>
+		</div></div></div>
+	<?php } ?>
+	<?php if(isset($_GET['success'])) { ?>
+		<div id="masthead_child_div" style="width: 970px;margin: auto;"><div class="yt-alert yt-alert-default yt-alert-success ">  <div class="yt-alert-icon">
+			<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
+		</div>
+		<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
+			<div class="yt-alert-message">
+				<?php echo htmlspecialchars($_GET['success']); ?>
+			</div>
+		</div></div></div>
+	<?php } ?>
+	<?php if(isset($_SESSION['error'])) { ?>
+		<div id="masthead_child_div" style="width: 970px;margin: auto;"><div class="yt-alert yt-alert-default yt-alert-error">  <div class="yt-alert-icon">
+			<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
+		</div>
+		<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
+			<div class="yt-alert-message">
+				<?php echo $_SESSION['error']->message; ?>
+			</div>
+		</div></div></div>
+		<?php unset($_SESSION['error']); ?>
+	<?php } ?>
 	<div id="ticker" class="ytg-base "><div id="ticker-inner"><div class="ytg-wide"><button onclick="yt.net.cookies.set('HideTicker', 1, 604800);" class="yt-uix-close" data-close-parent-id="ticker"><img alt="Close" src="https://s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif"></button><img class="ticker-icon" src="https://s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif" alt=""><div class="ticker-content">
 		<b>New minor update: <pre style="display:inline-block;">1fe1fa4</pre></b> <pre style="display:inline-block;font-size:10px;margin-left:35px;">This is a part of the Communications update. The inbox has been updated with a cleaner look.</pre>
 	</div></div></div></div><br>
@@ -222,46 +263,6 @@
 	</div>
 <?php } ?>
 <div id="alerts">
-	<?php if(isset($error['status'])) { ?>
-		<div id="masthead_child_div"><div class="yt-alert yt-alert-default yt-alert-error  yt-alert-player">  <div class="yt-alert-icon">
-			<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
-		</div>
-		<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
-			<div class="yt-alert-message">
-				<?php echo $error['message']; ?>
-			</div>
-		</div></div></div>
-	<?php } ?>
-	<?php if(isset($_GET['error'])) { ?>
-		<div id="masthead_child_div"><div class="yt-alert yt-alert-default yt-alert-error ">  <div class="yt-alert-icon">
-			<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
-		</div>
-		<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
-			<div class="yt-alert-message">
-				<?php echo htmlspecialchars($_GET['error']); ?>
-			</div>
-		</div></div></div>
-	<?php } ?>
-	<?php if(isset($_GET['success'])) { ?>
-		<div id="masthead_child_div"><div class="yt-alert yt-alert-default yt-alert-success ">  <div class="yt-alert-icon">
-			<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
-		</div>
-		<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
-			<div class="yt-alert-message">
-				<?php echo htmlspecialchars($_GET['success']); ?>
-			</div>
-		</div></div></div>
-	<?php } ?>
-	<?php if(isset($_SESSION['error'])) { ?>
-		<div id="masthead_child_div"><div class="yt-alert yt-alert-default yt-alert-error">  <div class="yt-alert-icon">
-			<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="icon master-sprite" alt="Alert icon">
-		</div>
-		<div class="yt-alert-buttons"></div><div class="yt-alert-content" role="alert">    <span class="yt-alert-vertical-trick"></span>
-			<div class="yt-alert-message">
-				<?php echo $_SESSION['error']->message; ?>
-			</div>
-		</div></div></div>
-		<?php unset($_SESSION['error']); ?>
-	<?php } ?>
+
 </div>
 <!-- end masthead -->

@@ -7,8 +7,14 @@
                                                     <div class="activity-feeds-header clearfix">
                                                         <ul>
                                                             <li class="user-feed-filter selected">
-                                                                <a href="/user/<?php echo htmlspecialchars($_SESSION['siteusername']); ?>/feed?filter=2">
+                                                                <a href="/user/<?php echo htmlspecialchars($_user['username']); ?>/feed?filter=2">
                                                                 Activity
+                                                                </a>
+                                                            </li>
+
+															<li class="user-feed-filter">
+                                                                <a href="/user/<?php echo htmlspecialchars($_user['username']); ?>/discussion">
+                                                                Profile Comments
                                                                 </a>
                                                             </li>
                                                         </ul>
