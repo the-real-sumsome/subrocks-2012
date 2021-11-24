@@ -19,7 +19,7 @@
 		header("Location: /");
 
 	if(isset($_SESSION['siteusername']))
-		$__video_h->check_view($_GET['v'], @$_SESSION['siteusername']);
+		$__video_h->check_view($_GET['v'], @$_SERVER["HTTP_CF_CONNECTING_IP"]);
 
 	$_SESSION['current_video'] = $_video['rid'];
 
