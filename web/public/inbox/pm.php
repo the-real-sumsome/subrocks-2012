@@ -160,12 +160,20 @@
                             <?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/sidebar_inbox.php"); ?>
 							<div id="browse-main-column" style="float: right;margin: 0px 0 0 14px;" class="ytg-4col">
 								<div class="browse-collection  has-box-ad">
+								<h1 style="display:inline-block;">Your Personal Messages</h1>
+								<a href="/inbox/markasread" style="float: right;margin-top: 3px;">
+									<button class="yt-uix-button yt-uix-button-default">
+										Mark All as Read
+									</button>
+								</a><br>
+								<span style="font-size:11px;color:grey;">You currently have <b><?php echo $__user_h->fetch_unread_pms($_SESSION['siteusername']); ?></b> unread messages</span><br>
+								<hr><br>
                                 <?php
                                     $search = $_SESSION['siteusername'];
 
                                     $results_per_page = 12;
 
-                                    $stmt = $__db->prepare("SELECT * FROM pms WHERE touser = :username AND type = 'nm' ORDER BY id DESC");
+                                    $stmt = $__db->prepare("SELECT * FROM pms WHERE touser = :username AND type = 'nm' AND readed = 'y'  ORDER BY id DESC");
                                     $stmt->bindParam(":username", $_SESSION['siteusername']);
                                     $stmt->execute();
 
@@ -180,7 +188,7 @@
 
                                     $page_first_result = ($page - 1) * $results_per_page;  
 
-                                    $stmt6 = $__db->prepare("SELECT * FROM pms WHERE touser = :search AND type = 'nm' ORDER BY id DESC LIMIT :pfirst, :pper");
+                                    $stmt6 = $__db->prepare("SELECT * FROM pms WHERE touser = :search AND type = 'nm' AND readed = 'y'  ORDER BY id DESC LIMIT :pfirst, :pper");
                                     $stmt6->bindParam(":search", $search);
                                     $stmt6->bindParam(":pfirst", $page_first_result);
                                     $stmt6->bindParam(":pper", $results_per_page);
@@ -237,10 +245,18 @@
                                                     Reply
                                                 </button>
                                             </a>
+
+											<a href="/inbox/delete_message?id=<?php echo $inbox['id']; ?>">
+                                                <button class="yt-uix-button yt-uix-button-default">
+                                                    Delete
+                                                </button>
+                                            </a>
                                         </td>
                                         <td class="video-manager-stats" style="background: none;padding-left: 8px;">
                                             <h3><?php echo htmlspecialchars($inbox['subject']); ?></h3>
+											<p style="width:475px;">
                                             <?php echo $__video_h->shorten_description($inbox['message'], 300, true); ?>
+											</p>
                                             <?php if($inbox['video_attr_exists']) { ?>
                                                 <hr>
                                                 <ul>
