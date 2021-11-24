@@ -12,3 +12,8 @@
 	background-image: linear-gradient(to bottom,#656565 0,#505050 100%);
 	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#ffaf2b26,EndColorStr=#ff942422);
 }
+
+.recent-video {
+	height: 100%;
+	max-height: 355px;
+}
