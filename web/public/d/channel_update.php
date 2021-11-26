@@ -262,7 +262,12 @@
         }
 
         if(!empty($_POST['layout_channel'])) {
-            if($_POST['layout_channel'] == "feed" || $_POST['layout_channel'] == "featured" || $_POST['layout_channel'] == "playlists")
+            if(
+                $_POST['layout_channel'] == "feed"      || 
+                $_POST['layout_channel'] == "featured"  || 
+                $_POST['layout_channel'] == "playlists" || 
+                $_POST['layout_channel'] == "everything"
+            )
                 $__user_u->update_row($_SESSION['siteusername'], "layout", $_POST['layout_channel']);
         }
 

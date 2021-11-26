@@ -150,6 +150,7 @@
         height: 43px;
         position: relative;
         left: 1px;
+        bottom: 2px;
         width: 968px;
     }
 
@@ -194,6 +195,7 @@
 
     .www-header-list .yt-uix-button:focus {
         outline: 0;
+        box-shadow: none;
     }
 </style>
 
@@ -396,13 +398,15 @@
                                 </button>
                             </div>
                             <div class="channel-layout-selector">
-                                <img src="/s/img/everything.png">
-                                <h2>Everything</h2>
-                                <p>
-                                    A featured video from a playlist<br>
-                                    with a group of featured playlists<br>
-                                    and channels.
-                                </p><br>
+                                <button onclick=";upload_layout('everything');return false;">
+                                    <img src="/s/img/everything.png">
+                                    <h2>Everything</h2>
+                                    <p>
+                                        A featured video from a playlist<br>
+                                        with a group of featured playlists<br>
+                                        and channels.
+                                    </p>
+                                </button>
                             </div>
                         </center>
                     </td>

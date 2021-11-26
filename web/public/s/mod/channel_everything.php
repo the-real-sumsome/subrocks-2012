@@ -46,44 +46,103 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 												</div>
 											</div>
                                             <?php } ?>
-											<div class="playlists-wide channel-module yt-uix-c3-module-container">
-                                                <div class="module-view">
-	  												<?php
-                                                        $stmt = $__db->prepare("SELECT * FROM playlists WHERE author = :search ORDER BY id DESC LIMIT 10");
-                                                        $stmt->bindParam(":search", $_user['username']);
-                                                        $stmt->execute();
-													?>
-													<div class="playlist-info">
-														<h2><?php echo htmlspecialchars($_user['username']); ?>'s playlists</h2>
-														<?php if($stmt->rowCount() == 0) { echo "<span style='font-size:11px;color:grey;'>This user has no playlists available currently.</span><br><br>"; } ?>
-														<div class="yt-horizontal-rule "><span class="first"></span><span class="second"></span><span class="third"></span></div>
-													</div>
-                                                    <?php 
-                                                        if($stmt->rowCount() != 0) {
-                                                            while($playlist = $stmt->fetch(PDO::FETCH_ASSOC)) { 
-                                                                $playlist['videos'] = json_decode($playlist['videos']);
-                                                    ?>
-                                                    <div class="playlist yt-tile-visible yt-uix-tile">
-                                                        <div class="playlist-metadata">
-                                                            <h3 dir="ltr">
-                                                                <a class="yt-uix-tile-link" href="/view_playlist?v=<?php echo htmlspecialchars($playlist['rid']); ?>&amp;feature=plcp">
-                                                                    <?php echo htmlspecialchars($playlist['title']); ?>
-                                                                </a>
-                                                            </h3>
-                                                            <p class="description" dir="ltr">
-                                                                <?php echo $__video_h->shorten_description($playlist['description'], 50); ?>
-                                                            </p>
+                                            <div class="playlists-wide channel-module yt-uix-c3-module-container">
+                                                <div class="module-view single-playlist-view-module">
+													<div class="blogger-playall">
+                                                        <?php
+                                                            $stmt = $__db->prepare("SELECT * FROM playlists WHERE author = :search ORDER BY id DESC LIMIT 10");
+                                                            $stmt->bindParam(":search", $_user['username']);
+                                                            $stmt->execute();
+                                                        ?>
+                                                        <div class="playlist-info">
+                                                            <h2><?php echo htmlspecialchars($_user['username']); ?>'s playlists</h2>
+                                                            <?php if($stmt->rowCount() == 0) { echo "<span style='font-size:11px;color:grey;'>This user has no playlists available currently.</span><br><br>"; } ?>
+                                                            <div class="yt-horizontal-rule "><span class="first"></span><span class="second"></span><span class="third"></span></div>
                                                         </div>
-                                                        <a class="yt-uix-contextlink play-all yt-uix-sessionlink" href="/watch?v=xrxEQPBbkjY&amp;list=<?php echo htmlspecialchars($playlist['rid']); ?>&amp;feature=plcp" data-sessionlink="context=C4c6c989FDvjVQa1PpcFMwGAkvUKxABIU0JrBC2fHjB8Kf7aTaWOw%3D">
-                                                        <span class="playlist-thumb-strip playlist-thumb-strip-350"><span class="videos videos-5 vertical-cutoff"><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="/dynamic/thumbs/default.jpg" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="/dynamic/thumbs/default.jpg" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="/dynamic/thumbs/default.jpg" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="/dynamic/thumbs/default.jpg" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="//i2.ytimg.com/vi/qPThma_6X7Y/default.jpg" alt="" class="thumb"></span></span></span></span><span class="resting-overlay"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="play-button" alt="Play all">  <span class="video-count-box">
-                                                        <?php echo count($playlist['videos']); ?> videos
-                                                        </span>
-                                                        </span><span class="hover-overlay"><span class="play-all-container"><strong><img src="//s.ytimg.com/yt/img/ui/playlist_thumb_strip/mini-play-all-vflZu1SBs.png" alt="">Play all</strong></span></span></span>
-                                                        </a>
+                                                        <?php 
+                                                            if($stmt->rowCount() != 0) {
+                                                                while($playlist = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+                                                                    $playlist['videos'] = json_decode($playlist['videos']);
+                                                        ?>
+                                                        <div class="playlist yt-tile-visible yt-uix-tile">
+                                                            <div class="playlist-metadata">
+                                                                <h3 dir="ltr">
+                                                                    <a class="yt-uix-tile-link" href="/view_playlist?v=<?php echo htmlspecialchars($playlist['rid']); ?>&amp;feature=plcp">
+                                                                        <?php echo htmlspecialchars($playlist['title']); ?>
+                                                                    </a>
+                                                                </h3>
+                                                                <p class="description" dir="ltr">
+                                                                    <?php echo $__video_h->shorten_description($playlist['description'], 50); ?>
+                                                                </p>
+                                                            </div>
+                                                            <a class="yt-uix-contextlink play-all yt-uix-sessionlink" href="/watch?v=xrxEQPBbkjY&amp;list=<?php echo htmlspecialchars($playlist['rid']); ?>&amp;feature=plcp" data-sessionlink="context=C4c6c989FDvjVQa1PpcFMwGAkvUKxABIU0JrBC2fHjB8Kf7aTaWOw%3D">
+                                                            <span class="playlist-thumb-strip playlist-thumb-strip-350"><span class="videos videos-5 vertical-cutoff"><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="/dynamic/thumbs/default.jpg" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="/dynamic/thumbs/default.jpg" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="/dynamic/thumbs/default.jpg" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="/dynamic/thumbs/default.jpg" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="//i2.ytimg.com/vi/qPThma_6X7Y/default.jpg" alt="" class="thumb"></span></span></span></span><span class="resting-overlay"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" class="play-button" alt="Play all">  <span class="video-count-box">
+                                                            <?php echo count($playlist['videos']); ?> videos
+                                                            </span>
+                                                            </span><span class="hover-overlay"><span class="play-all-container"><strong><img src="//s.ytimg.com/yt/img/ui/playlist_thumb_strip/mini-play-all-vflZu1SBs.png" alt="">Play all</strong></span></span></span>
+                                                            </a>
+                                                        </div>
+                                                        <?php } } ?>
                                                     </div>
-                                                    <?php } } ?>
                                                 </div>
                                             </div>
+											<div class="single-playlist channel-module yt-uix-c3-module-container">
+												<div class="module-view single-playlist-view-module">
+													<div class="blogger-playall">
+                                                        <!--
+                                                            <a class="yt-playall-link yt-playall-link-default " href="/watch?v=<?php echo $video['rid']; ?>&amp;list=UUIwFjwMjI0y7PDBVEO9-bkQ&amp;feature=plcp">
+                                                            <img class="small-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="">
+                                                            Play all
+                                                            </a>
+                                                        -->
+													</div>
+													<div class="playlist-info">
+														<h2>Uploaded videos</h2>
+														<div class="yt-horizontal-rule "><span class="first"></span><span class="second"></span><span class="third"></span></div>
+														<?php if($_user['videos'] == 0) { ?>
+															<h4>This user has not uploaded a video yet.</h4>
+														<?php } ?>
+													</div>
+													<ul class="gh-single-playlist">
+                                                        <?php 
+                                                            $stmt = $__db->prepare("SELECT * FROM videos WHERE author = :username ORDER BY id DESC LIMIT 20");
+                                                            $stmt->bindParam(":username", $_user['username']);
+                                                            $stmt->execute();
+                                                            while($video = $stmt->fetch(PDO::FETCH_ASSOC)) { 
+                                                        ?>
+														<li class="blogger-video">
+															<div class="video yt-tile-visible">
+																<a href="/watch?v=<?php echo $video['rid']; ?>">
+																<span class="ux-thumb-wrap contains-addto "><span class="video-thumb ux-thumb yt-thumb-default-288 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="/dynamic/thumbs/<?php echo $video['thumbnail']; ?>" alt="Thumbnail" onerror="this.onerror=null;this.src='/dynamic/thumbs/default.jpg';" width="288"><span class="vertical-align"></span></span></span></span><span class="video-time"><?php echo $__time_h->timestamp($video['duration']); ?></span>
+																<button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="/watch?v=<?php echo $video['rid']; ?>" role="button"><span class="yt-uix-button-content">  <span class="addto-label">
+																Watch Later
+																</span>
+																<span class="addto-label-error" style="display: none;">
+																Error
+																</span>
+																<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif">
+																</span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
+																</span>
+																<span class="video-item-content">
+																<span class="video-overview">
+																<span class="title video-title" title="<?php echo htmlspecialchars($video['title']); ?>"><?php echo htmlspecialchars($video['title']); ?></span>
+																</span>
+																<span class="video-details">
+																<span class="yt-user-name video-owner" dir="ltr"><?php echo htmlspecialchars($_user['username']); ?></span>
+																<span class="video-view-count">
+																<?php echo $__video_h->fetch_video_views($video['rid']); ?> views
+																</span>
+																<span class="video-time-published"><?php echo $__time_h->time_elapsed_string($video['publish']); ?></span>
+																<span class="video-item-description"><?php echo $__video_h->shorten_description($video['description'], 100); ?></span>
+																</span>
+																</span>
+																</a>
+															</div>
+														</li>
+                                                        <?php } ?>
+													</ul>
+												</div>
+											</div>
 										</div>
 										<div class="secondary-pane">
 											<div id="watch-longform-ad" style="display:none;">
@@ -259,7 +318,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 																	</a>
 																</h3>
 																<span class="playlist-author-attribution">
-																by <?php echo htmlspecialchars($playlist['author']); ?>
+																by <?php echo htmlspecialchars($_user['username']); ?>
 																</span>
 															</div>
 														<?php }  ?>
