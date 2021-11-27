@@ -56,18 +56,75 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
                                                             </a>
                                                         -->
 													</div>
+													<?php 
+														$stmt = $__db->prepare("SELECT * FROM videos WHERE author = :username ORDER BY id DESC LIMIT 20");
+														$stmt->bindParam(":username", $_user['username']);
+														$stmt->execute();
+													?>
+													<style>
+														.box-gray {
+															position: relative;
+															padding: 10px;
+															border: 1px solid #c5c5c5;
+															background-color: #f7f7f7;
+															border-radius: 5px;
+														}
+													</style>
 													<div class="playlist-info">
-														<h2>Uploaded videos</h2>
+	  													<?php if(@$_SESSION['siteusername'] == $_user['username']) { ?>
+															<div class="box-gray" style="display:none;height: 130px;" id="custom_labels" style="margin-bottom: 8px;">
+																<h2>Edit custom labels</h2>
+																<input type="text" id="custom_title" style="margin-bottom:3px;width: 96.6%;" placeholder="Uploaded Videos Custom Text" value="<?php echo htmlspecialchars($_user['uploaded_videos_title']); ?>" class="yt-uix-form-input-text" name="custom_uploaded_videos_title"><br>
+																<input type="text" id="custom_description" style="font-size: 11px;width: 96.6%;" placeholder="Description" value="<?php echo htmlspecialchars($_user['uploaded_videos_description']); ?>" class="yt-uix-form-input-text" name="custom_uploaded_videos_description">
+																<button onclick="custom_labels_finish()" class="yt-uix-button yt-uix-button-default" style="float:right;margin-top:3px;margin-bottom: 3px;">Finish</button><br>
+															</div><br>
+															<a href='#' style='float:right;font-size:11px;color:black;position: relative;top: 9px;' onclick=';open_custom_labels();return false;'>edit</a>
+														<?php } ?>
+														<h2 id="custom_label_title_change"><?php echo htmlspecialchars($_user['uploaded_videos_title']); ?></h2>
+														<span class="blogger-video-count">1-10 of <?php echo $stmt->rowCount(); ?></span>
+														<p id="custom_label_description_change" class="playlist-description"><?php echo htmlspecialchars($_user['uploaded_videos_description']); ?></p>
 														<div class="yt-horizontal-rule "><span class="first"></span><span class="second"></span><span class="third"></span></div>
 														<?php if($_user['videos'] == 0) { ?>
 															<h4>This user has not uploaded a video yet.</h4>
 														<?php } ?>
+														<script>
+															var custom_labels_channel = {
+																custom_title: 	    $("#custom_title"),
+																custom_labels_dom:  $("#custom_labels"),
+																custom_description: $("#custom_description"),
+															}
+
+															function open_custom_labels() {
+																if(channel_customization_module.featured_channels_opened) 
+																	{ $(custom_labels_channel.custom_labels_dom).fadeOut(100); 
+																	channel_customization_module.featured_channels_opened = false; }
+																else
+																	{ $(custom_labels_channel.custom_labels_dom).fadeIn(100); 
+																	channel_customization_module.featured_channels_opened = true; }
+															}
+
+															function custom_labels_finish() {
+																console.log(custom_labels_channel.custom_title.val());
+																console.log(custom_labels_channel.custom_description.val());
+
+																$("#custom_label_title_change").text(custom_labels_channel.custom_title.val());
+																$("#custom_label_description_change").text(custom_labels_channel.custom_description.val());
+
+																$.post("/d/channel_update",
+																{
+																	custom_label_title: custom_labels_channel.custom_title.val(),
+																	custom_label_description: custom_labels_channel.custom_description.val(),
+																},
+																function(data, status){
+																	alerts++;
+																	addAlert("editsuccess_" + alerts, "Successfully updated your channel!");
+																	showAlert("#editsuccess_" + alerts);
+																});
+															}
+														</script>
 													</div>
 													<ul class="gh-single-playlist">
                                                         <?php 
-                                                            $stmt = $__db->prepare("SELECT * FROM videos WHERE author = :username ORDER BY id DESC LIMIT 20");
-                                                            $stmt->bindParam(":username", $_user['username']);
-                                                            $stmt->execute();
                                                             while($video = $stmt->fetch(PDO::FETCH_ASSOC)) { 
                                                         ?>
 														<li class="blogger-video">
@@ -104,188 +161,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 												</div>
 											</div>
 										</div>
-										<div class="secondary-pane">
-											<div id="watch-longform-ad" style="display:none;">
-												<div id="watch-longform-text">
-													Advertisement
-												</div>
-												<div id="watch-longform-ad-placeholder"><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" width="300" height="60"></div>
-												<div id="instream_google_companion_ad_div"></div>
-											</div>
-											<div id="watch-channel-brand-div" class="companion-ads has-visible-edge channel-module yt-uix-c3-module-container hid">
-												<div id="ad300x250"></div>
-												<div id="google_companion_ad_div"></div>
-												<div class="ad-label-text">
-													Advertisement
-												</div>
-											</div>
-											<div class="user-profile channel-module yt-uix-c3-module-container ">
-												<div class="module-view profile-view-module" data-owner-external-id="IwFjwMjI0y7PDBVEO9-bkQ">
-													<h2>About <?php echo htmlspecialchars($_user['username']); ?></h2>
-													<div class="section first">
-														<div class="user-profile-item profile-description">
-															<p><?php echo $__video_h->shorten_description($_user['bio'], 5000); ?></p>
-														</div>
-														<div class="user-profile-item">
-														</div>
-														<div class="user-profile-item">
-                                                            <!--
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="http://smarturl.it/boyfriend?IQid=youtube" rel="me nofollow" target="_blank" title="Get &quot;Boyfriend&quot; on iTunes" class="yt-uix-redirect-link">
-																<img src="//s2.googleusercontent.com/s2/favicons?domain=smarturl.it&amp;feature=youtube_channel" class="favicon" alt="">
-																<span class="link-text">
-																Get "Boyfriend" on iTunes
-																</span>
-																</a>
-															</div>
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="http://bieberfever.com/" rel="me nofollow" target="_blank" title="Bieber Fever" class="yt-uix-redirect-link">
-																<img src="//s2.googleusercontent.com/s2/favicons?domain=bieberfever.com&amp;feature=youtube_channel" class="favicon" alt="">
-																<span class="link-text">
-																Bieber Fever
-																</span>
-																</a>
-															</div>
-                                                            -->
-														</div>
-														<hr class="yt-horizontal-rule ">
-													</div>
-													<?php if(!empty($_user['website'])) { ?>
-														<div class="user-profile-item">
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="<?php echo addhttp(htmlspecialchars($_user['website'])); ?>" rel="me nofollow" target="_blank" title="<?php echo htmlspecialchars($_user['website']); ?>" class="yt-uix-redirect-link">
-																<img src="/yt/imgbin/custom_site.png" class="favicon" alt="">
-																<span class="link-text">
-																<?php echo htmlspecialchars($_user['website']); ?>
-																</span>
-																</a>
-															</div>
-														</div>
-														<div class="user-profile-item">
-															<!--
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="http://smarturl.it/boyfriend?IQid=youtube" rel="me nofollow" target="_blank" title="Get &quot;Boyfriend&quot; on iTunes" class="yt-uix-redirect-link">
-																<img src="//s2.googleusercontent.com/s2/favicons?domain=smarturl.it&amp;feature=youtube_channel" class="favicon" alt="">
-																<span class="link-text">
-																Get "Boyfriend" on iTunes
-																</span>
-																</a>
-															</div>
-															<div class="yt-c3-profile-custom-url field-container ">
-																<a href="http://bieberfever.com/" rel="me nofollow" target="_blank" title="Bieber Fever" class="yt-uix-redirect-link">
-																<img src="//s2.googleusercontent.com/s2/favicons?domain=bieberfever.com&amp;feature=youtube_channel" class="favicon" alt="">
-																<span class="link-text">
-																Bieber Fever
-																</span>
-																</a>
-															</div>
-															-->
-														</div>
-														<hr class="yt-horizontal-rule ">
-														<?php } ?>
-													<div class="section created-by-section">
-														<div class="user-profile-item">
-															by <span class="yt-user-name " dir="ltr"><?php echo htmlspecialchars($_user['username']); ?></span>
-														</div>
-														<div class="user-profile-item ">
-															<h5>Latest Activity</h5>
-															<span class="value"><?php echo date("M d, Y", strtotime($_user['lastlogin'])); ?></span>
-														</div>
-														<div class="user-profile-item ">
-															<h5>Date Joined</h5>
-															<span class="value"><?php echo date("M d, Y", strtotime($_user['created'])); ?></span>
-														</div>
-														<div class="user-profile-item ">
-															<h5>Country</h5>
-															<span class="value"><?php echo htmlspecialchars($_user['country']); ?></span>
-														</div>
-														<?php if($_user['genre'] != "none") { ?>
-															<div class="user-profile-item ">
-																<h5>Channel Genre</h5>
-																<span class="value"><?php echo htmlspecialchars(ucfirst($_user['genre'])); ?></span>
-															</div>
-														<?php } ?>
-													</div>
-													<hr class="yt-horizontal-rule ">
-												</div>
-											</div>
-											<div class="channel-module other-channels yt-uix-c3-module-container other-channels-compact">
-												<?php $_user['featured_channels'] = explode(",", $_user['featured_channels']); ?>
-												<?php if(count($_user['featured_channels']) != 0) { ?>
-												<div class="module-view other-channels-view">
-													<h2 <?php if(@$_SESSION['siteusername'] == $_user['username']) { ?>style="display: inline-block;position: relative;bottom: 10px;"<?php } ?>>Featured Channels</h2> 
-													<?php if(@$_SESSION['siteusername'] == $_user['username']) { 
-														echo "<a href='#' style='float:right;font-size:11px;color:black;' onclick=';open_featured_channels();return false;'>edit</a>"; 
-													} ?>
-													<ul class="channel-summary-list ">
-														<?php 
-															foreach($_user['featured_channels'] as $user) {
-																if($__user_h->user_exists($user)) {
-														?>
-															<li class="yt-tile-visible yt-uix-tile">
-																<div class="channel-summary clearfix channel-summary-compact">
-																	<div class="channel-summary-thumb">
-																		<span class="video-thumb ux-thumb yt-thumb-square-46 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Thumbnail" onerror="this.onerror=null;this.src='/dynamic/thumbs/default.jpg';" data-thumb="/dynamic/pfp/<?php echo $__user_h->fetch_pfp($user); ?>" width="46"><span class="vertical-align"></span></span></span></span>
-																	</div>
-																	<div class="channel-summary-info">
-																		<h3 class="channel-summary-title">
-																			<a href="/user/<?php echo htmlspecialchars($user); ?>" class="yt-uix-tile-link"><?php echo htmlspecialchars($user); ?></a>
-																		</h3>
-																		<span class="subscriber-count">
-																		<strong><?php echo $__user_h->fetch_subs_count($user); ?></strong>
-																		subscribers
-																		</span>
-																	</div>
-																</div>
-															</li>
-														<?php } } ?>
-													</ul>
-												</div>
-												<?php } ?>
-											</div>
-
-											<?php 
-												$stmt = $__db->prepare("SELECT * FROM playlists WHERE author = :search ORDER BY id DESC LIMIT 10");
-												$stmt->bindParam(":search", $_user['username']);
-												$stmt->execute();
-
-												if($stmt->rowCount() != 0) {
-											?>
-												<div class="playlists-narrow channel-module yt-uix-c3-module-container">
-													<div class="module-view gh-featured">
-														<h2>Featured Playlists</h2>     
-														<?php
-														while($playlist = $stmt->fetch(PDO::FETCH_ASSOC)) { 
-															$playlist['videos'] = json_decode($playlist['videos']);
-														?> 
-															<div class="playlist yt-tile-visible yt-uix-tile">
-																<a href="/view_playlist?v=<?php echo $playlist['rid']; ?>">
-																<span class="playlist-thumb-strip playlist-thumb-strip-252"><span class="videos videos-4 horizontal-cutoff"><span class="clip"><span class="centering-offset"><span class="centering">
-																	<span class="ie7-vertical-align-hack">&nbsp;</span>
-																	<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" data-thumb="" alt="" class="thumb"></span></span></span>
-																	<span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;
-
-																	</span><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="" class="thumb"></span></span></span>
-																	<span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span>
-																	<img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="" class="thumb"></span></span></span><span class="clip"><span class="centering-offset"><span class="centering"><span class="ie7-vertical-align-hack">&nbsp;</span><img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" data-thumb="" alt="" class="thumb"></span></span></span></span><span class="resting-overlay"><img src="//s.ytimg.com/yt/img/channels/play-icon-resting-vflXxuFB8.png" class="play-button" alt="Play all">  <span class="video-count-box">
-																<?php echo count($playlist['videos']); ?> videos
-																</span>
-																</span><span class="hover-overlay"><span class="play-all-container"><strong><img src="//s.ytimg.com/yt/img/channels/mini-play-all-vflZu1SBs.png" alt="">Play all</strong></span></span></span>
-																</a>
-																<h3>
-																	<a href="/view_playlist?v=<?php echo $playlist['rid']; ?>" title="See all videos in playlist." class="yt-uix-tile-link">
-																		<?php echo htmlspecialchars($playlist['title']); ?>
-																	</a>
-																</h3>
-																<span class="playlist-author-attribution">
-																by <?php echo htmlspecialchars($_user['username']); ?>
-																</span>
-															</div>
-														<?php }  ?>
-													</div>
-												</div>
-											<?php } ?>
-										</div>
+										<div class="secondary-pane"><?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/secondary_pane.php"); ?></div>
 									</div>
 								</div>
 							

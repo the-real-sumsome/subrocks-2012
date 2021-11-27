@@ -4,6 +4,10 @@
         $stmt->bindParam(":username", $_SESSION['siteusername']);
 		$stmt->bindParam(":ip",       $_SERVER["HTTP_CF_CONNECTING_IP"]);
         $stmt->execute();
+
+		$stmt = $__db->prepare("UPDATE users SET lastlogin = now() WHERE username = :username");
+        $stmt->bindParam(":username", $_SESSION['siteusername']);
+        $stmt->execute();
 	}
 
 	if(isset($_SESSION['siteusername']) && !$__user_h->user_exists(@$_SESSION['siteusername'])) {

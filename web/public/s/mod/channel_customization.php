@@ -468,7 +468,7 @@
                         <input class="yt-uix-form-input-text" style="width: 225px;" id="biomd" placeholder="Video ID" value="<?php echo htmlspecialchars($_user['featured']);?>" name="videoid"><br><br>
                         <span style="font-size: 10px;color: grey;">Description</span><br>
                         <div id="bio" action="/d/channel_update" enctype="multipart/form-data">
-                            <textarea class="yt-uix-form-input-text" style="resize:none;height: 55px;width: 225px;background-color:white;border: 1px solid #d3d3d3;" id="biom" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
+                            <textarea class="yt-uix-form-input-text" style="resize:none;height: 55px;width: 225px;background-color:white;border: 1px solid #d3d3d3;" id="readthisbio" placeholder="Bio" name="bio"><?php echo htmlspecialchars($_user['bio']); ?></textarea><br>
                         </div>
 
 
@@ -478,7 +478,7 @@
                         <h2>Advanced</h2>
                         <span style="font-size: 10px;color: grey;">Website URL</span><br>
                         <div id="featuredvid" action="/d/channel_update" enctype="multipart/form-data">
-                        <input class="yt-uix-form-input-text" style="width: 225px;" id="biomd" placeholder="Website URL" value="<?php echo htmlspecialchars($_user['website']);?>" name="website">
+                        <input class="yt-uix-form-input-text" style="width: 225px;" id="websiteurlinp" placeholder="Website URL" value="<?php echo htmlspecialchars($_user['website']);?>" name="website">
                         </div><br>
                         <div>
                             <span style="font-size: 10px;color: grey;">Featured Channels</span>
@@ -489,7 +489,7 @@
 
                         <span style="font-size: 10px;color: grey;">Country</span><br>
                         <div id="countryselect" action="/d/channel_update" enctype="multipart/form-data">
-                            <select style="width: 246px;" class="yt-uix-button yt-uix-button-default" id="country" name="country" value="<?php echo $_user['country']?>">
+                            <select style="width: 246px;" class="yt-uix-button yt-uix-button-default" id="country_input" name="country" value="<?php echo $_user['country']?>">
                             <?php
                             $countries = ["Select country","Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"];
 
@@ -534,70 +534,6 @@
         </div>
     </div>
 </div>
-<script>
-    const solid_color = document.querySelector("#channelboxcolorpicker");
-
-    solid_color.addEventListener("input",(event)=>{
-        $(".channel-box-description").css("background", solid_color.value);
-        $("#secondary_color_thinglo").css("background", solid_color.value);
-        $("#channel-top-right-ribb").css("background", solid_color.value);
-        $("#welcome-to-subrocks-acc").css("border", "2px solid " + solid_color.value);
-    });
-
-    const border_color = document.querySelector("#bordercolorpicker");
-
-    border_color.addEventListener("input",(event)=>{
-        $(".channel-box-description").css("border", "1px solid" + border_color.value);
-        $(".channel-box-no-bg").css("border", "1px solid" + border_color.value);
-        $(".featured-video-info").css("border", "1px solid" + border_color.value);
-    });
-
-    const background_color = document.querySelector("#solidcolorbackground");
-
-    background_color.addEventListener("input",(event)=>{
-        $(".channel-box-no-bg").css("background-color", background_color.value);
-        $(".featured-video-info").css("background-color", background_color.value);
-        $(".benifits-outer-front").css("background-color", background_color.value);
-        $(".benifits-inner-front").css("background-color", background_color.value);
-        $(".www-channel-top").css("background-color", background_color.value);
-        $(".right_arrow").css("border-left-color", background_color.value);
-        $(".view-button .a").css("border-left-color", background_color.value);
-        $(".tri").css("border-top-color", background_color.value);
-        $(".tri").css("border-bottom-color", background_color.value);
-        $(".tri").css("background-color", background_color.value);
-        $(".a .tri").css("color", background_color.value);
-    });
-
-    const text_color = document.querySelector("#textmaincolor");
-
-    text_color.addEventListener("input",(event)=>{
-        $(".channel-box-description").css("color", text_color.value);
-        $(".channel-box-no-bg").css("color", text_color.value);
-        $(".www-channel-left a").css("color", text_color.value);
-        $(".www-channel-right a").css("color", text_color.value);
-        $(".www-channel-left a").css("color", text_color.value);
-        $(".benifits-inner-front a").css("color", text_color.value);
-        $(".featured-video-info a").css("color", text_color.value);
-    });
-
-    const channel_box_color = document.querySelector("#solidcolor");
-
-    channel_box_color.addEventListener("input",(event)=>{
-        $(".channel-box-description").css("color", channel_box_color.value);
-        $(".thin-line").css("border-top", channel_box_color.value);
-        $(".channel-box-top").css("background", channel_box_color.value);
-        $(".channel-box-no-bg").css("color", channel_box_color.value);
-        $(".channel-pfp").css("border-color", channel_box_color.value);
-        $(".channel-pfp").css("border", "3px double " + channel_box_color.value);
-        $(".comment-pfp").css("border-color", channel_box_color.value);
-        $(".comment-pfp").css("border", "3px double " + channel_box_color.value);
-        $(".www-channel-section").css("background", channel_box_color.value);
-        $("#lower-part-channel").css("background-color", channel_box_color.value);
-        $(".featured-video-info").css("background-color", channel_box_color.value);
-        $("#top-channel-section").css("background-color", channel_box_color.value);
-        $(".view-button").css("background-color", channel_box_color.value);
-    });
-</script>
 <script>
     var alerts = 0; 
     $('#picturesform').submit(
@@ -664,7 +600,9 @@
                     alerts++;
                     addAlert("alert__" + alerts, "Successfully updated your channel!");
                     showAlert("#editsuccess_" + alerts);
-                    $("#bio-changeme").text($("#biom").val());
+                    $("#bio-changeme").text($("#readthisbio").val());
+                    $("#website_url_change").text($("#websiteurlinp").val());
+                    $("#country_change").text($("#country_input").val());
                 }
             } );
             e.preventDefault();

@@ -199,6 +199,14 @@
         if(!empty($_POST['featuredchannels'])) { 
             $__user_u->update_row($_SESSION['siteusername'], "featured_channels", $_POST['featuredchannels']);
         }
+
+        if(!empty($_POST['custom_label_title'])) { 
+            $__user_u->update_row($_SESSION['siteusername'], "uploaded_videos_title", $_POST['custom_label_title']);
+        }
+
+        if(!empty($_POST['custom_label_description'])) { 
+            $__user_u->update_row($_SESSION['siteusername'], "uploaded_videos_description", $_POST['custom_label_description']);
+        }
     
         if(!empty($_POST['css'])) {
             $__user_u->update_row($_SESSION['siteusername'], "css", $_POST['css']);
@@ -209,7 +217,7 @@
         }
 
         if(!empty($_POST['solidcolor'])) {
-            $__user_u->update_row($_SESSION['siteusername'], "2012_bgoption", $_POST['bgoption']);
+            $__user_u->update_row($_SESSION['siteusername'], "background_option", $_POST['bgoption']);
 
             if($_POST['bgoption'] == "solid")
                 $__user_u->update_row($_SESSION['siteusername'], "2012_bg", "");
@@ -276,7 +284,7 @@
         $bgcolor = $_POST['solidcolor'];
         $default = "default.png";
 
-        $__user_u->update_row($_SESSION['siteusername'], "2012_bgoption", $bgoption);
+        $__user_u->update_row($_SESSION['siteusername'], "background_option", $bgoption);
         
         $__user_u->update_row($_SESSION['siteusername'], "2012_bgcolor", $bgcolor);
 
