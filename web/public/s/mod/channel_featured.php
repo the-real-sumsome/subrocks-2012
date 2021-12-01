@@ -6,7 +6,7 @@
 											<div class="channels-featured-video channel-module yt-uix-c3-module-container has-visible-edge">
 												<div class="module-view featured-video-view-module">
 												<div id="watch-video" >
-          <script>
+												<script>
 if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 
           <div id="watch-player" class="flash-player"></div>
@@ -19,11 +19,11 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 
       <!-- begin watch-video-extra -->
       <div id="watch-video-extra">
-        
-        
+
+
       </div>
       <!-- end watch-video-extra -->
-    </div>
+												</div>
 													<div style="width: 615px;" class="channels-featured-video-details yt-tile-visible clearfix">
 														<h3 class="title">
 															<a href="/watch?v=<?php echo $video['rid']; ?>">
@@ -85,7 +85,7 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 														<p id="custom_label_description_change" class="playlist-description"><?php echo htmlspecialchars($_user['uploaded_videos_description']); ?></p>
 														<div class="yt-horizontal-rule "><span class="first"></span><span class="second"></span><span class="third"></span></div>
 														<?php if($_user['videos'] == 0) { ?>
-															<h4>This user has not uploaded a video yet.</h4>
+															<span style="font-size:11px;color:grey;">This user has not uploaded a video yet.</span>
 														<?php } ?>
 														<script>
 															var custom_labels_channel = {

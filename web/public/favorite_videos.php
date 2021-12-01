@@ -156,14 +156,18 @@
                             <?php require($_SERVER['DOCUMENT_ROOT'] . "/s/mod/sidebar.php"); ?>
 							<div id="browse-main-column" style="float: right;margin: 0px 0 0 14px;" class="ytg-4col">
 								<div class="browse-collection  has-box-ad">
+								<?php 
+									$stmt = $__db->prepare("SELECT * FROM favorite_video WHERE sender = :username ORDER BY id DESC");
+									$stmt->bindParam(":username", $_SESSION['siteusername']);
+									$stmt->execute();									
+								?>
+								<h1 style="display:inline-block;">Favorite Videos</h1><br>
+								<span style="font-size:11px;color:grey;">You currently have <b><?php echo $stmt->rowCount(); ?></b> favorite videos</span><br>
+								<hr><br>
                                 <?php
                                     $search = $_SESSION['siteusername'];
 
                                     $results_per_page = 12;
-
-                                    $stmt = $__db->prepare("SELECT * FROM favorite_video WHERE sender = :username ORDER BY id DESC");
-                                    $stmt->bindParam(":username", $_SESSION['siteusername']);
-                                    $stmt->execute();
 
                                     $number_of_result = $stmt->rowCount();
                                     $number_of_page = ceil ($number_of_result / $results_per_page);  

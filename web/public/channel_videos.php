@@ -349,6 +349,8 @@
 														$stmt = $__db->prepare("SELECT * FROM videos WHERE author = :username ORDER BY id DESC");
 														$stmt->bindParam(":username", $_user['username']);
 														$stmt->execute();
+														if($stmt->rowCount() == 0) { echo '<span style="font-size:11px;color:grey;">This user has no videos uploaded.</span>'; }
+
 														while($video = $stmt->fetch(PDO::FETCH_ASSOC)) {	
 															$video['age'] = $__time_h->time_elapsed_string($video['publish']);		
 															$video['duration'] = $__time_h->timestamp($video['duration']);

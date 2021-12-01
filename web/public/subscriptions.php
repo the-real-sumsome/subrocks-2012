@@ -161,6 +161,9 @@
                                     $stmt->bindParam(":username", $_SESSION['siteusername']);
                                     $stmt->execute();
                                 ?>                    
+								<h1 style="display:inline-block;">Your Subscriptions</h1><br>
+								<span style="font-size:11px;color:grey;">You currently have <b><?php echo $stmt->rowCount(); ?></b> subscriptions</span><br>
+								<hr><br>
                                 
                                 <div class="my_videos_ajax">                                  
                                     <?php while($user = $stmt->fetch(PDO::FETCH_ASSOC)) {  ?> 

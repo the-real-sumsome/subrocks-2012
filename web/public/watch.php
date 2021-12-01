@@ -815,10 +815,17 @@ if (window.yt.timing) {yt.timing.tick("bf");}    </script>
 																			</span>
 																			</span></span>
 																			<?php if($comment['likes'] != 0) { ?>
-																			<span dir="ltr" class="comments-rating-positive" title="9 up, 1 down">
-																				<?php echo $comment['likes']; ?>
-																				<img class="comments-rating-thumbs-up" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif">
-																			</span>
+																				<?php if($comment['likes'] < 0) { ?>
+																				<span dir="ltr" class="comments-rating-positive" title="9 up, 1 down" style="color:#c16a6a;">
+																					<?php echo abs($comment['likes']);; ?>
+																					<img src="/yt/imgbin/dislike.png">
+																				</span>
+																				<?php } else { ?>
+																				<span dir="ltr" class="comments-rating-positive" title="9 up, 1 down">
+																					<?php echo $comment['likes']; ?>
+																					<img class="comments-rating-thumbs-up" src="//s.ytimg.com/yts/img/pixel-vfl3z5WfW.gif">
+																				</span>
+																				<?php } ?>
 																			<?php } ?>
 																		</p>
 																	</div>

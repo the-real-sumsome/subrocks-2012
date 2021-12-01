@@ -192,6 +192,11 @@
                                     $stmt = $__db->prepare("SELECT * FROM playlists WHERE author = :username ORDER BY id DESC");
                                     $stmt->bindParam(":username", $_SESSION['siteusername']);
                                     $stmt->execute();
+                                ?>
+								<h1 style="display:inline-block;">Your Playlists</h1><br>
+								<span style="font-size:11px;color:grey;">You currently have <b><?php echo $stmt->rowCount(); ?></b> playlists</span><br>
+								<hr><br>
+                                <?php
 
                                     $number_of_result = $stmt->rowCount();
                                     $number_of_page = ceil ($number_of_result / $results_per_page);  
