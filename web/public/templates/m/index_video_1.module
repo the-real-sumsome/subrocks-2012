@@ -1,0 +1,64 @@
+<li>
+    <div class="feed-item-container first " data-channel-key="UCR2A9ZNliJfgC66IvIpe-Zw">
+        <div class="feed-author-bubble-container">
+            <a href="/user/{{author}}" class="feed-author-bubble   ">  <span class="feed-item-author">
+            <span class="video-thumb ux-thumb yt-thumb-square-28 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="{{author}}" data-thumb="/dynamic/pfp/{{pfp}}" width="28"><span class="vertical-align"></span></span></span></span>
+            </span>
+            </a>  
+        </div>
+        <div class="feed-item-main">
+            <div class="feed-item-header">
+                <span class="feed-item-actions-line ">
+                <span class="feed-item-owner">    <a href="/user/{{author}}" class="yt-uix-sessionlink yt-user-name " data-sessionlink="feature=g-logo-xit" dir="ltr">{{author}}</a>
+                </span>
+                uploaded a video
+                <span class="feed-item-time">
+                <?php echo $video['age']; ?>
+                </span>
+                </span>
+            </div>
+            <div class="feed-item-content-wrapper clearfix">
+                <div class="feed-item-thumb">
+                    <a class="ux-thumb-wrap contains-addto  yt-uix-contextlink yt-uix-sessionlink" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;context=G266dc06FOAAAAAAAAAA" href="/watch?v={{rid}}">
+                    <span class="video-thumb ux-thumb yt-thumb-default-185 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Thumbnail" onerror="this.onerror=null;this.src='/dynamic/thumbs/default.jpg';" data-thumb="/dynamic/thumbs/{{thumbnail}}" width="185"><span class="vertical-align"></span></span></span></span>
+                    <span class="video-time">{{duration}}</span>
+                    <button onclick=";return false;" title="Watch Later" type="button" class="addto-button video-actions addto-watch-later-button-sign-in yt-uix-button yt-uix-button-default yt-uix-button-short yt-uix-tooltip" data-button-menu-id="shared-addto-watch-later-login" data-video-ids="rLHU-_OhT8g" role="button"><span class="yt-uix-button-content">  <img src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="Watch Later">
+                    </span><img class="yt-uix-button-arrow" src="//s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt=""></button>
+                    </a>
+                </div>
+                <div class="feed-item-content">
+                    <h4>
+                        <a class="feed-video-title title yt-uix-contextlink  yt-uix-sessionlink  secondary" href="/watch?v={{rid}}" data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-logo-xit&amp;context=G266dc06FOAAAAAAAAAA">
+                            {{title}}
+                        </a>
+                    </h4>
+                    <div class="metadata">
+                        <a href="/user/{{author}}" class="yt-user-photo ">
+                        <span class="video-thumb ux-thumb yt-thumb-square-18 "><span class="yt-thumb-clip"><span class="yt-thumb-clip-inner"><img src="http://s.ytimg.com/yt/img/pixel-vfl3z5WfW.gif" alt="{{author}}" data-thumb="/dynamic/pfp/{{pfp}}" width="18"><span class="vertical-align"></span></span></span></span>
+                        </a>
+                        <a href="/user/{{author}}" class="yt-uix-sessionlink yt-user-name " data-sessionlink="ei=CNLr3rbS3rICFSwSIQodSW397Q%3D%3D&amp;feature=g-logo-xit" dir="ltr">{{author}}</a>
+                        <span class="bull">•</span>
+                        <span class="view-count">
+                        {{views}} views
+                        </span>
+                        <div class="description">
+                            <p>{{description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="feed-item-dismissal-notices">
+        <div class="feed-item-dismissal feed-item-dismissal-hide hid">This item has been hidden</div>
+        <div class="feed-item-dismissal feed-item-dismissal-uploads hid">In the future you will only see uploads from   <span class="feed-item-owner">    <a href="/user/{{author}}" class="yt-uix-sessionlink yt-user-name " data-sessionlink="feature=g-logo-xit" dir="ltr">{{author}}</a>
+            </span>
+        </div>
+        <div class="feed-item-dismissal feed-item-dismissal-all-activity hid">In the future you will see all activity from   <span class="feed-item-owner">    <a href="/user/{{author}}" class="yt-uix-sessionlink yt-user-name " data-sessionlink="feature=g-logo-xit" dir="ltr">{{author}}</a>
+            </span>
+        </div>
+        <div class="feed-item-dismissal feed-item-dismissal-unsubscribe hid">You have been unsubscribed from   <span class="feed-item-owner">    <a href="/user/{{author}}" class="yt-uix-sessionlink yt-user-name " data-sessionlink="feature=g-logo-xit" dir="ltr">{{author}}</a>
+            </span>
+        </div>
+    </div>
+</li>

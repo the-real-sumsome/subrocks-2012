@@ -1,1 +1,5 @@
 app/*
+vendor/
+composer.json
+composer.json.dist
+composer.lock
