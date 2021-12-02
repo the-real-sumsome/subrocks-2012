@@ -13,7 +13,7 @@
                 </span>
                 uploaded a video
                 <span class="feed-item-time">
-                <?php echo $video['age']; ?>
+                {{age}}
                 </span>
                 </span>
             </div>
