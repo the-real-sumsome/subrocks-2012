@@ -1,6 +1,8 @@
 # subrocks-2012
 a 2012 rewrite for subrocks
 
+# THE SITE IS CURRENTLY ON HIATUS BECAUSE OF SCHOOL, CODE REWRITE WILL BE WITHIN 1 WEEK
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/the-real-sumsome/subrocks-2012/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/the-real-sumsome/subrocks-2012/?branch=main)
 [![Build Status](https://scrutinizer-ci.com/g/the-real-sumsome/subrocks-2012/badges/build.png?b=main)](https://scrutinizer-ci.com/g/the-real-sumsome/subrocks-2012/build-status/main)
 
